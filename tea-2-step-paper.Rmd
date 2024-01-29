@@ -165,10 +165,14 @@ In addition, management should include in their efforts an ongoing assessment of
 
 A school district is a large system.  As it turns out, the context of time is crucial to assess the capability and effectiveness of learning.  We all know that 
 
+
 One of the many reports made available on the TEA website is the 'Snapshot', an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or tax-paying citizen make policy decisions.  
 <br>
 
-STAAR scoring by subject matter (from the 2022-2023 Snapshot)  View the entire report here.
+STAAR scoring by subject matter (from the 2022-2023 Snapshot)  To view entire report from pdf format click here:   [\textcolor{blue}{\url{pdf}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
+<br>
+To view entire report from html format click here:  
+[(html)](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
 <br>
 
 \includegraphics{tea-staar-snapshot-by-subj-2022-2023-annot.png}
