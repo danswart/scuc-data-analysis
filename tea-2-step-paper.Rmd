@@ -5,7 +5,15 @@ date: "`r Sys.Date()`"
 header-includes: 
  \usepackage{geometry}
  \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
+ \setlength\parindent{0.25in}
+ \usepackage{xcolor}
+ \usepackage{hyperref}
+ \hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=BlueViolet, citecolor=BrickRed}
+ \urlstyle{same}
 output:
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
   bookdown::pdf_document2:
     css: [swart-20240104.css, tachyons.min.css, r-colors.css]
     latex_engine: xelatex
@@ -14,9 +22,6 @@ output:
     fontsize: 18pt
     includes:
       in_header: dsheader.tex
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -101,64 +106,64 @@ cat('
 
 ```
 
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-
-# Insert 2 line break with LaTex
-
-cat(
-  '\\',
-  '\\'
-  )
-
-```
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-
-# Insert 2 line breaks in HTML
-
-cat(
-  '<br>
-  <br>'
-  )
-
-```
+\vspace{0.5in}
 
 
 My aim here is to contribute something to the improvement of learning in our school district; or in any school district.  My basic supposition is that any Board of Trustees should seek data suited to rational policy action aimed at improving **future** learning in the district.
 
+\bigskip
+
 <br>
-<br>
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 
-# Insert 2 line break with LaTex
+**BACKGROUND**
 
-cat(
-  '\\',
-  '\\'
-  )
+\medskip
 
-```
+The Texas Education Agency (TEA) collects data from every school district in Texas, performs various calculations, and produces reams of reports and tables summarizing their results by academic year.  These reports consist primarily of calculations mandated by the state legislature.  For example, one statistic computed is the so-called 'Accountability Rating' for every district in the state.  Each campus also receives a rating.  
 
-
-BACKGROUND
-
-The Texas Education Agency (TEA) collects data from every school district in Texas, performs various calculations, and produces reams of reports and tables summarizing their results, by academic year.  These reports consist primarily of calculations mandated by the state legislature.  For example, one statistic computed is the so-called 'Accountability Rating' for every district in the state.  Each campus also receives a rating.  
-
+\medskip
 
 These statistical summaries are available to the public and the school districts.  Unfortunately for the public and the school districts, the information is not nearly as helpful as it could be.  In fact, it takes so much 'data wrangling' to put it into a form that is remotely helpful for assessing and improving district and campus learning that it is simply not done.
 
 
-Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even Ron Popeil would be envious (young people, look up Ron Popeil).
+Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even [\textcolor{blue}{\url{Ron Popeil}}](https://en.wikipedia.org/wiki/Ron_Popeil) [(the inventor of the Chop-O-Matic)](https://en.wikipedia.org/wiki/Ron_Popeil) would be envious!
+
   
+  
+Here's an example from a TEA report called a 'Snapshot':
+<br>
+
+\medskip
+
+\includegraphics{tea-staar-snapshot-by-subj-2022-2023.png}
+<img src="tea-staar-snapshot-by-subj-2022-2023.png">
+
+<br>
+
+\medskip
+
+
+And, here's an example from blah blah:
+
+<br>
+
+\medskip
+
+\includegraphics{tea-staar-snapshot-by-subj-2022-2023.png}
+<img src="tea-staar-snapshot-by-subj-2022-2023.png">
+
   
 So, what is a school district to make of these mountains of numbers?  Do they help districts improve learning in the future?  In their present form, the answer is a resounding "NO!"  
 
 
-The TEA is charged with preparing the required reports, and they do.  Boards of Trustees are charged with managing and improving their districts.  Managing a district is usually bureaucratic; budgeting,  administration, and resource allocation.  Part of that management should include assessing the capability and effectiveness of learning of the district in the future
+The TEA is charged with preparing the required reports, and they do.  Boards of Trustees are charged with managing and improving their districts.  Managing a district is usually bureaucratic; budgeting,  administration, and resource allocation.  Important, to be sure.
 
 
+In addition, management should include in their efforts an ongoing assessment of the capability and effectiveness of learning in their district.  The aim should be improvement of learning ***in the future***.
+
+
+A school district is a large system.  As it turns out, the context of time is crucial to assess the capability and effectiveness of learning.  We all know that 
 
 One of the many reports made available on the TEA website is the 'Snapshot', an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or tax-paying citizen make policy decisions.  
 <br>
