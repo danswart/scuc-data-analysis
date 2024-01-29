@@ -6,6 +6,9 @@ header-includes:
  \usepackage{geometry}
  \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
 output:
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
   bookdown::pdf_document2:
     css: [swart-20240104.css, tachyons.min.css, r-colors.css]
     latex_engine: xelatex
@@ -14,9 +17,6 @@ output:
     fontsize: 18pt
     includes:
       in_header: dsheader.tex
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -146,15 +146,15 @@ One of the many reports made available on the TEA website is the 'Snapshot', an 
 STAAR scoring by subject matter (from the 2022-2023 Snapshot)  View the entire report here.
 <br>
 
-\includegraphics{tea-staar-snapshot-by-subj-2022-2023.png}
-<img src="tea-staar-snapshot-by-subj-2022-2023.png">
+\includegraphics{tea-staar-snapshot-by-subj-2022-2023-annot.png}
+<img src="tea-staar-snapshot-by-subj-2022-2023-annot.png">
 
 
 <br>
 The section reporting STAAR scoring by ethniticy:
 
-\includegraphics{tea-staar-snapshot-by-ethnicity-2022-2023.png}
-<img src="tea-staar-snapshot-by-ethnicity-2022-2023.png">
+\includegraphics{tea-staar-snapshot-by-ethnicity-2022-2023-annot.png}
+<img src="tea-staar-snapshot-by-ethnicity-2022-2023-annot.png">
 
 
 
