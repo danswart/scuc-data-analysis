@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  30 JAN 2024 20:06
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  31 JAN 2024 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -798,15 +798,15 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 [1
 
 ]
-File: tea-staar-snapshot-example-2021-2022.png Graphic file (type bmp)
-<tea-staar-snapshot-example-2021-2022.png>
+File: img/tea-staar-snapshot-example-2021-2022.png Graphic file (type bmp)
+<img/tea-staar-snapshot-example-2021-2022.png>
 
 Overfull \hbox (18.07623pt too wide) in paragraph at lines 136--137
 [][] 
  []
 
-File: tea-staar-src-example-2021-2022.png Graphic file (type bmp)
-<tea-staar-src-example-2021-2022.png>
+File: img/tea-staar-src-example-2021-2022.png Graphic file (type bmp)
+<img/tea-staar-src-example-2021-2022.png>
 
 Overfull \hbox (18.06886pt too wide) in paragraph at lines 151--152
 [][] 
@@ -817,56 +817,65 @@ Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
-File: tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
-<tea-staar-snapshot-by-subj-2022-2023-annot.png>
+File: img/tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
+<img/tea-staar-snapshot-by-subj-2022-2023-annot.png>
 
 Overfull \hbox (18.06842pt too wide) in paragraph at lines 176--177
 [][] 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
+File: img/tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
+<img/tea-staar-snapshot-by-subj-2022-2023-annot.png>
+
+Overfull \hbox (18.06842pt too wide) in paragraph at lines 186--187
+[][] 
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
+[5]
 File: pbc/xmr-2016-2022-all-subj-masters-only.png Graphic file (type bmp)
 <pbc/xmr-2016-2022-all-subj-masters-only.png>
 
-Overfull \hbox (18.07108pt too wide) in paragraph at lines 209--210
+Overfull \hbox (18.07845pt too wide) in paragraph at lines 219--220
 [][] 
  []
 
-[4] [5]
-File: tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
-<tea-staar-snapshot-by-subj-2022-2023-annot.png>
+[6]
+File: img/tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
+<img/tea-staar-snapshot-by-subj-2022-2023-annot.png>
 
-Overfull \hbox (18.06842pt too wide) in paragraph at lines 229--230
+Overfull \hbox (18.06842pt too wide) in paragraph at lines 239--240
 [][] 
  []
 
-File: tea-staar-snapshot-by-ethnicity-2022-2023-annot.png Graphic file (type bmp)
-<tea-staar-snapshot-by-ethnicity-2022-2023-annot.png>
+File: img/tea-staar-snapshot-by-ethnicity-2022-2023-annot.png Graphic file (type bmp)
+<img/tea-staar-snapshot-by-ethnicity-2022-2023-annot.png>
 
-Overfull \hbox (18.07808pt too wide) in paragraph at lines 233--234
+Overfull \hbox (18.07808pt too wide) in paragraph at lines 243--244
 [][] 
  []
 
-[6] [7] [8]
+[7] [8] [9] [10]
 File: tea-2-step-paper_files/figure-latex/six-trends-1.pdf Graphic file (type pdf)
 <use tea-2-step-paper_files/figure-latex/six-trends-1.pdf>
-[9] [10] (./tea-2-step-paper.aux)
+[11] (./tea-2-step-paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18852 strings out of 476858
- 346946 string characters out of 5803841
+ 18861 strings out of 476858
+ 347470 string characters out of 5803841
  1927627 words of memory out of 5000000
- 40520 multiletter control sequences out of 15000+600000
+ 40528 multiletter control sequences out of 15000+600000
  564474 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,6n,120p,1013b,447s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on tea-2-step-paper.pdf (10 pages).
+Output written on tea-2-step-paper.pdf (11 pages).

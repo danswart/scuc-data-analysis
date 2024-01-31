@@ -20,7 +20,8 @@ output:
     latex_engine: xelatex
     fig_caption: true
     latex_engine_opts: -shell-escape
-    fontsize: 18pt
+    documentclass: book
+    classoption: 16pt
     includes:
       in_header: dsheader.tex
   bookdown::html_document2:
@@ -202,10 +203,24 @@ Here is an example of aggregated STAAR categories in a TEA report:
 
 \bigskip
 
-***Second***, the offered reports are siloed by academic year making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no analysis is possible.***
+***Second***, the TEA reports are siloed by academic year making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no analysis is possible.***
 
 
-All data I've seen so far as a board member is descriptive only, with no analysis present.  
+Through an embarrasing amount of time spent 'data wrangling' I was able to construct from the 'Snapshot' resports a small time-period-by-time-period data frame for STAAR scores for the subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+
+Here we see a comprehensive view of all subject categories for one level of achievement for all years in the sample:
+
+
+\includegraphics{tea-staar-snapshot-by-subj-2022-2023-annot.png}
+<img src="tea-staar-snapshot-by-subj-2022-2023-annot.png">
+
+<br>
+
+\bigskip
+
+
+
+All data I've seen so far as a board member are descriptive only, with no analysis present.  
 <br>
 
 \bigskip
@@ -214,6 +229,10 @@ All data I've seen so far as a board member is descriptive only, with no analysi
 **THE SOLUTION**
 
 For improvement, we must move from a 'snapshot' point of view to an 'analysis' point of view.  That means the data we seek must include the context of time.  All improvement work requires the context of time.  
+
+The important information for understanding district capability, and the prediction of future performance, is contained in the time-period-by-time-period data frame.  The order of the data matters.  The more periods included in the analysis, the stronger the evidence for your inferences.
+
+
 
 
 Humans naturally seek context.  That is where notions such as 'this month vs last month vs YTD vs a year ago this month' arose.  Those are insufficient for analysis, but they soothe our need for context of some sort.
