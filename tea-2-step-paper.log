@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  31 JAN 2024 14:50
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  31 JAN 2024 16:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -825,10 +825,10 @@ Overfull \hbox (18.06842pt too wide) in paragraph at lines 176--177
  []
 
 [3]
-File: img/tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
-<img/tea-staar-snapshot-by-subj-2022-2023-annot.png>
+File: img/tea-staar-combo-cat-6-subj-2016-2022-annot.png Graphic file (type bmp)
+<img/tea-staar-combo-cat-6-subj-2016-2022-annot.png>
 
-Overfull \hbox (18.06842pt too wide) in paragraph at lines 186--187
+Overfull \hbox (18.06548pt too wide) in paragraph at lines 186--187
 [][] 
  []
 
@@ -870,11 +870,11 @@ L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18861 strings out of 476858
- 347470 string characters out of 5803841
+ 18876 strings out of 476858
+ 348114 string characters out of 5803841
  1927627 words of memory out of 5000000
- 40528 multiletter control sequences out of 15000+600000
- 564474 words of font info for 84 fonts, out of 8000000 for 9000
+ 40540 multiletter control sequences out of 15000+600000
+ 564490 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,6n,120p,1013b,447s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

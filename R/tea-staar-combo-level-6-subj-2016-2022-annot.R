@@ -1,4 +1,4 @@
-#######  1 COMBO STAAR LEVEL, 6 SUBJECTS-6 YEARS PLOT  #######
+#######  COMBO STAAR LEVEL, 6 SUBJECTS-2016-2022 PLOT  #######
 ######################################################
 
 ##########  THE 'TEA TWO-STEP!'  ##########
@@ -97,7 +97,7 @@ ds_staar_theme <- function(base_size = 16,
 # read in Excel file pre-set for pivoting longer
 df <-
   readxl::read_excel(
-    "staar-wide-disagg-2016-2022.xlsx",
+    "data/staar-wide-disagg-2016-2022.xlsx",
     sheet = 1,
     col_types = c(
       "numeric",
@@ -204,14 +204,14 @@ labels_data <- data.frame(
 
 
 
-# Setup data frame for placing 3 ellipses around 3 subject names above their respective bar grouping
+# Setup data frame for placing 6 ellipses around 6 subject names above their respective bar grouping
 
 e <- data.frame(
-  x = c(1, 2, 3),
-  y = c(71, 71, 71),
-  a = c(0.3, 0.3, 0.3),
-  b = c(3, 3, 3),
-  angle = c(0, 0, 0)
+  x = c(1, 2, 3, 4, 5, 6),  # define x axis values
+  y = c(71, 71, 71, 71, 71, 71),  # define y axis values
+  a = c(0.4, 0.4, 0.4, 0.4, 0.4, 0.4),  # define ellipses width
+  b = c(3, 3, 3, 3, 3, 3),  # define ellipses height
+  angle = c(0, 0, 0, 0, 0, 0)
 )
 
 
@@ -313,7 +313,7 @@ staar_2016_2022_by_subject_meets_or_above <-
              linewidth = 0.5) +
   paletteer::scale_fill_paletteer_d("ggthemes::excel_Median") +
   
-  # Put the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
+  # Place the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
   
   geom_richtext(
     aes(
@@ -370,12 +370,12 @@ staar_2016_2022_by_subject_meets_or_above <-
   annotate(
     "text",
     # Specify the value/category on the x-axis
-    x = "writing",
+    x = "ela_reading",
     
     # Specify the value on the y-axis
     y = 78,
     
-    label = "(All These Figures are Useless for Improvement Efforts)",
+    label = "(Even These Period-by-Period Figures are Useless for Improvement Efforts)",
     size = 5,
     fontface = "bold",
     hjust = 0.0,
