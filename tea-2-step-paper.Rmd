@@ -1,6 +1,9 @@
 ---
-title: "Analyzing STAAR Data - Dancing The 'TEA Two-Step'"
-author: "Dan Swart"
+title: "Analyzing STAAR Data"
+subtitle: "Dancing the TEA Two-Step"
+author:
+  - "Dan Swart, Trustee - Seat 6"
+  - "Schertz-Cibolo-Universal City - ISD" 
 date: "`r Sys.Date()`"
 header-includes: 
  \usepackage{geometry}
@@ -10,10 +13,8 @@ header-includes:
  \usepackage{hyperref}
  \hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=BlueViolet, citecolor=BrickRed}
  \urlstyle{same}
+ \graphicspath{{pbc}{img}}
 output:
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
   bookdown::pdf_document2:
     css: [swart-20240104.css, tachyons.min.css, r-colors.css]
     latex_engine: xelatex
@@ -22,6 +23,9 @@ output:
     fontsize: 18pt
     includes:
       in_header: dsheader.tex
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -109,7 +113,7 @@ cat('
 \vspace{0.5in}
 
 
-My aim here is to contribute something to the improvement of learning in our school district; or in any school district.  My basic supposition is that any Board of Trustees should seek data suited to rational policy action aimed at improving **future** learning in the district.
+My aim here is to contribute something to the improvement of learning in our school district; or in any school district.  My basic supposition is that Boards of Trustees will welcome information designed to help them create rational policy action aimed at improving **future** learning in their district.
 
 \bigskip
 
@@ -120,54 +124,147 @@ My aim here is to contribute something to the improvement of learning in our sch
 
 \medskip
 
-The Texas Education Agency (TEA) collects data from every school district in Texas, performs various calculations, and produces reams of reports and tables summarizing their results by academic year.  These reports consist primarily of calculations mandated by the state legislature.  For example, one statistic computed is the so-called 'Accountability Rating' for every district in the state.  Each campus also receives a rating.  
+The Texas Education Agency (TEA) collects data from every school in Texas, performs various calculations, and produces reams of reports and tables summarizing their results by academic year.  These reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.  
 
 \medskip
 
 These statistical summaries are available to the public and the school districts.  Unfortunately for the public and the school districts, the information is not nearly as helpful as it could be.  In fact, it takes so much 'data wrangling' to put it into a form that is remotely helpful for assessing and improving district and campus learning that it is simply not done.
 
 
-Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even [\textcolor{blue}{\url{Ron Popeil}}](https://en.wikipedia.org/wiki/Ron_Popeil) [(the inventor of the Chop-O-Matic)](https://en.wikipedia.org/wiki/Ron_Popeil) would be envious!
+Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even [\textcolor{blue}{\url{Ron Popeil}}](https://en.wikipedia.org/wiki/Ron_Popeil) [the inventor of the Chop-O-Matic](https://en.wikipedia.org/wiki/Ron_Popeil) would be envious!  
 
   
   
-Here's an example from a TEA report called a 'Snapshot':
+Here's a partial example from a TEA report called 'Snapshot':
 <br>
 
 \medskip
 
-\includegraphics{tea-staar-snapshot-by-subj-2022-2023.png}
-<img src="tea-staar-snapshot-by-subj-2022-2023.png">
-
-<br>
-
-\medskip
-
-
-And, here's an example from blah blah:
+\includegraphics{tea-staar-snapshot-example-2021-2022.png}
+<img src="tea-staar-snapshot-example-2021-2022.png">
 
 <br>
 
 \medskip
 
-\includegraphics{tea-staar-snapshot-by-subj-2022-2023.png}
-<img src="tea-staar-snapshot-by-subj-2022-2023.png">
+The entire report can be found here:  
+[\textcolor{blue}{\url{PDF}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas) 
 
+[(HTML)](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
+
+\bigskip
+
+<br>
+And, here's a partial example from a TEA report called 'School Report Card:
+
+<br>
+
+\medskip
+
+\includegraphics{tea-staar-src-example-2021-2022.png}
+<img src="tea-staar-src-example-2021-2022.png">
+
+\medskip
+
+The entire report can be found here:  
+[\textcolor{blue}{\url{PDF}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=C&prgopt=reports/src/src.sas&id=094902003) 
+
+[(HTML)](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=C&prgopt=reports/src/src.sas&id=094902003)
+
+  
+\bigskip
+  
+<br>
+  
+**THE PROBLEM** 
   
 So, what is a school district to make of these mountains of numbers?  Do they help districts improve learning in the future?  In their present form, the answer is a resounding "NO!"  
 
 
-The TEA is charged with preparing the required reports, and they do.  Boards of Trustees are charged with managing and improving their districts.  Managing a district is usually bureaucratic; budgeting,  administration, and resource allocation.  Important, to be sure.
-
-
-In addition, management should include in their efforts an ongoing assessment of the capability and effectiveness of learning in their district.  The aim should be improvement of learning ***in the future***.
-
-
-A school district is a large system.  As it turns out, the context of time is crucial to assess the capability and effectiveness of learning.  We all know that 
-
-
-One of the many reports made available on the TEA website is the 'Snapshot', an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or tax-paying citizen make policy decisions.  
+The 'Snapshot' offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or tax-paying citizen make an analysis aimed at improving future learning.  
 <br>
+
+
+Why, then, are they 'ill-suited' for district improvement efforts?  
+
+***First***, many of the TEA categories are highly aggregated combinations of similar categories.  This permits TEA to render abstract judgements about a district or campus.  One such judgement is called an "Accountability Rating".  It is well and truly from the '30,000 foot level'.  This lack of specificity renders these reports unsuitable for understanding any specific categories or levels your board may be interested in.
+
+
+By analogy, it's like trying to repair your car by reading the overall repair records of similar models.  What you need is diagnostic data about what is happening (or not happening) with your specific vehicle.
+
+Here is an example of aggregated STAAR categories in a TEA report:
+
+
+\includegraphics{tea-staar-snapshot-by-subj-2022-2023-annot.png}
+<img src="tea-staar-snapshot-by-subj-2022-2023-annot.png">
+
+<br>
+
+\bigskip
+
+***Second***, the offered reports are siloed by academic year making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no analysis is possible.***
+
+
+All data I've seen so far as a board member is descriptive only, with no analysis present.  
+<br>
+
+\bigskip
+
+
+**THE SOLUTION**
+
+For improvement, we must move from a 'snapshot' point of view to an 'analysis' point of view.  That means the data we seek must include the context of time.  All improvement work requires the context of time.  
+
+
+Humans naturally seek context.  That is where notions such as 'this month vs last month vs YTD vs a year ago this month' arose.  Those are insufficient for analysis, but they soothe our need for context of some sort.
+
+
+Analysis, on the other hand, allows us to answer the important questions:
+
+*  These numbers vary from period to period.  Does that tell us anything important?
+
+*  Are the differences due to random fluctuations or some strong influence now present in our system?
+
+*  Do these different numbers constitute a trend (good, or bad)?
+
+*  The legislature (via the TEA) declares that certain average STAAR scores 'meet requirements.'  What is the **demonstrated** capability of our district to deliver those STAAR scores?  In other words, what is rational to expect from our system in the future?
+
+*  Should we continue this approach, abandon it, or continue it with some tweaks?  Like all bureaucracies, school districts often find that practices, policies and procedures are seldom abandoned.  They just become 'the way we do it here.'
+
+
+Here is an example of what analysis of some STAAR data looks like:
+
+
+\includegraphics{xmr-2016-2022-all-subj-masters-only.png}
+<img src="pbc/xmr-2016-2022-all-subj-masters-only.png">
+
+
+
+
+
+
+
+
+The TEA is charged with preparing the required reports, and they do.  Boards of Trustees are charged with **managing** and **improving** their districts.  
+  
+  
+Managing a district consists of budgeting,  administration, and resource allocation.  Essential, to be sure.  
+
+Budgeting is based on (hopefully) very careful calculations of estimated revenue and expenses expected for the next academic year.  Resource allocation within and between budget categories are determined by the priorities and risk tolerance of the Board of Trustees.  
+
+Resources for facility expansion and improvement depend on both the demographics of the district and the vision of the Executive team.
+  
+  
+District improvement is a totally different exercise.  To improve, boards must be able to assess the demonstrated capability and effectiveness of learning in their district.  .
+  
+  
+  
+  
+The context of **TIME** is crucial to assess the capability and effectiveness of any system or process, including learning.  
+
+Nearly every district has a 'reputation' (for better or worse) in the region, state, or nation.  Some districts have reputations for great athletic programs, some for music/arts, some for academics.  Those reputations are built over time.
+
+
 
 STAAR scoring by subject matter (from the 2022-2023 Snapshot)  To view entire report from pdf format click here:   [\textcolor{blue}{\url{pdf}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
 <br>
