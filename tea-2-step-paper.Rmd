@@ -1,32 +1,35 @@
 ---
-title: "Analyzing Data from TEA"
+title: "Analyzing Data for District Improvement"
 subtitle: "***or...Dancing the 'TEA Two-Step'***"
 author:
-  - "Dan Swart, Trustee - Seat 6"
-  - "Schertz-Cibolo-Universal City - ISD" 
+  - "Professor Strabismus"
+  - "University of Mars" 
 date: "`r Sys.Date()`"
 header-includes: 
  \usepackage{geometry}
  \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
  \setlength\parindent{0.25in}
  \usepackage{xcolor}
+ \usepackage{tcolorbox}
  \usepackage{hyperref}
+ \usepackage{float}
  \hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=BlueViolet, citecolor=BrickRed}
  \urlstyle{same}
  \graphicspath{{pbc}{img}}
+ \usepackage{caption}
+ \captionsetup[figure]{font=large}
 output:
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
   bookdown::pdf_document2:
     css: [swart-20240104.css, tachyons.min.css, r-colors.css]
     latex_engine: xelatex
     fig_caption: true
-    latex_engine_opts: -shell-escape
     documentclass: book
     classoption: 16pt
     includes:
       in_header: dsheader.tex
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -114,7 +117,7 @@ cat('
 \vspace{0.5in}
 
 
-My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My basic supposition is that Boards of Trustees will welcome information designed to help them create rational policy action aimed at improving **future** learning in their district.
+My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My basic supposition is that Boards of Trustees will welcome information designed to help them create rational policy action aimed at improving future learning in their district.
 
 \bigskip
 
@@ -125,7 +128,13 @@ My aim here is to contribute something to the improvement of learning in our sch
 
 \medskip
 
-The Texas Education Agency (TEA) collects data from every school in Texas, performs various calculations, and produces reams of reports and tables summarizing their results by academic year.  These reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.  
+All school boards and superintendents work hard to 'keep the lights on' and improve learning in their districts and campuses (or 'campi' if you prefer the Latin form, because it ***is*** funnier).  
+
+
+Most school boards and superintendents understand by experience and training that it is learning that they hope to improve, not standardized scores.  We know by now that standardized scores can increase while the quality of learning actually decreases.  Despite that knowledge it is often quite difficult to resist reacting to any differences in results as if they constitute a 'trend' or a 'signal'.  Ratings and rankings of our districts and schools by the Texas Education Agency (TEA), under the auspices of the state legislature (or anyone else for that matter), is no different.
+
+
+The TEA collects data from every school in Texas, performs various calculations, and produces reams of reports and tables summarizing their results by academic year.  These reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.  
 
 \medskip
 
@@ -135,16 +144,42 @@ These statistical summaries are available to the public and the school districts
 Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even [\textcolor{blue}{\url{Ron Popeil}}](https://en.wikipedia.org/wiki/Ron_Popeil) [the inventor of the Chop-O-Matic](https://en.wikipedia.org/wiki/Ron_Popeil) would be envious!  
 
   
-  
-Here's a partial example from a TEA report called 'Snapshot':
+Here's a partial example from a TEA report called a 'Snapshot':
 <br>
 
 \medskip
 
-\includegraphics{tea-staar-snapshot-example-2021-2022.png}
-<img src="img/tea-staar-snapshot-example-2021-2022.png">
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="img/staar-snapshot-example-2021-2022.png"> 
+  <figcaption>Fig:  Small sample from TEAs Snapshot report</figcaption>
+</figure>
 
 <br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H] 
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{staar-snapshot-example-2021-2022.png}
+  \\caption{Small sample from TEAs Snapshot report}
+\\end{figure}
+
+\\medskip
+
+')
+  
+
+```
 
 \medskip
 
@@ -156,16 +191,47 @@ The entire report can be found here:
 \bigskip
 
 <br>
-And, here's a partial example from a TEA report called 'School Report Card:
+And, here's a partial example from a TEA report called a 'School Report Card':
 
 <br>
 
 \medskip
 
-\includegraphics{tea-staar-src-example-2021-2022.png}
-<img src="img/tea-staar-src-example-2021-2022.png">
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
 
-\medskip
+cat('
+<figure>
+  <img src="img/staar-src-example-2021-2022.png">
+  <figcaption>Fig:  Small sample from TEAs School Report Card report</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H]  
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{staar-src-example-2021-2022.png}
+  \\caption{Small sample from TEAs School Report Card}
+\\end{figure}
+  
+
+\\medskip
+
+')
+  
+
+```
+
+<br>
+
 
 The entire report can be found here:  
 [\textcolor{blue}{\url{PDF}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=C&prgopt=reports/src/src.sas&id=094902003) 
@@ -177,60 +243,195 @@ The entire report can be found here:
   
 <br>
   
+  
 **THE PROBLEMS** 
   
-So, what is a school district to make of these mountains of numbers?  Do they help districts improve learning in the future?  In their present form, the answer is a resounding "NO!"  
+So, what is a school district to make of these mountains of aggregated numbers?  Do they help districts improve learning in the future?  In their present form, the answer is a resounding "NO!"  
 
 
-The 'Snapshot' offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or tax-paying citizen make an analysis aimed at improving future learning.  
+The 'Snapshot' offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or even tax-paying citizen make an analysis aimed at improving future learning.  One might call it a triumph of computation over value.  
 <br>
 
 
 Why, then, are they 'ill-suited' for district improvement efforts?  
 
 
-***First***, many of the TEA categories are highly aggregated combinations of similar categories.  This permits TEA to render abstract judgements about a district or campus.  One such judgement is called an "Accountability Rating".  It is well and truly from the '30,000 foot level'.  This lack of specificity renders these reports unsuitable for understanding any particular categories or levels your board may be interested in improving.
+***First***, many of the TEA categories are highly aggregated combinations of similar categories.  This permits TEA to render abstract judgements about a district or campus.  One such judgement is called an "Accountability Rating".  It is well and truly from the '30,000 foot level'.  This lack of specificity renders these reports unsuitable for understanding any particular categories or levels your board may be interested in monitoring or improving.
 
 
-By analogy, it's like trying to repair your car by reading the overall repair records of similar models.  What you need is diagnostic data about what is happening (or not happening) with your **specific** vehicle.
-
-Here is an example of aggregated STAAR categories in a TEA report:
+By analogy, it's like trying to repair your car by reading the overall repair records of similar models.  What you need is diagnostic data about what is happening (or not happening) with your **specific** vehicle.  
 
 
-\includegraphics{tea-staar-snapshot-by-subj-2022-2023-annot.png}
-<img src="img/tea-staar-snapshot-by-subj-2022-2023-annot.png">
+Here is an example of aggregated STAAR categories in a TEA report:  
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="img/staar-snapshot-by-subj-2022-2023-annot.png">
+  <figcaption>Fig:  The first two rows contain more than one achievement level</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H]  
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{staar-snapshot-by-subj-2022-2023-annot.png}
+  \\caption{The first two rows contain more than one achievement level}
+\\end{figure}
+
+  
+
+\\medskip
+
+')
+  
+
+```
+
 
 <br>
 
 \bigskip
 
-***Second***, the TEA reports are siloed by academic year making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no analysis is possible.***
+***Second***, the TEA reports are siloed by academic year making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no meaningful analysis is possible.***
+<br>
+<br>
+
+\bigskip
+
+**ANALYSIS - WHAT IS IT?**  
+
+\medskip
 
 
-Through an embarrasing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+In this context analysis means to subject the data to a very simple statistical test to see if the system (or process) producing the data shows evidence of being in a stable state, with a predictable capability.  If stable, this capability will show a range of values that constitute 'normal' for the process until the process itself changes.  Note that interest is on ***the system (or process) that will produce the future output***; not the output of the past.  
+<br>
 
-Here we see a comprehensive view of all subject categories for the compound level of achievement 'Meets Grade Level Standard **AND ABOVE**' for all years in the sample:
+\medskip
 
 
-\includegraphics{img/tea-staar-combo-cat-6-subj-2016-2022-annot.png}
-<img src="img/tea-staar-combo-cat-6-subj-2016-2022-annot.png">
+```{r, results='asis', echo=FALSE}
+if (knitr::is_html_output()) {
+cat('<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">')
+cat('<p>Note: The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to how or why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
+cat('</div>')
+} else if (knitr::is_latex_output()) {
+  cat('\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]')
+  cat('Note:  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your system.  They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to how or why the population came to be the way that it is.  Even the forecasting techniques are overkill for the task at hand.')
+  cat('\\end{tcolorbox}')
+}
+
+```
+
+
+
+<br>
+
+\medskip
+
+The proper reaction of management (which includes the school board) is completely different if the system or process indicates a stable state (predictable) than when it shows signals of being unstable (statistically speaking, of course). 
+
+
+Reacting to so-called performance indicators that fall within the 'normal' range of a predictable process is harmful.  It makes things worse; no matter how emotional it may be when you think you see things 'going in the wrong direction.'
+
+
+Reacting to indicators falling outside the identified 'normal' range is productive.  If the indicator is in the 'good' direction efforts to identify the causes and duplicate them are almost always successful.  If they fall in the 'bad' direction, efforts to identify the causes and remove them are worthwhile.
+
+
+All data I've seen so far as a board member are descriptive only, with no analysis present.  The most important step, analysis, is missing.
+<br>
+
+
+After an embarrasing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+<br>
+
+\medskip
+
+
+The TEA STARR Data Divided Into Constituent Parts for the subject 'Math'
+
+
+|  Year  | Approaches | Mts Std | Masters |Combined | Failed |
+| :----: | :--------: | :-----: | :-----: |:------: |:-----: |
+|  2016  |       31%  |  29%    |  24%    | 84%     |  16%   |
+|  2017  |       27%  |  31%    |  30%    | 88%     |  12%   |
+|  2018  |       25%  |  29%    |  33%    | 87%     |  13%   |
+|  2020  |       29%  |  27%    |  23%    | 79%     |  21%   |
+|  2021  |       30%  |  27%    |  21%    | 78%     |  22%   |
+|  2022  |       31%  |  31%    |  18%    | 80%     |  20%   |
+: Subject = Math, with Proportions Broken Into Constituent Parts.
+
+
+
+Here we see a comprehensive view of all subject categories for the compound level of achievement called 'Meets Grade Level Standard **AND ABOVE**' for all years in the sample:
+
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="img/staar-combo-level-mts-6-subj-2016-2022-annot.png">
+  <figcaption>Fig:  IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H]  
+  \\centering
+  \\includegraphics[width=1.0\\textwidth, height=5.0in]{staar-combo-level-mts-6-subj-2016-2022-annot.png}
+  \\caption{IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.}
+\\end{figure}
+
+
+\\medskip
+
+')
+  
+
+```
+
+
+
+
+
+
+
+
+
 
 <br>
 
 \bigskip
 
 
-All data I've seen so far as a board member are descriptive only, with no analysis present.  
-<br>
 
-\bigskip
+**A SOLUTION**
+
+To improve we must move from a 'snapshot' point of view to an 'analysis' point of view.  ***There is no in-between.***  That means the data we seek must include the context of time.  All improvement work requires time-period-by-time-period data.  
 
 
-**THE SOLUTION**
-
-For improvement, we must move from a 'snapshot' point of view to an 'analysis' point of view.  That means the data we seek must include the context of time.  All improvement work requires the context of time.  
-
-The important information for understanding district capability, and the prediction of future performance, is contained in the time-period-by-time-period data frame.  The order of the data matters.  The more periods included in the analysis, the stronger the evidence for your inferences.
+The crucial information for analysis of process and system capability, and the prediction of future performance, is contained in the time-period-by-time-period order.  The more periods included in the analysis, the stronger the evidence for your inferences.  
 
 
 
@@ -253,19 +454,21 @@ Analysis, on the other hand, allows us to answer the important questions:
 
 Here is an example of what analysis of some STAAR data looks like:
 
+\begin{figure}[H]  
+  \centering
+  \includegraphics[width = 1.0\textwidth, height = 3.0in]{xmr-2016-2022-all-subj-masters-only.png}
+  \caption{This presentation contains all the information the data can reveal***}
+\end{figure}
 
-\includegraphics{xmr-2016-2022-all-subj-masters-only.png}
+
 <img src="pbc/xmr-2016-2022-all-subj-masters-only.png">
 
 
+<br>
 
 
 
 
-
-
-The TEA is charged with preparing the required reports, and they do.  Boards of Trustees are charged with **managing** and **improving** their districts.  
-  
   
 Managing a district consists of budgeting,  administration, and resource allocation.  Essential, to be sure.  
 
@@ -291,14 +494,26 @@ To view entire report from html format click here:
 [(html)](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
 <br>
 
-\includegraphics{tea-staar-snapshot-by-subj-2022-2023-annot.png}
-<img src="img/tea-staar-snapshot-by-subj-2022-2023-annot.png">
+\begin{figure}[H]  
+  \centering
+  \includegraphics[width = 1.0\textwidth, height = 3.0in]{staar-snapshot-by-subj-2022-2023-annot.png}
+  \caption{This is a caption for the image.}
+\end{figure}
+
+
+<img src="img/staar-snapshot-by-subj-2022-2023-annot.png">
 
 <br>
 The section reporting STAAR scoring by ethnicity:
 
-\includegraphics{tea-staar-snapshot-by-ethnicity-2022-2023-annot.png}
-<img src="img/tea-staar-snapshot-by-ethnicity-2022-2023-annot.png">
+\begin{figure}[H]  
+  \centering
+  \includegraphics[width = 2.0\textwidth, height = 3.0in]{staar-snapshot-by-ethnicity-2022-2023-annot.png}
+  \caption{This is a caption for the image.}
+\end{figure}
+
+
+<img src="img/staar-snapshot-by-ethnicity-2022-2023-annot.png">
 
 
 
@@ -309,13 +524,6 @@ School boards deal with two types data:
 
 * Analytic:  data subjected to analysis for estimating a causal explanation of phenomena observed in the past, with the aim of improvement in the future.
 
-
-
-
-TEA produces enumerative data estimating the state of affairs at one point in the past.  The aim of such data collection is to comply with legislative requirements.  The purpose is to take action ON the district; reward or punishment either by the state or the public.
-
-
-An analytic study focuses on predicting future results of policy actions taken now.  The aim of such data analysis is to take action IN the district.
 
 
 The aim of a TEA report is descriptive.  How many or how much.  They are estimates of how many people belong to this or that category for a specified academic year.  Or, to report the financial aspects of operations during the school year.  Their aim is NOT to find out WHY there are so many or so few in this or that category: merely how many.  
@@ -363,9 +571,14 @@ It seems that it might help if we could look at, say, six years of the 'All Subj
 
 Well, here it is:
 
-<!-- includegraphics[width = 1.0\textwidth]{tea-staar-approaches-or-higher-all-subj-2022-2023.png} -->
+<!-- \begin{figure}[H]  -->
+<!--   \centering -->
+ <!-- includegraphics[width = 1.0\textwidth, height = 3.0in]{staar-approaches-or-higher-all-subj-2022-2023.png} -->
+<!--   \caption{This is a caption for the image.} -->
+<!-- \end{figure} -->
 
-<!-- <img src="tea-staar-approaches-or-higher-all-subj-2022-2023.png"> -->
+
+<!-- <img src="img/staar-approaches-or-higher-all-subj-2022-2023.png"> -->
 
 
 When it comes to improving the system of education in a district this view of the data has a BIG PROBLEM...it aggregates more than one rating level into a category.  It combines the 'At Approaches' AND the 'At Meets' AND the 'At Masters' rating levels all into one combined total and calls it "At Approaches AND HIGHER Level".
@@ -484,16 +697,16 @@ The next rating category also contains more than one rating level.  It combines 
 
 
 
-<!-- \includegraphics{tasb-2-step-step-2-meets.pdf} -->
-<!-- <img src="tasb-2-step-step-2-meets.png"> -->
+<!-- \includegraphics[width = 1.0\textwidth, height = 3.0in]{tasb-2-step-step-2-meets.pdf} -->
+<!-- <img src="img/tasb-2-step-step-2-meets.png"> -->
 
 
 This rating category is the exception; it contains only one rating level.  It shows ONLY the 'At Masters' level totals.
 
 
 
-<!-- \includegraphics{tasb-2-step-step-3-masters.pdf} -->
-<!-- <img src="tasb-2-step-step-3-masters.png"> -->
+<!-- \includegraphics[width = 1.0\textwidth]{tasb-2-step-step-3-masters.pdf} -->
+<!-- <img src="img/tasb-2-step-step-3-masters.png"> -->
 
 
 
@@ -553,7 +766,9 @@ six_trends_facet_plot <- six_trends %>%
 six_trends_facet_plot
 
 
-
 ```
+
+<br>
+
 
 

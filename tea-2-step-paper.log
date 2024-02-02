@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  31 JAN 2024 16:08
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  2 FEB 2024 06:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,6 +327,174 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 )
 \Gin@req@height=\dimen181
 \Gin@req@width=\dimen182
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
+(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks28
+\pgfutil@tempdima=\dimen183
+\pgfutil@tempdimb=\dimen184
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box63
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks31
+))
+\pgf@x=\dimen185
+\pgf@y=\dimen186
+\pgf@xa=\dimen187
+\pgf@ya=\dimen188
+\pgf@xb=\dimen189
+\pgf@yb=\dimen190
+\pgf@xc=\dimen191
+\pgf@yc=\dimen192
+\pgf@xd=\dimen193
+\pgf@yd=\dimen194
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count305
+\c@pgf@countb=\count306
+\c@pgf@countc=\count307
+\c@pgf@countd=\count308
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
+\pgf@sys@id@count=\count309
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-xetex.def
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-xetex.def
+File: pgfsys-xetex.def 2023-01-15 v3.1.10 (3.1.10)
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2023-01-15 v3.1.10 (3.1.10)
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)
+\pgfsys@objnum=\count310
+))) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count311
+\pgfsyssoftpath@bigbuffer@items=\count312
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+(/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen195
+\pgfmath@count=\count313
+\pgfmath@box=\box64
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count314
+)) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen196
+\pgf@picmaxx=\dimen197
+\pgf@picminy=\dimen198
+\pgf@picmaxy=\dimen199
+\pgf@pathminx=\dimen256
+\pgf@pathmaxx=\dimen257
+\pgf@pathminy=\dimen258
+\pgf@pathmaxy=\dimen259
+\pgf@xx=\dimen260
+\pgf@xy=\dimen261
+\pgf@yx=\dimen262
+\pgf@yy=\dimen263
+\pgf@zx=\dimen264
+\pgf@zy=\dimen265
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen266
+\pgf@path@lasty=\dimen267
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen268
+\pgf@shorten@start@additional=\dimen269
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box65
+\pgf@hbox=\box66
+\pgf@layerbox@main=\box67
+\pgf@picture@serial@count=\count315
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen270
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen271
+\pgf@pt@y=\dimen272
+\pgf@pt@temp=\dimen273
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen274
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen275
+\pgf@sys@shading@range@num=\count316
+\pgf@shadingcount=\count317
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box68
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box69
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen276
+\pgf@nodesepend=\dimen277
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+)) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks38
+\verbatim@line=\toks39
+\verbatim@in@stream=\read3
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box70
+\tcb@upperbox=\box71
+\tcb@lowerbox=\box72
+\tcb@phantombox=\box73
+\c@tcbbreakpart=\count318
+\c@tcblayer=\count319
+\c@tcolorbox@number=\count320
+\l__tcobox_tmpa_box=\box74
+\l__tcobox_tmpa_dim=\dimen278
+\tcb@temp=\box75
+\tcb@temp=\box76
+\tcb@temp=\box77
+\tcb@temp=\box78
 ) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
 (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -352,17 +520,17 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count305
+\c@section@level=\count321
 )
-\@linkdim=\dimen183
-\Hy@linkcounter=\count306
-\Hy@pagecounter=\count307
+\@linkdim=\dimen279
+\Hy@linkcounter=\count322
+\Hy@pagecounter=\count323
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 ) (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count308
+\Hy@SavedSpaceFactor=\count324
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 )
@@ -374,21 +542,21 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count309
+\c@Hy@tempcnt=\count325
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen184
+\XeTeXLinkMargin=\dimen280
 (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count310
-\Field@Width=\dimen185
-\Fld@charsize=\dimen186
+\Fld@menulength=\count326
+\Field@Width=\dimen281
+\Fld@charsize=\dimen282
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -400,9 +568,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count311
-\c@Item=\count312
-\c@Hfootnote=\count313
+\Hy@abspage=\count327
+\c@Item=\count328
+\c@Hfootnote=\count329
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
@@ -410,11 +578,11 @@ File: hxetex.def 2024-01-20 v7.01h Hyperref driver for XeTeX
 (/Users/D/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\pdfm@box=\box63
-\c@Hy@AnnotLevel=\count314
-\HyField@AnnotCount=\count315
-\Fld@listcount=\count316
-\c@bookmark@seq@number=\count317
+\pdfm@box=\box79
+\c@Hy@AnnotLevel=\count330
+\HyField@AnnotCount=\count331
+\Fld@listcount=\count332
+\c@bookmark@seq@number=\count333
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
@@ -426,13 +594,41 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip62
+) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count334
+\float@exts=\toks40
+\float@box=\box80
+\@float@everytoks=\toks41
+\@floatcapt=\box81
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 74.
-(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen283
+\captionmargin=\dimen284
+\caption@leftmargin=\dimen285
+\caption@rightmargin=\dimen286
+\caption@width=\dimen287
+\caption@indent=\dimen288
+\caption@parindent=\dimen289
+\caption@hangindent=\dimen290
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count335
+\c@continuedfloat=\count336
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(/Users/D/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
-\BKM@id=\count318
+\BKM@id=\count337
 ))
 
 LaTeX Warning: Unused global option(s):
@@ -742,6 +938,8 @@ File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Mode
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 98.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 12.0pt on input line 100.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -776,106 +974,72 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/Users/D/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) (./tea-2-step-paper.toc)
-\tf@toc=\write3
-\openout3 = `tea-2-step-paper.toc'.
+\tf@toc=\write4
+\openout4 = `tea-2-step-paper.toc'.
 
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.4013pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 130.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 130.
 [1
 
 ]
-File: img/tea-staar-snapshot-example-2021-2022.png Graphic file (type bmp)
-<img/tea-staar-snapshot-example-2021-2022.png>
-
-Overfull \hbox (18.07623pt too wide) in paragraph at lines 136--137
-[][] 
- []
-
-File: img/tea-staar-src-example-2021-2022.png Graphic file (type bmp)
-<img/tea-staar-src-example-2021-2022.png>
-
-Overfull \hbox (18.06886pt too wide) in paragraph at lines 151--152
-[][] 
- []
-
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 14.4pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 14.4013pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 14.39845pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 134.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 134.
+File: img/staar-snapshot-example-2021-2022.png Graphic file (type bmp)
+<img/staar-snapshot-example-2021-2022.png>
+File: img/staar-src-example-2021-2022.png Graphic file (type bmp)
+<img/staar-src-example-2021-2022.png>
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
- []
-
-File: img/tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
-<img/tea-staar-snapshot-by-subj-2022-2023-annot.png>
-
-Overfull \hbox (18.06842pt too wide) in paragraph at lines 176--177
-[][] 
  []
 
 [3]
-File: img/tea-staar-combo-cat-6-subj-2016-2022-annot.png Graphic file (type bmp)
-<img/tea-staar-combo-cat-6-subj-2016-2022-annot.png>
+File: img/staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
+<img/staar-snapshot-by-subj-2022-2023-annot.png>
 
-Overfull \hbox (18.06548pt too wide) in paragraph at lines 186--187
-[][] 
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
-[5]
+[4] [5]
+File: img/staar-combo-level-mts-6-subj-2016-2022-annot.png Graphic file (type bmp)
+<img/staar-combo-level-mts-6-subj-2016-2022-annot.png>
+[6]
 File: pbc/xmr-2016-2022-all-subj-masters-only.png Graphic file (type bmp)
 <pbc/xmr-2016-2022-all-subj-masters-only.png>
-
-Overfull \hbox (18.07845pt too wide) in paragraph at lines 219--220
-[][] 
- []
-
-[6]
-File: img/tea-staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
-<img/tea-staar-snapshot-by-subj-2022-2023-annot.png>
-
-Overfull \hbox (18.06842pt too wide) in paragraph at lines 239--240
-[][] 
- []
-
-File: img/tea-staar-snapshot-by-ethnicity-2022-2023-annot.png Graphic file (type bmp)
-<img/tea-staar-snapshot-by-ethnicity-2022-2023-annot.png>
-
-Overfull \hbox (18.07808pt too wide) in paragraph at lines 243--244
-[][] 
- []
-
-[7] [8] [9] [10]
+[7] [8]
+File: img/staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
+<img/staar-snapshot-by-subj-2022-2023-annot.png>
+File: img/staar-snapshot-by-ethnicity-2022-2023-annot.png Graphic file (type bmp)
+<img/staar-snapshot-by-ethnicity-2022-2023-annot.png>
+[9] [10] [11]
 File: tea-2-step-paper_files/figure-latex/six-trends-1.pdf Graphic file (type pdf)
 <use tea-2-step-paper_files/figure-latex/six-trends-1.pdf>
-[11] (./tea-2-step-paper.aux)
+[12] (./tea-2-step-paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18876 strings out of 476858
- 348114 string characters out of 5803841
- 1927627 words of memory out of 5000000
- 40540 multiletter control sequences out of 15000+600000
+ 29813 strings out of 476858
+ 589494 string characters out of 5803841
+ 1928627 words of memory out of 5000000
+ 51280 multiletter control sequences out of 15000+600000
  564490 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,6n,120p,1013b,447s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,9n,120p,1013b,477s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on tea-2-step-paper.pdf (11 pages).
+Output written on tea-2-step-paper.pdf (12 pages).
