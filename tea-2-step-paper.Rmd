@@ -19,9 +19,6 @@ header-includes:
  \usepackage{caption}
  \captionsetup[figure]{font=large}
 output:
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
   bookdown::pdf_document2:
     css: [swart-20240104.css, tachyons.min.css, r-colors.css]
     latex_engine: xelatex
@@ -30,6 +27,9 @@ output:
     classoption: 16pt
     includes:
       in_header: dsheader.tex
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -170,7 +170,7 @@ cat('
 cat('
 \\begin{figure}[H] 
   \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{staar-snapshot-example-2021-2022.png}
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{img/staar-snapshot-example-2021-2022.png}
   \\caption{Small sample from TEAs Snapshot report}
 \\end{figure}
 
@@ -218,7 +218,7 @@ cat('
 cat('
 \\begin{figure}[H]  
   \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{staar-src-example-2021-2022.png}
+  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{img/staar-src-example-2021-2022.png}
   \\caption{Small sample from TEAs School Report Card}
 \\end{figure}
   
@@ -286,7 +286,7 @@ cat('
 cat('
 \\begin{figure}[H]  
   \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{staar-snapshot-by-subj-2022-2023-annot.png}
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{img/staar-snapshot-by-subj-2022-2023-annot.png}
   \\caption{The first two rows contain more than one achievement level}
 \\end{figure}
 
@@ -399,7 +399,7 @@ cat('
 cat('
 \\begin{figure}[H]  
   \\centering
-  \\includegraphics[width=1.0\\textwidth, height=5.0in]{staar-combo-level-mts-6-subj-2016-2022-annot.png}
+  \\includegraphics[width=1.0\\textwidth, height=5.0in]{img/staar-combo-level-mts-6-subj-2016-2022-annot.png}
   \\caption{IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.}
 \\end{figure}
 
@@ -456,7 +456,7 @@ Here is an example of what analysis of some STAAR data looks like:
 
 \begin{figure}[H]  
   \centering
-  \includegraphics[width = 1.0\textwidth, height = 3.0in]{xmr-2016-2022-all-subj-masters-only.png}
+  \includegraphics[width = 1.0\textwidth, height = 3.0in]{pbc/xmr-2016-2022-all-subj-masters-only.png}
   \caption{This presentation contains all the information the data can reveal***}
 \end{figure}
 
@@ -496,7 +496,7 @@ To view entire report from html format click here:
 
 \begin{figure}[H]  
   \centering
-  \includegraphics[width = 1.0\textwidth, height = 3.0in]{staar-snapshot-by-subj-2022-2023-annot.png}
+  \includegraphics[width = 1.0\textwidth, height = 3.0in]{img/staar-snapshot-by-subj-2022-2023-annot.png}
   \caption{This is a caption for the image.}
 \end{figure}
 
@@ -508,7 +508,7 @@ The section reporting STAAR scoring by ethnicity:
 
 \begin{figure}[H]  
   \centering
-  \includegraphics[width = 2.0\textwidth, height = 3.0in]{staar-snapshot-by-ethnicity-2022-2023-annot.png}
+  \includegraphics[width = 2.0\textwidth, height = 3.0in]{img/staar-snapshot-by-ethnicity-2022-2023-annot.png}
   \caption{This is a caption for the image.}
 \end{figure}
 
@@ -573,7 +573,7 @@ Well, here it is:
 
 <!-- \begin{figure}[H]  -->
 <!--   \centering -->
- <!-- includegraphics[width = 1.0\textwidth, height = 3.0in]{staar-approaches-or-higher-all-subj-2022-2023.png} -->
+ <!-- includegraphics[width = 1.0\textwidth, height = 3.0in]{img/staar-approaches-or-higher-all-subj-2022-2023.png} -->
 <!--   \caption{This is a caption for the image.} -->
 <!-- \end{figure} -->
 
