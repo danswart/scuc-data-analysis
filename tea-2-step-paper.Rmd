@@ -1,6 +1,6 @@
 ---
 title: "Analyzing Data for District Improvement"
-subtitle: "***or...Dancing the 'TEA Twenty-Two-Step'***"
+subtitle: "***or...Dancing the 'Texas Twenty-Two-Step'***"
 author:
   - "Professor Strabismus"
   - "University of Mars" 
@@ -116,7 +116,7 @@ cat('
 
 \vspace{0.5in}
 
-This paper is for those striving to improve the system of learning in their school district.  It is directed toward school boards and superintendents, but anyone can use the theory and techniques to improve their teaching, classrooms, campuses, or departments.  All that is needed is an open mind, willingness to do things differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
+This paper is for those striving to improve the system of learning in their school district.  It is directed toward school boards and superintendents, but anyone can use the theory and techniques to improve their teaching, classrooms, campuses, or departments.  All that is needed is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
 
 
 \bigskip
@@ -250,15 +250,20 @@ The entire report can be found here:
 **OBSTACLES TO IMPROVEMENT** 
   
 So, what is a school district to make of these mountains of aggregated numbers?  Do they help districts improve learning in the future?  In their present form, the answer is a resounding "NO!"  
+<br>
+
+\bigskip
+
+**OBSTACLE #1**
 
 
-When it comes to improving the system of education in a district this view of the data has several big problems.  One is aggregation.  It aggregates more than one rating level into a single level.  It combines the 'At Approaches' AND the 'At Meets' AND the 'At Masters' rating levels all into one combined total and calls it "At Approaches AND HIGHER Level".
+When it comes to improving the system of education in a district this view of the data has several big problems.  One is aggregation.  The TEA reports aggregate more than one rating level into a single level.  It combines the 'At Approaches' AND the 'At Meets' AND the 'At Masters' rating levels all into one combined total and calls it "At Approaches AND HIGHER Level".
 
 
-To make that category useful for improvement efforts we have to break it into three separate levels so each stands on its own.  That turns out to be quite tedious and time-consuming.  Just for fun, I call this situation 'dancing the TEA Twenty-Two-Step' - because it will take at least twenty-two additional steps to make the measurements useful.  
+To make that category useful for improvement efforts we have to break it into three separate levels, so each represents a single situation.  That turns out to be quite tedious and time-consuming.  Just for fun, I call this situation 'dancing the Texas Twenty-Two-Step' - because it will take at least twenty-two additional steps to make the measurements useful!  
 
 
-The 'Snapshot' offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or even tax-paying citizen make an analysis aimed at improving future learning.  One might call it a triumph of computation over value.  
+The 'Snapshot' report offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or even tax-paying citizen make an analysis aimed at improving future learning.  One might call it a triumph of computation over value.  
 <br>
 
 
@@ -296,7 +301,9 @@ By analogy, it is like trying to repair your car by reading the overall repair r
 
 ```
 
+<br>
 
+\bigskip
 
 Here is an example of aggregated STAAR categories in a TEA report:  
 
@@ -341,14 +348,133 @@ cat('
 \bigskip
 
 
+**OBSTACLE #2**
 
-Why else, then, are these reports 'ill-suited' for district improvement efforts?  
 
-The second obstacle is TEA reports are siloed by academic year, making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no meaningful analysis is possible.***
+These reports are 'ill-suited' for district improvement efforts for another reason:  the TEA reports are **siloed by academic year**, making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no meaningful analysis is possible.***
 <br>
 <br>
 
 \bigskip
+
+**OBSTACLE #3**
+<br>
+
+\medskip
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<blockquote class="my-quote">
+  <p><strong>"At sea one day you will smell land where there be no land."</strong></p>
+  <p class="quote-author">          —  Elijah, to Ishmael and Queequeg</p>
+  <p class="quote-description">  _Moby Dick (1956)_</p>
+</blockquote>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF quote code (LaTeX)
+cat('
+\\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
+    \\textbf{"At sea one day you will smell land where there be no land."} \\\\
+    \\textnormal{- Elijah, to Ishmael and Queequeg} \\\\
+    \\emph{ Moby Dick (1956)}
+\\end{tcolorbox}
+')
+
+```
+
+\medskip
+
+<br>
+
+
+Obstacle number 3 is not related to the TEA reports at all.  It has to do with how we humans are (or, as Jessica Rabbit put it:  "I'm not really like that; it's how I was drawn!").
+
+
+For survival, humans evolved with the ability to rapidly detect patterns.  That instinct can lead us astray when studying our data.  Unfortunately, we quite naturally see 'trends' and 'signals' where there are none.  Analysis was developed to help separate the actual signals in the data from the random fluctuations that are always present in any measurement.
+
+
+Consider that for any three measurements there are at least 10 completely random arrangements that can arise.  And, we have created names for these completely artificial 'trends' that we think we see:
+
+\medskip
+
+<br>
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="img/10-random-arrangements-of-3-measurements.png">
+  <figcaption>Fig:  Ten random arrangements of 3 measurements</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H] 
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{img/10-random-arrangements-of-3-measurements.png}
+  \\caption{Ten random arrangements of 3 measurements}
+\\end{figure}
+
+\\medskip
+
+')
+  
+
+```
+
+
+
+How many of those 'trends' do you see on this example of TEA data placed on a bar chart?
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="img/false-signals-on-bar-charts.png">
+  <figcaption>Fig:  Do you see any trends or signals?</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H] 
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{img/false-signals-on-bar-charts.png}
+  \\caption{Do you see any trends or signals?}
+\\end{figure}
+
+\\medskip
+
+')
+  
+```
+
+
 
 \bigskip
 
@@ -357,14 +483,48 @@ The second obstacle is TEA reports are siloed by academic year, making it nearly
 \medskip
 
 
-In this context analysis means to subject the data ONE very simple statistical test to see if the system (or process) producing the data shows evidence of being in a stable state, with a predictable capability.  
+In this context analysis means to subject the data to ONE very simple statistical test to see if the system (or process) producing the data shows evidence of being in a ***stable state***, with a ***predictable capability***.  
 
 
-If stable, this capability will show a range of values that constitute 'normal' for the process.  Until the process itself changes the measurements will wander between the capability limits; sometimes upward, sometimes downward, sometimes the same.  
+If stable, this capability will show a range of values that constitute 'normal' for the process.  Until the process itself changes in some fundamental way future measurements will wander between the capability limits; sometimes upward, sometimes downward, sometimes the same.  
 
 
+Let's look at an example.  A visual is always better than mere words.
+<br>
 
-Here is an example of what an analysis of some STAAR data looks like:
+\bigskip
+
+
+**GETTING BLOOD FROM THE TURNIP**
+
+<br>
+
+\bigskip
+
+After an embarrasing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+<br>
+
+\medskip
+
+
+The TEA STARR Data Divided Into Constituent Parts for the subject 'Math'
+
+
+|  Year  | Approaches | Mts Std | Masters |Combined | Failing |
+| :----: | :--------: | :-----: | :-----: |:------: |:------: |
+|  2016  |       31%  |  29%    |  24%    | 84%     |   16%   |
+|  2017  |       27%  |  31%    |  30%    | 88%     |   12%   |
+|  2018  |       25%  |  29%    |  33%    | 87%     |   13%   |
+|  2020  |       29%  |  27%    |  23%    | 79%     |   21%   |
+|  2021  |       30%  |  27%    |  21%    | 78%     |   22%   |
+|  2022  |       31%  |  31%    |  18%    | 80%     |   20%   |
+: Subject = Math, with Proportions Broken Into Constituent Parts.
+
+
+An amazing amount of information is now available to us using just this small data frame.
+
+
+Here is an example of what an actual analysis of STAAR data looks like:
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
@@ -395,29 +555,91 @@ cat('
 \\medskip
 
 ')
-  
+
+
+```
+
+<br>
+
+\bigskip
+
+INTERPRETING THE CHART  
+
+<br>
+
+\bigskip
+
+* In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one (or a combination) was predominate the chart would reveal it.
+
+
+* If the process remains fundamentally the same, **the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Meets Approaches Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)**.  
+
+* Any expectation of results outside those limits, without a significant change to the system, would not be justified - at all.  
+
+
+* This one chart contains all the information this data can reveal.  If you need or want more information you have to collect more data.
+
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
+# HTML output
+
+cat('
+<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">
+  <p>For those thinking about the additional work needed to provide an anlysis when reporting data to the board, or to the public, know that once the data was wrangled, ***it took less than 5 minutes to create the chart*** using a very inexpensive Excel add-in!</p>
+</div>
+')
 
 ```
 
 
-INTERPRETING THE CHART  
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+  cat('
+\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]
+')
+  cat('
+For those thinking about the additional work needed to provide an anlysis when reporting data to the board, or to the public, know that once the data was wrangled, ***it took less than 5 minutes to create the chart*** using a very inexpensive Excel add-in!
+')
+  cat('\\end{tcolorbox}
+      ')
 
 
-In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one (or a combination) was predominate the chart would reveal it.
+```
 
 
-If the process remains the same, the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Meets Approaches Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL).  
 
-Any expectation of results outside those limits, without a significant jolt to the system, would not be justified.  
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
+# HTML output
+
+cat('
+<div style="border: 4px solid red; padding: 10px; border-radius: 10px;">
+  <p>Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
+</div>
+')
+
+```
 
 
-**This one chart contains all the information the data can reveal.  If you need or want more you will need to collect more data.**  Once the data was wrangled, it took less than 5 minutes to create the chart using a very inexpensive Excel add-in!
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+  cat('
+\\begin{tcolorbox}[colback=white, colframe=red, boxrule=2pt, arc=4pt]
+')
+  cat('
+Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.
+')
+  cat('\\end{tcolorbox}
+      ')
 
 
-** Note that even the government measures imposed during the COVID-19 pandemic apparently were not a large enough jolt to the district to create a point outside the natural limits.  Or, the counter-measures employed by the district were very effective.
+```
 
 
-Interest is focused on ***the system (or process) that will produce the future output***; not the output of the past.  
 <br>
 
 \medskip
@@ -426,11 +648,11 @@ Interest is focused on ***the system (or process) that will produce the future o
 ```{r, results='asis', echo=FALSE}
 if (knitr::is_html_output()) {
 cat('<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">')
-cat('<p>Note: The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
+cat('<p>Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
 cat('</div>')
 } else if (knitr::is_latex_output()) {
   cat('\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]')
-  cat('Note:  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy.  They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is.  Even the forecasting techniques are overkill for the task at hand.')
+  cat('Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.')
   cat('\\end{tcolorbox}')
 }
 
@@ -458,72 +680,6 @@ All data I've seen so far as a board member are descriptive only, with no analys
 \bigskip
 \bigskip
 
-**GETTING BLOOD FROM THE TURNIP**
-
-<br>
-
-\bigskip
-
-After an embarrasing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
-<br>
-
-\medskip
-
-
-The TEA STARR Data Divided Into Constituent Parts for the subject 'Math'
-
-
-|  Year  | Approaches | Mts Std | Masters |Combined | Failed |
-| :----: | :--------: | :-----: | :-----: |:------: |:-----: |
-|  2016  |       31%  |  29%    |  24%    | 84%     |  16%   |
-|  2017  |       27%  |  31%    |  30%    | 88%     |  12%   |
-|  2018  |       25%  |  29%    |  33%    | 87%     |  13%   |
-|  2020  |       29%  |  27%    |  23%    | 79%     |  21%   |
-|  2021  |       30%  |  27%    |  21%    | 78%     |  22%   |
-|  2022  |       31%  |  31%    |  18%    | 80%     |  20%   |
-: Subject = Math, with Proportions Broken Into Constituent Parts.
-
-
-
-Here we see a comprehensive view of all subject categories for the compound level of achievement called 'Meets Grade Level Standard **AND ABOVE**' for all years in the sample:
-
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-# HTML output
-
-cat('
-<figure>
-  <img src="img/staar-combo-level-mts-6-subj-2016-2022-annot.png">
-  <figcaption>Fig:  IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.</figcaption>
-</figure>
-
-<br>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-cat('
-\\begin{figure}[H]  
-  \\centering
-  \\includegraphics[width=1.0\\textwidth, height=5.0in]{img/staar-combo-level-mts-6-subj-2016-2022-annot.png}
-  \\caption{IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.}
-\\end{figure}
-
-
-\\medskip
-
-')
-  
-
-```
-
-
-
 
 
 
@@ -542,15 +698,13 @@ cat('
 To improve we must move from a 'snapshot' point of view to an 'analysis' point of view.  ***There is no in-between.***  That means the data we seek must include the context of time.  All improvement work requires time-period-by-time-period data.  
 
 
-The crucial information for analysis of process and system capability, and the prediction of future performance, is contained in the time-period-by-time-period order.  ***The more periods included in the analysis, the stronger the evidence for your inferences from the charts.***  
-
-
+The crucial information for analysis of process and district capability (and the prediction of future performance) is contained in the order of occurance found in the time-period-by-time-period data.  ***The more periods included in the analysis, the stronger the evidence for your inferences from the charts.***  
 
 
 Humans naturally seek context.  That is where notions such as 'this month vs last month vs YTD vs a year ago this month' arose.  Those are insufficient for analysis, but they soothe our need for context of some sort.
 
 
-On the other hand, analysis allows us to answer the important questions:
+Adding analysis to our efforts allows us to answer the big, important questions:
 
 *  These numbers vary from period to period.  **Does that tell us anything important?**
 
@@ -860,52 +1014,18 @@ This rating category is the exception; it contains only one rating level.  It sh
 
 <br>
 
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-# HTML output
 
-cat('
-<blockquote class="my-quote">
-  <p><strong>"At sea one day you will smell land where there be no land."</strong></p>
-  <p class="quote-author">          —  Elijah, to Ismael and Queequeg</p>
-  <p class="quote-description">  _Moby Dick (1956)_</p>
-</blockquote>
-')
-
-```
+Here we see a comprehensive view of all subject categories for the compound level of achievement called 'Meets Grade Level Standard **AND ABOVE**' for all years in the sample:
 
 
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF quote code (LaTeX)
-cat('
-\\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
-    \\textbf{"At sea one day you will smell land where there be no land."} \\\\
-    \\textnormal{- Elijah, to Ismael and Queequeg} \\\\
-    \\emph{ Moby Dick (1956)}
-\\end{tcolorbox}
-')
-
-```
-
-\medskip
-
-<br>
-
-For survival, humans evolved with the ability to rapidly detect patterns.  That instinct can lead us astray when studying data.  We, quite naturally, see 'trends' and 'signals' where there are none.  Analysis was developed to help separate the signals in the data from the random fluctuations that are always present in any measurement.
-
-Consider that for any six measurements there are at least 10 completely random arrangements that can arise.  And, we have created names for these completely artificial 'trends' that we think we see:
-
-\medskip
-
-<br>
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
 # HTML output
 
 cat('
 <figure>
-  <img src="img/10-random-arrangements-of-3-measurements.png">
-  <figcaption>Fig:  Ten random arrangements of 3 measurements</figcaption>
+  <img src="img/staar-combo-level-mts-6-subj-2016-2022-annot.png">
+  <figcaption>Fig:  IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.</figcaption>
 </figure>
 
 <br>
@@ -918,11 +1038,12 @@ cat('
 
 # PDF code (LaTeX)
 cat('
-\\begin{figure}[H] 
+\\begin{figure}[H]  
   \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{img/10-random-arrangements-of-3-measurements.png}
-  \\caption{Ten random arrangements of 3 measurements}
+  \\includegraphics[width=1.0\\textwidth, height=5.0in]{img/staar-combo-level-mts-6-subj-2016-2022-annot.png}
+  \\caption{IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.}
 \\end{figure}
+
 
 \\medskip
 
@@ -932,40 +1053,6 @@ cat('
 ```
 
 
-
-How many of those 'trends' do you see on this example of TEA data placed on a bar chart?
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-# HTML output
-
-cat('
-<figure>
-  <img src="img/false-signals-on-bar-charts.png">
-  <figcaption>Fig:  Do you see trends or signals?</figcaption>
-</figure>
-
-<br>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-cat('
-\\begin{figure}[H] 
-  \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{img/false-signals-on-bar-charts.png}
-  \\caption{Do you see trends or signals?}
-\\end{figure}
-
-\\medskip
-
-')
-  
-```
-
+Interest is focused on ***the system (or process) that will produce the future output***; not the output of the past.  
 
 

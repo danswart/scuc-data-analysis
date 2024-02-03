@@ -37,7 +37,7 @@ false_signals_facet_plot <- false_signals %>%
         axis.ticks = element_blank(),  
         panel.grid.major = element_blank(),  
         panel.grid.minor = element_blank(),
-        panel.spacing = unit(2.0, "lines")  
+        panel.spacing = unit(4.0, "lines")  
   ) +
   theme(plot.margin = margin(1, 1, 1, 1, "cm"))  # Adjust plot margins
 
@@ -57,4 +57,3 @@ false_signals_facet_plot
 
 
 
-```

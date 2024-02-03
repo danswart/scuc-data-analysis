@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  2 FEB 2024 18:52
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.1.26)  3 FEB 2024 12:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1001,49 +1001,47 @@ File: img/staar-snapshot-example-2021-2022.png Graphic file (type bmp)
 [2]
 File: img/staar-src-example-2021-2022.png Graphic file (type bmp)
 <img/staar-src-example-2021-2022.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
 File: img/staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
 <img/staar-snapshot-by-subj-2022-2023-annot.png>
-[4]
-File: pbc/xmr-2016-2022-math-approaches-combo.png Graphic file (type bmp)
-<pbc/xmr-2016-2022-math-approaches-combo.png>
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
-
- []
-
-[6]
-File: img/staar-combo-level-mts-6-subj-2016-2022-annot.png Graphic file (type bmp)
-<img/staar-combo-level-mts-6-subj-2016-2022-annot.png>
-[7] [8]
-File: img/staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
-<img/staar-snapshot-by-subj-2022-2023-annot.png>
-[9]
-File: img/staar-snapshot-by-ethnicity-2022-2023-annot.png Graphic file (type bmp)
-<img/staar-snapshot-by-ethnicity-2022-2023-annot.png>
-[10] [11] [12]
+[4] [5]
 File: img/10-random-arrangements-of-3-measurements.png Graphic file (type bmp)
 <img/10-random-arrangements-of-3-measurements.png>
-[13]
 File: img/false-signals-on-bar-charts.png Graphic file (type bmp)
 <img/false-signals-on-bar-charts.png>
-[14] (./tea-2-step-paper.aux)
+[6] [7]
+File: pbc/xmr-2016-2022-math-approaches-combo.png Graphic file (type bmp)
+<pbc/xmr-2016-2022-math-approaches-combo.png>
+[8] [9] [10] [11]
+File: img/staar-snapshot-by-subj-2022-2023-annot.png Graphic file (type bmp)
+<img/staar-snapshot-by-subj-2022-2023-annot.png>
+File: img/staar-snapshot-by-ethnicity-2022-2023-annot.png Graphic file (type bmp)
+<img/staar-snapshot-by-ethnicity-2022-2023-annot.png>
+[12] [13] [14]
+File: img/staar-combo-level-mts-6-subj-2016-2022-annot.png Graphic file (type bmp)
+<img/staar-combo-level-mts-6-subj-2016-2022-annot.png>
+[15] [16] (./tea-2-step-paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 29812 strings out of 476858
- 589285 string characters out of 5803841
+ 29817 strings out of 476858
+ 589386 string characters out of 5803841
  1927627 words of memory out of 5000000
- 51279 multiletter control sequences out of 15000+600000
+ 51284 multiletter control sequences out of 15000+600000
  564490 words of font info for 86 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,9n,120p,1013b,476s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on tea-2-step-paper.pdf (14 pages).
+Output written on tea-2-step-paper.pdf (16 pages).
