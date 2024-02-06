@@ -1,7 +1,21 @@
 #######  1 COMBO STAAR LEVEL, 6 SUBJECTS-6 YEARS PLOT  #######
-######################################################
+##############################################################
 
-##########  THE 'TEA TWO-STEP!'  ##########
+
+#####  USE gghighlight TO HIGHLIGHT ONE, OR MORE, ITEMS OF INTEREST  #####
+#####   See below in plot code:  gghighlight(subject == "all_subj")  #####
+#####                   Use 'calculate_per_facet' and                #####
+#####                 'label_key = category for labels'              #####
+##########################################################################
+
+
+#####  Consider using the geomtextpath() package for text you want   #####
+#####   to follow a curved path, or even just a straight path.  It   #####
+#####    permits labels and text that can be treated as richtext.    #####
+#####        see https://allancameron.github.io/geomtextpath/        #####
+##########################################################################
+
+
 # load libraries
 
 library(readxl)
@@ -276,16 +290,24 @@ staar_2016_2022_by_subject_meets_or_above <-
     x = subject,
     y = value * 100,
     fill = subject,
-    label = year_end
-  )) + # add year_end to create bar for each year
+    group = year_end
+  )) + # added year_end to create bar for each year
+ 
+  geom_col(position = position_dodge2(0.9)) +
+  
+  # USE gghighlight TO HIGHLIGHT ONE, OR MORE, SUBJECTS
+  
+  gghighlight(subject == "math") +
+  
+  
   theme(panel.grid.major = element_line(
     color = dark_text,
     linetype = 3,
     linewidth = 0.5
   )) +
-  geom_col(position = position_dodge2(0.9)) +
   
-  # Add y axis title, remove x axis title and legend title
+    # Add y axis title, remove x axis title and legend title
+  
   labs(x = "", y = "Proportion Reaching This Level", fill = "") +
   scale_color_manual(values = label_colors) +
   scale_y_continuous(
@@ -293,6 +315,9 @@ staar_2016_2022_by_subject_meets_or_above <-
     breaks = seq(0, 100, by = 5),
     minor_breaks = NULL
   ) +
+  
+  # theme titles, text and tick marks
+  
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(hjust = 1, face = "bold"),
@@ -301,13 +326,25 @@ staar_2016_2022_by_subject_meets_or_above <-
     axis.ticks.x = element_blank(),
     axis.ticks.y = element_blank()
   ) +
+  
+  # remove ledgend
+  
   theme(legend.position = "none") +
+  
+  # set y axis range
+  
   coord_cartesian(ylim = c(0, 80)) +
+  
+  # add titles
+  
   ggtitle(
     "When TEA Combines 2 Categories Into 1<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
   ) +
   labs(subtitle = "TEA Combo Level = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
   labs(caption = "Missing Year = No STAAR Score Available") +
+  
+  # make x axis base for easier reading
+  
   geom_hline(yintercept = 0,
              color = "orange",
              linewidth = 0.5) +
@@ -357,6 +394,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   # Place year labels (2016-2022) over the bars with adjusted size
   geom_text(
+    aes(label = year_end),
     position = position_dodge2(0.9),
     vjust = -0.5,
     fontface = "bold",
@@ -384,8 +422,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   
   # Add an ellipse with a specific color, size, and angle over x axis categories
-  
-  
+
   geom_ellipse(
     aes(
       x0 = x,
@@ -399,6 +436,7 @@ staar_2016_2022_by_subject_meets_or_above <-
       x = NULL,      # Remove the x mapping for this layer
       year_end = NULL  # Remove the 'year_end' mapping
     ),
+    inherit.aes = FALSE,
     data = e,
     color = "blue",
     fill = "lightblue",

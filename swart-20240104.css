@@ -1,7 +1,22 @@
-/* AS OF 2024-01-03
+/* AS OF 2024-02-03
 /*
 
-* Format basic font size for all bookdown chapters
+/* Formatting YAML text output?
+
+h1.title {
+  font-size: 18px;
+  text-align: center;
+  color: royalblue;
+}
+
+.author, .date {
+  font-size: 16px;
+  text-align: center;
+  color: royalblue;
+}
+
+
+/* Format basic font size for all bookdown chapters
 /* Adjust the size as needed */
 
 body {

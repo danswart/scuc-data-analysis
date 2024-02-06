@@ -1,6 +1,21 @@
 #######  COMBO STAAR LEVEL, 6 SUBJECTS-2016-2022 PLOT  #######
 ######################################################
 
+
+#####  USE gghighlight TO HIGHLIGHT ONE, OR MORE, ITEMS OF INTEREST  #####
+#####   See below in plot code:  gghighlight(subject == "all_subj")  #####
+#####                   Use 'calculate_per_facet' and                #####
+#####                 'label_key = category for labels'              #####
+##########################################################################
+
+
+#####  Consider using the geomtextpath() package for text you want   #####
+#####   to follow a curved path, or even just a straight path.  It   #####
+#####    permits labels and text that can be treated as richtext.    #####
+#####        see https://allancameron.github.io/geomtextpath/        #####
+##########################################################################
+
+
 ##########  THE 'TEA TWO-STEP!'  ##########
 # load libraries
 
@@ -147,13 +162,6 @@ staar_disagg_wide_to_long <- staar_disagg_wide_to_long %>%
   filter(!is.na(value))
 
 
-
-# You could cut and paste all the Snapshots available and group them by subject.  But, you still have the problem of COMBINED RATING CATEGORIES
-
-
-# STAAR Level = "At Approaches Grade Level Standard OR ABOVE" by Year and Subject
-
-
 # Establish range of text colors
 
 dark_text <- "#1A242F"
@@ -246,20 +254,23 @@ ds_palette_scuc_light <- c("#C858D6FF",
 
 
 
-# Build the plot
+# These functions make it so all geoms that use text, label, and label_repel will use Trebuchet MS as the font. Those layers are *not* influenced by whatever you include in the base_family argument in something like theme_minimal(), so ordinarily you'd need to specify the font in each individual annotate(geom = "text") layer or geom_label() layer, and that's tedious! This removes that tediousness.
 
-# These three functions make it so all geoms that use text, label, and label_repel will use Trebuchet MS as the font. Those layers are *not* influenced by whatever you include in the base_family argument in something like theme_minimal(), so ordinarily you'd need to specify the font in each individual annotate(geom = "text") layer or geom_label() layer, and that's tedious! This removes that tediousness.
+
+# update_geom_defaults("label_repel", list(family = "Trebuchet MS"))
 
 update_geom_defaults("text", list(family = "Trebuchet MS"))
 update_geom_defaults("label", list(family = "Trebuchet MS"))
 
-# update_geom_defaults("label_repel", list(family = "Trebuchet MS"))
 
+
+# Build the plot pipeline
 
 staar_2016_2022_by_subject_meets_or_above <-
   staar_disagg_wide_to_long %>%
   
   # Choose rating level and subjects in plot
+  
   filter(
     rating == 'meets' &
       subject %in% c(
@@ -272,27 +283,52 @@ staar_2016_2022_by_subject_meets_or_above <-
       )
   ) %>%
   mutate(subject = as.factor(subject)) %>%
+  
+  # add year_end to create bar for each year
+  
   ggplot(aes(
     x = subject,
     y = value * 100,
     fill = subject,
-    label = year_end
-  )) + # add year_end to create bar for each year
+    group = year_end
+  )) + 
+  
+  # Choose a side-by-side bar chart
+  
+  geom_col(position = position_dodge2(0.9)) +
+  
+  # USE gghighlight TO HIGHLIGHT ONE, OR MORE, SUBJECTS
+  
+  # gghighlight(subject == "math") +
+  
+  
+  # Set gridlines for debugging chart; will remove later
+  
   theme(panel.grid.major = element_line(
     color = dark_text,
     linetype = 3,
     linewidth = 0.5
   )) +
-  geom_col(position = position_dodge2(0.9)) +
+  
   
   # Add y axis title, remove x axis title and legend title
+  
   labs(x = "", y = "Proportion Reaching This Level", fill = "") +
+  
+  # Use bespoke label colors
+  
   scale_color_manual(values = label_colors) +
+  
+  # Format y axis as percentage
+  
   scale_y_continuous(
     labels = scales::percent_format(scale = 1),
     breaks = seq(0, 100, by = 5),
     minor_breaks = NULL
   ) +
+  
+  # Theme-out axis text, titles and ticks
+  
   theme(
     axis.text.x = element_blank(),
     axis.text.y = element_text(hjust = 1, face = "bold"),
@@ -301,16 +337,31 @@ staar_2016_2022_by_subject_meets_or_above <-
     axis.ticks.x = element_blank(),
     axis.ticks.y = element_blank()
   ) +
+  
+  # Remove legend
+  
   theme(legend.position = "none") +
+  
+  # Set y axis range
+  
   coord_cartesian(ylim = c(0, 80)) +
+  
+  # Add plot titles
+  
   ggtitle(
     "When TEA Combines 2 Categories Into 1<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
   ) +
   labs(subtitle = "TEA Combo Level = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
   labs(caption = "Missing Year = No STAAR Score Available") +
+  
+  # Set horizontal line for bars to sit on
+  
   geom_hline(yintercept = 0,
              color = "orange",
              linewidth = 0.5) +
+  
+  # Set color palette
+  
   paletteer::scale_fill_paletteer_d("ggthemes::excel_Median") +
   
   # Place the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
@@ -326,12 +377,12 @@ staar_2016_2022_by_subject_meets_or_above <-
       fontface = "bold"
     ),
     data = labels_data,
-    # Use the labels_data data frame to establish 'label' variable
     inherit.aes = FALSE,
     hjust = 0.5
   ) +
   
   # Place STAAR score at the top of each bar
+  
   geom_text(
     aes(
       label = scales::percent(value, scale = 100),
@@ -356,7 +407,9 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   
   # Place year labels (2016-2022) over the bars with adjusted size
+  
   geom_text(
+    aes(label = year_end),
     position = position_dodge2(0.9),
     vjust = -0.5,
     fontface = "bold",
@@ -399,6 +452,7 @@ staar_2016_2022_by_subject_meets_or_above <-
       x = NULL,      # Remove the x mapping for this layer
       year_end = NULL  # Remove the 'year_end' mapping
     ),
+    inherit.aes = FALSE,
     data = e,
     color = "blue",
     fill = "lightblue",
@@ -406,6 +460,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   )
 
 
+# Set color palette
 
 paletteer::paletteer_d("ggthemes::excel_Median")
 
