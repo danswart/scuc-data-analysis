@@ -18,8 +18,14 @@ header-includes:
   - \urlstyle{same}
   - \graphicspath{{pbc}{img}}
   - \usepackage{caption}
-  - \captionsetup[figure]{font=large}
+  - \captionsetup[figure]{font=Large}
+  - \captionsetup{font=Large}
 output:
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
+    includes:
+      in_header: header.html
   bookdown::pdf_document2:
     latex_engine: xelatex
     fig_caption: true
@@ -27,11 +33,6 @@ output:
     classoption: 16pt
     includes:
       in_header: dsheader.tex
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
-    includes:
-      in_header: header.html
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -86,6 +87,7 @@ library(dutchmasters)
 library(gghighlight)
 library(monochromeR)
 library(ggforce)
+library(kableExtra)
 
 ```
 
@@ -137,25 +139,261 @@ This paper is for those striving to improve the system of learning in their scho
 
 \medskip
 
-Everyone connected to a school district seeks information that answers the questions:  "How are we doing?", "Is this a one-off, or an actual pattern?" and "Are we improving?"  Currently, there are dozens of situations where we seek answers to questions like this, but none of the reports we see can answer such questions.  We are left only with intuition and subject-matter experience to guide our actions on policy, performance, and pedagogy.
+Everyone connected to a school district seeks information that helps to answer questions like:  "What range of results can we expect in the future (not how did we do in the past)?", "Is this result a one-off (or an actual change in pattern)?" and "Are we improving (and how can we tell)?"  Currently, there are dozens of situations where we seek answers to questions like these.
 
-  
 
-|Evaluation Metric            |              |Evaluation Metric            |
-|:--------------------------- |:------------:|:--------------------------- |
-|STAAR scores                 | &nbsp;&nbsp; |Survey results               |
-|District improvement plans   |              |TAPR reports                 |
-|Dropout rates                |              |Pedagogy review              |
-|On-time arrival for buses    |              |Attendance rates             |
-|Superintendent evaluations   |              |Graduation rates             |
-|Superintendent searches      |              |Accountability ratings       | 
-: Here are a just a few examples where we seek those answers, but find none:
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
 
+# HTML output
+
+column1 = c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
+
+column2 = c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings" )
+example_metrics_table <- data.frame(column1, column2)
+
+# Create a table
+
+knitr::kable(example_metrics_table, "simple", col.names = c("Example Metric", "Example Metric"), booktabs = TRUE, caption = "**Here are a just a few examples where we seek those answers, but find none:**") %>% 
+
+# Use kableExtra to add formatting
+
+  kable_styling(bootstrap_options = c("bordered")) %>%
+  add_header_above(c(" " = 1, " " = 1)) %>%
+  column_spec(1, width = "3.75in") %>%
+  column_spec(2, width = "2.5in")
+
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF output
+
+column1 = c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
+
+column2 = c("Survey results", "TAPR reports", "pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings" )
+example_metrics_table <- data.frame(column1, column2)
+
+# Create a table
+
+knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Example Metric"), caption = "Here are a just a few examples where we seek those answers, but find none:") %>% 
+
+# Use kableExtra for formatting
+  kable_styling(latex_options = c("scale_down", "HOLD_position"), font_size = 14) %>%
+  add_header_above(c(" " = 1, " " = 1)) %>%
+  column_spec(1, width = "3.75in") %>%
+  column_spec(2, width = "2.50in")
+
+```
+
+
+To be able to answer questions like these our reports must come to us in a slightly different format than what we are used to seeing.  The **ONLY** report currently known that can help us answer such questions is a certain type of chart that contains:
+
+* Prior period results for the process ***plotted in time order***, oldest to newest, left to right (the more time periods presented the better);
+
+* an average (or median) for the entire group of results, plotted as a centerline; and
+
+* one simple calculation that sets the upper and lower bounds of results we can reasonably expect in the future.
+
+\medskip
+
+***All we need are just those three things***.  All three use simple arithmetic; not even algebra.  But, none of the reports I've seen that are currently available have all three elements.  Usually, they have none of the three.
+
+
+Accordingly, those reports cannot answer our most important questions.  We are left only with intuition and personal experience to guide us, both of which are unreliable guides to action on policy, performance, and pedagogy.
+<br>
+<br>
+
+
+\bigskip
+
+Here is an example of what such a chart looks like, using STAAR data:
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="pbc/xmr-2016-2022-math-approaches-combo.png">
+  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+cat('
+\\begin{figure}[H]  
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-approaches-combo.png}
+  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+\\end{figure}
+
+\\medskip
+
+')
+
+
+```
+
+<br>
+
+\bigskip
+
+INTERPRETING THE CHART  
+
+
+\bigskip
+
+* In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
+
+
+* If the process remains fundamentally the same, **the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Meets Approaches Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)**.  
+
+
+* Any expectation of results outside those limits, without a significant change to the system, ***would not be justified - at all***.  
+
+
+* Confidence in the interpretation will **increase** as you add more data to the chart.  It would be helpful to add years prior to 2016 to see if our interpretation of the data changed.
+
+
+* This one chart contains all the information this data can reveal.  ***If you need or want more information you have to collect more data***.
+
+<br>
+
+\bigskip
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
+# HTML output, RED border
+
+cat('
+<div style="border: 4px solid red; padding: 10px; border-radius: 10px;">
+  <p>***All of that information from just this one simple chart***.  Nothing else comes close.</p>
+</div>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX), RED border
+
+  cat('
+\\begin{tcolorbox}[colback=white, colframe=red, boxrule=2pt, arc=4pt]
+')
+  cat('
+\\textbf{\\textit{All of that information from just this one simple chart. Nothing else comes close.}}
+')
+  cat('\\end{tcolorbox}
+      ')
+
+
+```
+
+<br>
+
+\bigskip
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
+# HTML output, BLUE border
+
+cat('
+<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">
+  <p>For those thinking about the additional work needed to provide an anlysis like this when reporting data to the board, or to the public, or to each other please note that once the data was wrangled ***it took less than 5 minutes to create the chart*** using a very inexpensive Excel add-in!</p>
+</div>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX), BLUE border
+
+  cat('
+\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]
+')
+  cat('
+For those thinking about the additional work needed to provide an anlysis when reporting data to the board, or to the public, know that once the data was wrangled \\textbf{\\textit{it took less than 5 minutes to create the chart}} using a very inexpensive Excel add-in!
+')
+  cat('\\end{tcolorbox}
+      ')
+
+
+```
+
+<br>
+
+\bigskip
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
+# HTML output, RED border
+
+cat('
+<div style="border: 4px solid red; padding: 10px; border-radius: 10px;">
+  <p>Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
+</div>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX), RED border
+
+  cat('
+\\begin{tcolorbox}[colback=white, colframe=red, boxrule=2pt, arc=4pt]
+')
+  cat('
+Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.
+')
+  cat('\\end{tcolorbox}
+      ')
+
+
+```
+
+<br>
+
+\bigskip
+
+
+```{r, results='asis', echo=FALSE}
+
+# BLUE border, combined html or pdf outputs
+
+if (knitr::is_html_output()) {
+cat('<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">')
+cat('<p>Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
+cat('</div>')
+} else if (knitr::is_latex_output()) {
+  cat('\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]')
+  cat('Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.')
+  cat('\\end{tcolorbox}')
+}
+
+```
+
+<br>
+
+\bigskip
 
 As it turns out, there is a very simple solution - **IF** we can get our data into the right form for reporting.  
 
-
-To be able to answer questions like these our reports must come to us in a different format.  They must contain the context of time, in the form of plotting the results time-period-by-time-period (the more time periods presented the better). A ***very simple*** chart showing what we can rationally expect in the future should accompany the presentation of the results.
 
 Neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) have helped us with this particular problem.
 
@@ -558,140 +796,6 @@ The TEA STARR Data Divided Into Constituent Parts for the subject 'Math'
 
 An amazing amount of information is now available to us using just this small data frame.
 
-
-Here is an example of what an actual analysis of STAAR data looks like:
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-# HTML output
-
-cat('
-<figure>
-  <img src="pbc/xmr-2016-2022-math-approaches-combo.png">
-  <figcaption>Fig:  This presentation contains all the information the data can reveal</figcaption>
-</figure>
-
-<br>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-cat('
-\\begin{figure}[H]  
-  \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-approaches-combo.png}
-  \\caption{This presentation contains all the information the data can reveal}
-\\end{figure}
-
-\\medskip
-
-')
-
-
-```
-
-<br>
-
-\bigskip
-
-INTERPRETING THE CHART  
-
-<br>
-
-\bigskip
-
-* In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one (or a combination) was predominate the chart would reveal it.
-
-
-* If the process remains fundamentally the same, **the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Meets Approaches Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)**.  
-
-* Any expectation of results outside those limits, without a significant change to the system, would not be justified - at all.  
-
-
-* This one chart contains all the information this data can reveal.  If you need or want more information you have to collect more data.
-
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-
-# HTML output
-
-cat('
-<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">
-  <p>For those thinking about the additional work needed to provide an anlysis when reporting data to the board, or to the public, know that once the data was wrangled, ***it took less than 5 minutes to create the chart*** using a very inexpensive Excel add-in!</p>
-</div>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-  cat('
-\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]
-')
-  cat('
-For those thinking about the additional work needed to provide an anlysis when reporting data to the board, or to the public, know that once the data was wrangled, ***it took less than 5 minutes to create the chart*** using a very inexpensive Excel add-in!
-')
-  cat('\\end{tcolorbox}
-      ')
-
-
-```
-
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-
-# HTML output
-
-cat('
-<div style="border: 4px solid red; padding: 10px; border-radius: 10px;">
-  <p>Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
-</div>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-  cat('
-\\begin{tcolorbox}[colback=white, colframe=red, boxrule=2pt, arc=4pt]
-')
-  cat('
-Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.
-')
-  cat('\\end{tcolorbox}
-      ')
-
-
-```
-
-
-<br>
-
-\medskip
-
-
-```{r, results='asis', echo=FALSE}
-if (knitr::is_html_output()) {
-cat('<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">')
-cat('<p>Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
-cat('</div>')
-} else if (knitr::is_latex_output()) {
-  cat('\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]')
-  cat('Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.')
-  cat('\\end{tcolorbox}')
-}
-
-```
 
 
 
