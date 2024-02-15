@@ -286,6 +286,7 @@ staar_2016_2022_by_subject_meets_or_above <-
       )
   ) %>%
   mutate(subject = as.factor(subject)) %>%
+  
   ggplot(aes(
     x = subject,
     y = value * 100,
@@ -309,14 +310,16 @@ staar_2016_2022_by_subject_meets_or_above <-
     # Add y axis title, remove x axis title and legend title
   
   labs(x = "", y = "Proportion Reaching This Level", fill = "") +
+  
   scale_color_manual(values = label_colors) +
+  
   scale_y_continuous(
     labels = scales::percent_format(scale = 1),
     breaks = seq(0, 100, by = 5),
     minor_breaks = NULL
   ) +
   
-  # theme titles, text and tick marks
+  # theme-out titles, text and tick marks
   
   theme(
     axis.text.x = element_blank(),
@@ -335,7 +338,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   coord_cartesian(ylim = c(0, 80)) +
   
-  # add titles
+  # add plot titles
   
   ggtitle(
     "When TEA Combines 2 Categories Into 1<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
@@ -343,11 +346,12 @@ staar_2016_2022_by_subject_meets_or_above <-
   labs(subtitle = "TEA Combo Level = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
   labs(caption = "Missing Year = No STAAR Score Available") +
   
-  # make x axis base for easier reading
+  # Set colored horizontal line for bars to sit on
   
   geom_hline(yintercept = 0,
              color = "orange",
              linewidth = 0.5) +
+  
   paletteer::scale_fill_paletteer_d("ggthemes::excel_Median") +
   
   # Place the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
@@ -363,12 +367,13 @@ staar_2016_2022_by_subject_meets_or_above <-
       fontface = "bold"
     ),
     data = labels_data,
-    # Use the labels_data data frame to establish 'label' variable
+    # Use the labels_data data frame to provide 'label' variable
     inherit.aes = FALSE,
     hjust = 0.5
   ) +
   
   # Place STAAR score at the top of each bar
+  
   geom_text(
     aes(
       label = scales::percent(value, scale = 100),
@@ -393,6 +398,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   
   # Place year labels (2016-2022) over the bars with adjusted size
+  
   geom_text(
     aes(label = year_end),
     position = position_dodge2(0.9),

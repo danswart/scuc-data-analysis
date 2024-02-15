@@ -1,4 +1,4 @@
-############  1 COMBO LEVEL, MULTI-SUBJECT, BY YEAR PLOT  ############
+############  4 DISAGG LEVELS, ONE-SUBJECT, BY YEAR PLOT  ############
 ############   WITH HORIZONTAL BAR LABELS FOR YEAR-ENDS   ############
 ######################################################################
 
@@ -138,15 +138,11 @@ staar_disagg_wide_to_long <- df %>%
 
 
 
-# Convert subject column to a factor for proper ordering on the x axis
+# Convert RATING column to a factor for proper ordering on the x axis
 
-staar_disagg_wide_to_long$subject <-
-  factor(staar_disagg_wide_to_long$subject,
-         levels = unique(staar_disagg_wide_to_long$subject))
-
-
-# # Convert the subject column to a factor with desired order
-# staar_disagg_wide_to_long$subject <- factor(staar_disagg_wide_to_long$subject, levels = desired_order)
+staar_disagg_wide_to_long$rating <-
+  factor(staar_disagg_wide_to_long$rating,
+         levels = unique(staar_disagg_wide_to_long$rating))
 
 
 # Filter out rows with NA values in the 'value' column
@@ -164,48 +160,45 @@ light_text <-
   monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[3]
 
 
-# Setup custom labels for TEA subjects and assign them colors matching the fill colors
+# Setup custom labels for TEA RATINGS and assign them colors matching the fill color
 
 custom_labels <-
   c(
-    "**All Subjects**",
-    "**ELA/Reading**",
-    "**Writing**",
-    "**Math**",
-    "**Science**",
-    "**Social Science**"
+    "**Approaches Standard**",
+    "**Meets Standard**",
+    "**Masters Standard**",
+    "**Failed to Reach Approaches**"
   )
 
 label_colors <- c(
-  "All Subjects" = "#94B6D2FF",
-  "ELA/Reading" = "#DD8047FF",
-  "Writing" = "#A5AB81FF",
-  "Math" = "#D8B25CFF",
-  "Science" = "#7BA79DFF",
-  "Social Science" = "#968C8CFF"
+  "Approaches Standard" = "#94B6D2FF",
+  "Meets Standard" = "#DD8047FF",
+  "Masters Standard" = "#A5AB81FF",
+  "Failed to Reach Approaches" = "#D8B25CFF"
 )
 
-# Setup data frame for placing the chosen subjects above their respective bar grouping
+# Setup data frame for placing the chosen RATING levels above their respective bar grouping
 
 labels_data <- data.frame(
-  x = 1:3,
   # Adjust the x positions of labels as needed
-  y = rep(65, 3),
+  x = 1:4,
   # Adjust the y positions as needed
-  label = custom_labels[1:3],
-  # Select the first 3 labels
-  label_color = label_colors[c('All Subjects', 'ELA/Reading', 'Writing')]  # Map colors to labels
+  y = rep(40, 4),
+  # Select the first 4 labels
+  label = custom_labels[1:4],
+  # Map colors to labels
+  label_color = label_colors[c('Approaches Standard', 'Meets Standard', 'Masters Standard', 'Failed to Reach Approaches')] 
 )
 
 
-# Setup data frame for placing 3 ellipses around 3 subject names above their respective bar grouping
+# Setup data frame for placing 4 ellipses around 4 RATING level ames above their respective bar grouping
 
 e <- data.frame(
-  x = c(1, 2, 3),
-  y = c(65, 65, 65),
-  a = c(0.3, 0.3, 0.3),
-  b = c(3, 3, 3),
-  angle = c(0, 0, 0)
+  x = c(1, 2, 3, 4),
+  y = c(40, 40, 40, 40),
+  a = c(0.3, 0.3, 0.3, 0.3),
+  b = c(3, 3, 3, 3),
+  angle = c(0, 0, 0, 0)
 )
 
 
@@ -219,23 +212,23 @@ update_geom_defaults("label", list(family = "Trebuchet MS"))
 
 
 
-  # Build the plot pipeline
+# Build the plot pipeline
 
-staar_2016_2022_by_subject_meets_or_above <-
+staar_2016_2022_disagg_math_all_ratings <-
   staar_disagg_wide_to_long %>%
   
   # Choose rating level and subjects in plot
   
-  filter(rating == 'meets' &
-           subject %in% c('all_subj', 'ela_reading', 'writing')) %>%
-  mutate(subject = as.factor(subject)) %>%
+filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing') &
+           subject %in% c('math')) %>%
+  mutate(rating = as.factor(rating)) %>% 
   
   # add year_end to create bar for each year
   
   ggplot(aes(
-    x = subject,
+    x = rating,
     y = value * 100,
-    fill = subject,
+    fill = rating,
     group = year_end
   )) + 
   
@@ -243,18 +236,18 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   # USE gghighlight TO HIGHLIGHT ONE, OR MORE, SUBJECTS
   
- # gghighlight(subject == "all_subj") +
+  gghighlight(rating == "failing") +
   
   
   # Set gridlines for debugging chart; will remove later
   
-   theme(panel.grid.major = element_line(
+  theme(panel.grid.major = element_line(
     color = dark_text,
     linetype = 3,
     linewidth = 0.5
   )) +
   
- 
+  
   # Add y axis title, remove x axis title and legend title
   
   labs(x = "", y = "Proportion Reaching This Level", fill = "") +
@@ -265,7 +258,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   # Set x axis to discrete
   
-  scale_x_discrete() +
+  # scale_x_discrete() +
   
   # Format y axis as percentage
   
@@ -275,7 +268,7 @@ staar_2016_2022_by_subject_meets_or_above <-
     minor_breaks = NULL
   ) +
   
-  # Theme-out text, titles, and ticks on axis
+  # Theme-out text, titles, and ticks on both axis
   
   theme(
     axis.text.x = element_blank(),
@@ -292,17 +285,17 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   # set y axis range
   
-  coord_cartesian(ylim = c(0, 80)) +
+  coord_cartesian(ylim = c(0, 50)) +
   
   # Add plot titles
   
   ggtitle(
-    "When TEA Combines 2 Categories Into 1<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
+    "Uncontaminated TEA Rating Levels for Subject = 'Math'<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
   ) +
-  labs(subtitle = "TEA Combo Level = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
+  labs(subtitle = "TEA Disaggregated Levels = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
   labs(caption = "Missing Year = No STAAR Score Available") +
   
-  # Set horizontal line for bars to sit on
+  # Set colored horizontal line for bars to sit on
   
   geom_hline(yintercept = 0,
              color = "orange",
@@ -312,7 +305,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   paletteer::scale_fill_paletteer_d("ggthemes::excel_Median") +
   
-  # Put the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
+  # Put the RATING labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
   
   geom_richtext(
     aes(
@@ -352,11 +345,12 @@ staar_2016_2022_by_subject_meets_or_above <-
     fontface = "bold",
     family = "Trebuchet MS",
     color = dark_text,
-    size = 5  # Adjust the font size as needed
+    size = 3  # Adjust the font size as needed
   ) +
   
   
   # Place year labels (2016-2022) over the bars with adjusted size
+  
   geom_text(
     aes(label = year_end),
     position = position_dodge2(0.9),
@@ -364,7 +358,7 @@ staar_2016_2022_by_subject_meets_or_above <-
     fontface = "bold",
     family = "Trebuchet MS",
     color = dark_text,
-    size = 4  # Adjust the font size as needed
+    size = 3  # Adjust the font size as needed
   ) +
   
   
@@ -416,7 +410,7 @@ staar_2016_2022_by_subject_meets_or_above <-
 
 # view the plot
 
-staar_2016_2022_by_subject_meets_or_above +
+staar_2016_2022_disagg_math_all_ratings +
   ds_staar_theme() +
   theme(axis.text.x = element_blank())
 
