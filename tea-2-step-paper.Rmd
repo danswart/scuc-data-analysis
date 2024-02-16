@@ -22,6 +22,11 @@ header-includes:
   - \captionsetup{font=Large}
   - \usepackage{longtable}
 output:
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    fontsize: 18pt
+    includes:
+      in_header: header.html
   bookdown::pdf_document2:
     latex_engine: xelatex
     fig_caption: true
@@ -29,11 +34,6 @@ output:
     classoption: 16pt
     includes:
       in_header: dsheader.tex
-  bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
-    fontsize: 18pt
-    includes:
-      in_header: header.html
 linestretch: 1.0
 fontsize: 18pt
 knitr:
@@ -539,6 +539,7 @@ cat('
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 # PDF code (LaTeX)
+
 cat('
 \\begin{figure}[H]  
   \\centering
@@ -555,6 +556,43 @@ cat('
 
 ```
 
+The section reporting STAAR scoring by ethnicity:
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="img/staar-snapshot-by-ethnicity-2022-2023-annot.png">
+  <figcaption>Fig:  The first two rows contain more than one achievement level</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+
+cat('
+\\begin{figure}[H]  
+  \\centering
+  \\includegraphics[width = 2.0\\textwidth, height = 3.0in]{img/staar-snapshot-by-ethnicity-2022-2023-annot.png}
+  \\caption{The first two rows contain more than one achievement level}
+\\end{figure}
+
+  
+
+\\medskip
+
+')
+  
+
+```
 
 <br>
 
@@ -694,7 +732,10 @@ cat('
 
 \bigskip
 
-So, we need a report that will separate the 'common cause' variation (routine variation) we see from the 'special cause' variation that signals a true trend or a shock to the system.  Our current reports do not make that separation for us.
+So, ***we need a report that will separate the 'common cause' variation (routine variation) from the 'special cause' variation that signals a true trend or a detectable event that changes the system.***  
+
+
+Our current reports do not make that separation for us.
 
 
 <br>
@@ -724,12 +765,12 @@ It is part of the leadership responsibility of boards to provide a measured and 
 
 
 
-**MAGIC INGREDIENTS**
+**NEW INFORMATION TO HELP US**
 
 
-What makes a report powerful are these three features:
+What makes these new reports so powerful are three unique features:
 
-1. Prior period results for the process ***plotted in time order***, oldest to newest, left to right (the more time periods presented the better).  This is called ***context.***
+1. Prior period results for the process are ***plotted in time order***, oldest to newest, left to right (the more time periods presented the better).  This is called ***context.***
 
 2. An average (or median) for the entire group of results, plotted as a centerline.  If the process is stable, this is the ***best estimate for future results.***
 
@@ -812,7 +853,7 @@ As it turns out, creating the reports we need is very simple - **IF** we can get
 
 \bigskip
 
-After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports, and 1 TAPR report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
 <br>
 
 \vspace{0.6in}
@@ -837,17 +878,14 @@ An amazing amount of very useful information is now available to us using just t
 
 \bigskip
 
-**FOOLED BY RANDOMNESS**
+**FOOLED BY RANDOMNESS - AN EXTENDED EXAMPLE**
 
 \medskip
 
-Looking at the results in this table it would be difficult *NOT* to feel concerned about several categories, especially the 'Failing' column.  Looking at this data in the form of bar charts by year would likewise feel disquieting.
+When looking at the results in the table it would be difficult ***NOT*** to feel something about several categories, particularly the changes observed in the 'Masters Standard' and the 'Failing' columns.  They seem large; and negative.
 
 
-
-
-
-These reports were created using the disagreggated data and contain the necessary information to help us.  Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole.  They provide a baseline (context) for evaluating both past and future performance in these categories and levels.
+Like everyone else, I wanted some numerical context so I put the data in the form of bar charts by year:
 
 <br>
 
@@ -859,8 +897,8 @@ These reports were created using the disagreggated data and contain the necessar
 
 cat('
 <figure>
-  <img src="pbc/xmr-2016-2022-math-meets-only.png">
-  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+  <img src="img/staar-2016-2022-disagg-math-all-ratings-annot.png">
+  <figcaption>Fig:  Disaggregated data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
 </figure>
 
 <br>
@@ -876,8 +914,8 @@ cat('
 cat('
 \\begin{figure}[H]  
   \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-meets-only.png}
-  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{img/staar-2016-2022-disagg-math-all-ratings-annot.png}
+  \\caption{Disaggregated data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
 \\end{figure}
 
 \\medskip
@@ -886,6 +924,16 @@ cat('
 
 
 ```
+
+<br>
+
+\medskip
+
+
+However, I know from long experience that it is dangerous to rely solely on visual inspection of data that is simply displayed and not analyzed.
+
+
+The analysis tells us a very different story.
 
 <br>
 
@@ -930,7 +978,7 @@ cat('
 \medskip
 
 
-And, here's one TEA does not provide at all that school boards may been keenly interested in:
+And, here's the one TEA does not provide at all that school boards may been keenly interested in:
 <br>
 
 \medskip
@@ -971,6 +1019,47 @@ cat('
 <br>
 
 \bigskip
+
+These reports were created using the disagreggated data and contain the necessary information to help us.  Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole.  They provide a baseline (context) for evaluating both past and future performance in these categories and levels.
+
+<br>
+
+\medskip
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+# HTML output
+
+cat('
+<figure>
+  <img src="pbc/xmr-2016-2022-math-meets-only.png">
+  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+</figure>
+
+<br>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+
+cat('
+\\begin{figure}[H]  
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-meets-only.png}
+  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+\\end{figure}
+
+\\medskip
+
+')
+
+
+```
+
 
 INTERPRETING THE CHARTS  
 
@@ -1147,6 +1236,7 @@ cat('
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 # PDF code (LaTeX)
+
 cat('
 \\begin{figure}[H]  
   \\centering
@@ -1163,21 +1253,6 @@ cat('
 ```
 
 
-
-
-
-
-<br>
-The section reporting STAAR scoring by ethnicity:
-
-\begin{figure}[H]  
-  \centering
-  \includegraphics[width = 2.0\textwidth, height = 3.0in]{img/staar-snapshot-by-ethnicity-2022-2023-annot.png}
-  \caption{This is a caption for the image.}
-\end{figure}
-
-
-<img src="img/staar-snapshot-by-ethnicity-2022-2023-annot.png">
 
 
 

@@ -16,6 +16,13 @@
 ##########################################################################
 
 
+#####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
+#####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
+#####   YOU WANT A DIFFERENT ORDER YOU MUST    #####
+#####          SPECIFY IT IN YOUR CODE         #####
+#####  ALWAYS VERIFY AND MATCH DATA TO LABELS! #####
+
+
 # load libraries
 
 library(readxl)
@@ -265,6 +272,8 @@ staar_2016_2022_by_subject_approaches <-
   filter(rating == 'approaches', subject == "all_subj") %>%
   mutate(year_end = as.factor(year_end)) %>%
   
+  # add year_end to aes call to create bar for each year
+  
   ggplot(aes(
     x = factor(year_end),
     y = value * 100,
@@ -441,3 +450,17 @@ staar_2016_2022_by_subject_approaches +
 
 
 # Use the EXPORT tab in RStudio to save the plot as a PNG or PDF file.  It is far more flexible with formatting than ggsave()
+
+# Generally best to save plot as image from the Plots tab in RStudio.
+# However, if needed, you can save the plot as an image file to get
+# larger dimensions with ggsave call.
+
+# ggsave("img/10-random-arrangements-of-3-measurements.png",
+#        plot = false_signals_facet_plot,
+#        width = 12,
+#        height = 12,
+#        units = "in",
+#        dpi = 300,
+#        device = "png",
+#        bg = "transparent")
+

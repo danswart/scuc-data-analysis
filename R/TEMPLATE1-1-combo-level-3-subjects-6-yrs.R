@@ -16,6 +16,14 @@
 #####        see https://allancameron.github.io/geomtextpath/        #####
 ##########################################################################
 
+
+#####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
+#####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
+#####   YOU WANT A DIFFERENT ORDER YOU MUST    #####
+#####          SPECIFY IT IN YOUR CODE         #####
+#####  ALWAYS VERIFY AND MATCH DATA TO LABELS! #####
+
+
 # load libraries
 
 library(readxl)
@@ -230,7 +238,7 @@ staar_2016_2022_by_subject_meets_or_above <-
            subject %in% c('all_subj', 'ela_reading', 'writing')) %>%
   mutate(subject = as.factor(subject)) %>%
   
-  # add year_end to create bar for each year
+  # add year_end to aes call to create bar for each year
   
   ggplot(aes(
     x = subject,
@@ -421,4 +429,22 @@ staar_2016_2022_by_subject_meets_or_above +
   theme(axis.text.x = element_blank())
 
 
+# View the palette
+
 paletteer::paletteer_d("ggthemes::excel_Median")
+
+
+# Generally best to save plot as image from the Plots tab in RStudio.
+# However, if needed, you can save the plot as an image file to get
+# larger dimensions with ggsave call.
+
+# ggsave("img/10-random-arrangements-of-3-measurements.png",
+#        plot = false_signals_facet_plot,
+#        width = 12,
+#        height = 12,
+#        units = "in",
+#        dpi = 300,
+#        device = "png",
+#        bg = "transparent")
+
+

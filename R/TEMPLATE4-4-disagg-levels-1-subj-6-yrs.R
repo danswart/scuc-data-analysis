@@ -160,21 +160,21 @@ light_text <-
   monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[3]
 
 
-# Setup custom labels for TEA RATINGS and assign them colors matching the fill color
+# Setup custom labels for TEA RATINGS levels and assign them colors matching the fill color
 
 custom_labels <-
   c(
     "**Approaches Standard**",
     "**Meets Standard**",
     "**Masters Standard**",
-    "**Failed to Reach Approaches**"
+    "**Failing**"
   )
 
 label_colors <- c(
   "Approaches Standard" = "#94B6D2FF",
   "Meets Standard" = "#DD8047FF",
   "Masters Standard" = "#A5AB81FF",
-  "Failed to Reach Approaches" = "#D8B25CFF"
+  "Failing" = "#D8B25CFF"
 )
 
 # Setup data frame for placing the chosen RATING levels above their respective bar grouping
@@ -187,19 +187,51 @@ labels_data <- data.frame(
   # Select the first 4 labels
   label = custom_labels[1:4],
   # Map colors to labels
-  label_color = label_colors[c('Approaches Standard', 'Meets Standard', 'Masters Standard', 'Failed to Reach Approaches')] 
+  label_color = label_colors[c('Approaches Standard', 'Meets Standard', 'Masters Standard', 'Failing')] 
 )
 
 
-# Setup data frame for placing 4 ellipses around 4 RATING level ames above their respective bar grouping
+# Setup data frame for placing 4 ellipses around 4 RATING level names above their respective bar grouping
 
 e <- data.frame(
-  x = c(1, 2, 3, 4),
-  y = c(40, 40, 40, 40),
-  a = c(0.3, 0.3, 0.3, 0.3),
-  b = c(3, 3, 3, 3),
-  angle = c(0, 0, 0, 0)
+  x = c(1, 2, 3, 4),  # define x axis values
+  y = c(40, 40, 40, 40), # define y axis values
+  a = c(0.3, 0.3, 0.3, 0.3),  # define ellipses width
+  b = c(3, 3, 3, 3),  # define ellipses height
+  angle = c(0, 0, 0, 0)  # always set to zero
 )
+
+
+
+# Possible alternative palette
+
+ds_palette_scuc <- c("#9F248FFF",
+                     "#FFCE4EFF",
+                     "#017A4AFF",
+                     "#F9791EFF",
+                     "#244579FF",
+                     "#C6242DFF")
+
+
+# Possible alternative palette, desaturated
+
+ds_palette_scuc_desat <- c("#7F589CFF",
+                           "#D9994DFF",
+                           "#00524BFF",
+                           "#C54C0EFF",
+                           "#192E46FF",
+                           "#972019FF")
+
+
+# Possible alternative palette, lightened
+
+ds_palette_scuc_light <- c("#C858D6FF",
+                           "#D9994DFF",
+                           "#33A3E6FF",
+                           "#FFB481FF",
+                           "#6194C5FF",
+                           "#E5454CFF")
+
 
 
 # These functions format all geoms that use text, label, and label_repel to use the Trebuchet MS font. Those layers are *not* influenced by whatever you include in the base_family argument in something like theme_minimal(), so ordinarily you'd need to specify the font in each individual annotate(geom = "text") layer or geom_label() layer, and that's tedious! This removes that tediousness.
@@ -217,13 +249,27 @@ update_geom_defaults("label", list(family = "Trebuchet MS"))
 staar_2016_2022_disagg_math_all_ratings <-
   staar_disagg_wide_to_long %>%
   
-  # Choose rating level and subjects in plot
+  # Choose RATING levels and subjects in plot
   
-filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing') &
-           subject %in% c('math')) %>%
-  mutate(rating = as.factor(rating)) %>% 
+filter(rating %in% c('approaches_only',
+                     'meets_only',
+                     'masters_only',
+                     'failing') &
+       subject %in% c('math')) %>%
   
-  # add year_end to create bar for each year
+ 
+ #####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
+ #####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
+ #####   YOU WANT A DIFFERENT ORDER YOU MUST    #####
+ #####          SPECIFY IT IN YOUR CODE         #####
+ #####  ALWAYS VERIFY AND MATCH DATA TO LABELS! #####
+  
+   # Set order of the rating column for desired presentation order in plot
+  
+  mutate(rating = factor(rating, levels = c('approaches_only', 'meets_only', 'masters_only', 'failing'))) %>% 
+  
+  
+  # add year_end to aes call to create bar for each year
   
   ggplot(aes(
     x = rating,
@@ -234,9 +280,9 @@ filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing')
   
   geom_col(position = position_dodge2(0.9)) +
   
-  # USE gghighlight TO HIGHLIGHT ONE, OR MORE, SUBJECTS
+  # USE gghighlight TO HIGHLIGHT ONE, OR MORE, RATINGS
   
-  gghighlight(rating == "failing") +
+  gghighlight(rating %in% c('masters_only', 'failing')) +
   
   
   # Set gridlines for debugging chart; will remove later
@@ -258,7 +304,7 @@ filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing')
   
   # Set x axis to discrete
   
-  # scale_x_discrete() +
+  scale_x_discrete() +
   
   # Format y axis as percentage
   
@@ -290,10 +336,13 @@ filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing')
   # Add plot titles
   
   ggtitle(
-    "Uncontaminated TEA Rating Levels for Subject = 'Math'<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
-  ) +
-  labs(subtitle = "TEA Disaggregated Levels = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
+    "STAAR Achievement Levels by Year for Subject = 'Math'"
+    ) +
+    
+  labs(subtitle = "<span style = 'color: firebrick'>Bar Charts in Time Series Cannot Distinguish 'Special Cause' Variation from 'Common Cause' Variation</span>") +
+  
   labs(caption = "Missing Year = No STAAR Score Available") +
+  
   
   # Set colored horizontal line for bars to sit on
   
@@ -313,39 +362,52 @@ filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing')
       y = y,
       label = label,
       label.size = 16,
-      size = 22,
+      size = 20,
       label.color = "white",
       fontface = "bold"
     ),
-    data = labels_data,
-    # Use the labels_data data frame to establish 'label' variable
+    data = labels_data,  # Use the labels_data data frame to establish 'label' variable
     inherit.aes = FALSE,
     hjust = 0.5
   ) +
   
   
-  # Place STAAR score at the top of each bar
+#####    IT IS ABSOLUTELY CRITICAL TO SET THESE CONDITIONAL   #####
+#####    FORMATTING PARAMETERS TO THE PROPER LENGTHS OF THE   #####
+#####  BARS TO GET THE SCORE VALUES AND YEAR LABELS IN THEIR  #####
+#####   PROPER PLACES INSIDE/OUTSIDE AND ON TOP OF THE BARS   #####
+
+   # Place STAAR score at the top/end of each bar
   
   geom_text(
     aes(
+      # Format values as percentages
       label = scales::percent(value, scale = 100),
-      # Format value as percentage
-      vjust = case_when(value < .30 ~ 0,
+      
+      # If bars are vertical, set score value inside bar unless bar value < 10%, then place on outside
+      vjust = case_when(value < .10 ~ 0,
                         TRUE ~ 2),
+      
       # valign = case_when(value < .30 ~ 0,
       #                   TRUE ~ .5),
-      hjust = case_when(value < .30 ~ 0,
+      
+      # If bars are horizontal, set score value inside bar unless bar value < 10%, then place on outside
+      hjust = case_when(value < .10 ~ 0,
                         TRUE ~ .5),
+      
+      
       # halign = case_when(value < .30 ~ 0,
       #                   TRUE ~ .5),
-      color = case_when(value > .30 ~ "white",
+      
+      # If scores are set outside bars, set text color to white, 
+      color = case_when(value > .20 ~ "white",
                         TRUE ~ "white")
     ),
     position = position_dodge2(0.9),
     fontface = "bold",
     family = "Trebuchet MS",
-    color = dark_text,
-    size = 3  # Adjust the font size as needed
+    color = dark_text, # this argument overrides conditional coloring above
+    size = 4  # Adjust the font size as needed
   ) +
   
   
@@ -367,21 +429,20 @@ filter(rating %in% c('approaches_only', 'meets_only', 'masters_only', 'failing')
   annotate(
     "text",
     # Specify the value/category on the x-axis
-    x = "ela_reading",
+    x = "masters_only",
     
     # Specify the value on the y-axis
-    y = 75,
+    y = 45,
     
-    label = "(All These Figures are Useless for Improvement Efforts)",
+    label = "(Visually, These Changes Still Look Unsettling)",
     size = 5,
     fontface = "bold",
-    hjust = 0.5,
+    hjust = 0.0,
     color = "firebrick"
   ) +
   
   
   # Add an ellipse with a specific color, size, and angle over x axis categories
-  
   
   geom_ellipse(
     aes(
@@ -415,4 +476,21 @@ staar_2016_2022_disagg_math_all_ratings +
   theme(axis.text.x = element_blank())
 
 
+# view the palette
+
 paletteer::paletteer_d("ggthemes::excel_Median")
+
+
+# Generally best to save plot as image from the Plots tab in RStudio.
+# However, if needed, you can save the plot as an image file to get
+# larger dimensions with ggsave call.
+
+# ggsave("img/staar-2016-2022-disagg-math-all-ratings-annot.png",
+#        plot = staar_2016_2022_disagg_math_all_ratings,
+#        width = 12,
+#        height = 12,
+#        units = "in",
+#        dpi = 300,
+#        device = "png",
+#        bg = "transparent")
+

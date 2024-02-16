@@ -15,6 +15,12 @@
 #####        see https://allancameron.github.io/geomtextpath/        #####
 ##########################################################################
 
+#####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
+#####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
+#####   YOU WANT A DIFFERENT ORDER YOU MUST    #####
+#####          SPECIFY IT IN YOUR CODE         #####
+#####  ALWAYS VERIFY AND MATCH DATA TO LABELS! #####
+
 
 # load libraries
 
@@ -137,35 +143,16 @@ staar_disagg_wide_to_long <-
 
 
 # Convert subject column to a factor for proper ordering on the x axis
+
 staar_disagg_wide_to_long$subject <-
   factor(staar_disagg_wide_to_long$subject,
          levels = unique(staar_disagg_wide_to_long$subject))
-
-# # Define the desired order of factors
-# desired_order <- c(
-#   "All Subjects",
-#   "ELA/Reading",
-#   "Writing",
-#   "Math",
-#   "Science",
-#   "Social Science"
-# )
-
-# # Convert the subject column to a factor with desired order
-# staar_disagg_wide_to_long$subject <- factor(staar_disagg_wide_to_long$subject, levels = desired_order)
 
 
 # Filter out rows with NA values in the 'value' column
 
 staar_disagg_wide_to_long <- staar_disagg_wide_to_long %>%
   filter(!is.na(value))
-
-
-
-# You could cut and paste all the Snapshots available and group them by subject.  But, you still have the problem of COMBINED RATING CATEGORIES
-
-
-# STAAR Level = "At Approaches Grade Level Standard OR ABOVE" by Year and Subject
 
 
 # Establish range of text colors
@@ -199,7 +186,7 @@ label_colors <- c(
 )
 
 
-# Establish Subject labels to appear over year bars
+# Setup data frame for placing the chosen SUBJECT levels above their respective bar grouping
 
 labels_data <- data.frame(
   x = 1:6,
@@ -217,7 +204,6 @@ labels_data <- data.frame(
 )
 
 
-
 # Setup data frame for placing 6 ellipses around 6 subject names above their respective bar grouping
 
 e <- data.frame(
@@ -225,7 +211,7 @@ e <- data.frame(
   y = c(71, 71, 71, 71, 71, 71),  # define y axis values
   a = c(0.4, 0.4, 0.4, 0.4, 0.4, 0.4),  # define ellipses width
   b = c(3, 3, 3, 3, 3, 3),  # define ellipses height
-  angle = c(0, 0, 0, 0, 0, 0)
+  angle = c(0, 0, 0, 0, 0, 0)  # always set to zero
 )
 
 
@@ -259,9 +245,6 @@ ds_palette_scuc_light <- c("#C858D6FF",
                            "#E5454CFF")
 
 
-
-# Build the plot
-
 # These three functions make it so all geoms that use text, label, and label_repel will use Trebuchet MS as the font. Those layers are *not* influenced by whatever you include in the base_family argument in something like theme_minimal(), so ordinarily you'd need to specify the font in each individual annotate(geom = "text") layer or geom_label() layer, and that's tedious! This removes that tediousness.
 
 update_geom_defaults("text", list(family = "Trebuchet MS"))
@@ -269,6 +252,8 @@ update_geom_defaults("label", list(family = "Trebuchet MS"))
 
 # update_geom_defaults("label_repel", list(family = "Trebuchet MS"))
 
+
+# build the plot pipeline
 
 staar_2016_2022_by_subject_meets_or_above <-
   staar_disagg_wide_to_long %>%
@@ -285,14 +270,17 @@ staar_2016_2022_by_subject_meets_or_above <-
         'soc_science'
       )
   ) %>%
+  
   mutate(subject = as.factor(subject)) %>%
+  
+  # add year_end to aes call to create bar for each year
   
   ggplot(aes(
     x = subject,
     y = value * 100,
     fill = subject,
     group = year_end
-  )) + # added year_end to create bar for each year
+  )) + 
  
   geom_col(position = position_dodge2(0.9)) +
   
@@ -300,6 +288,7 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   gghighlight(subject == "math") +
   
+  # Set gridlines for debugging chart; will remove later
   
   theme(panel.grid.major = element_line(
     color = dark_text,
@@ -311,7 +300,11 @@ staar_2016_2022_by_subject_meets_or_above <-
   
   labs(x = "", y = "Proportion Reaching This Level", fill = "") +
   
+  # Use user-defined colors
+  
   scale_color_manual(values = label_colors) +
+  
+  # Format y axis as percentage
   
   scale_y_continuous(
     labels = scales::percent_format(scale = 1),
@@ -319,7 +312,7 @@ staar_2016_2022_by_subject_meets_or_above <-
     minor_breaks = NULL
   ) +
   
-  # theme-out titles, text and tick marks
+  # Theme-out text, titles, and ticks on both axis
   
   theme(
     axis.text.x = element_blank(),
@@ -352,6 +345,8 @@ staar_2016_2022_by_subject_meets_or_above <-
              color = "orange",
              linewidth = 0.5) +
   
+  # Specify color palette
+  
   paletteer::scale_fill_paletteer_d("ggthemes::excel_Median") +
   
   # Place the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
@@ -366,12 +361,18 @@ staar_2016_2022_by_subject_meets_or_above <-
       label.color = "white",
       fontface = "bold"
     ),
-    data = labels_data,
-    # Use the labels_data data frame to provide 'label' variable
+    data = labels_data, # Use the labels_data data frame to provide 'label' variable
     inherit.aes = FALSE,
     hjust = 0.5
   ) +
   
+  
+ #####    IT IS ABSOLUTELY CRITICAL TO SET THESE CONDITIONAL   #####
+ #####    FORMATTING PARAMETERS TO THE PROPER LENGTHS OF THE   #####
+ #####  BARS TO GET THE SCORE VALUES AND YEAR LABELS IN THEIR  #####
+ #####   PROPER PLACES INSIDE/OUTSIDE AND ON TOP OF THE BARS   #####
+
+
   # Place STAAR score at the top of each bar
   
   geom_text(
@@ -450,13 +451,28 @@ staar_2016_2022_by_subject_meets_or_above <-
   )
 
 
-
-paletteer::paletteer_d("ggthemes::excel_Median")
-
-
-
 # view the plot
 
 staar_2016_2022_by_subject_meets_or_above  +
   ds_staar_theme() +
   theme(axis.text.x = element_blank())
+
+
+# view the palette
+
+paletteer::paletteer_d("ggthemes::excel_Median")
+
+
+# Generally best to save plot as image from the Plots tab in RStudio.
+# However, if needed, you can save the plot as an image file to get
+# larger dimensions with ggsave call.
+
+# ggsave("img/10-random-arrangements-of-3-measurements.png",
+#        plot = false_signals_facet_plot,
+#        width = 12,
+#        height = 12,
+#        units = "in",
+#        dpi = 300,
+#        device = "png",
+#        bg = "transparent")
+
