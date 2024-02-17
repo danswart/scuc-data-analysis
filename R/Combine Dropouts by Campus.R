@@ -1,5 +1,10 @@
 # TX DROPOUT DATA BY CAMPUS 2002-2003 TO 2021-2022
 
+
+#####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
+#####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
+
+
 # load libraries
 
 library(purrr) # %>% map_df 

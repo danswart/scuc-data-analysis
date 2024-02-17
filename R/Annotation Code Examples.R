@@ -1,5 +1,10 @@
 #####  USING ONLY GGPLOT2 AND GGTEXT
 
+
+#####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
+#####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
+
+
 # Add notes about what the outliers mean in the bottom left and top right corners. These are italicized and light grey. The text in the bottom corner is justified to the right with hjust = 1, and the text in the top corner is justified to the left with hjust = 0
 
 annotate(

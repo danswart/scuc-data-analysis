@@ -2,6 +2,13 @@
 ######################################################
 
 
+
+#####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
+#####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
+
+
+
+
 #####  USE gghighlight TO HIGHLIGHT ONE, OR MORE, ITEMS OF INTEREST  #####
 #####   See below in plot code:  gghighlight(subject == "all_subj")  #####
 #####                   Use 'calculate_per_facet' and                #####

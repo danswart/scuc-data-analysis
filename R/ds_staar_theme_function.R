@@ -2,6 +2,12 @@
 ###  CREATE A THEMING FUNCTION FOR STAAR SCORE PLOTS  ###
 #########################################################
 
+
+#####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
+#####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
+
+
+
 # load libraries
 
 library(readxl) # read_excel

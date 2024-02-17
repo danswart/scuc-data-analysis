@@ -1,29 +1,15 @@
 ---
 title: "Analyzing Data for School District Improvement"
-subtitle: "***or...Dancing the 'Texas Twenty-Two-Step'***"
 author:
-  - "Professor Strabismus"
-  - "University of Mars"
+- Professor Strabismus
+- University of Mars
 date: "`r Sys.Date()`"
-header-includes: 
-  - \usepackage{geometry}
-  - \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
-  - \setlength\parindent{0.25in}
-  - \usepackage{xcolor}
-  - \usepackage{tcolorbox}
-  - \usepackage{ragged2e}
-  - \usepackage{hyperref}
-  - \usepackage{float}
-  - \hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=BlueViolet, citecolor=BrickRed}
-  - \urlstyle{same}
-  - \graphicspath{{pbc}{img}}
-  - \usepackage{caption}
-  - \captionsetup[figure]{font=Large}
-  - \captionsetup{font=Large}
-  - \usepackage{longtable}
 output:
   bookdown::html_document2:
-    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+    css:
+    - "swart-20240104.css"
+    - tachyons.min.css
+    - "r-colors.css"
     fontsize: 18pt
     includes:
       in_header: header.html
@@ -34,33 +20,54 @@ output:
     classoption: 16pt
     includes:
       in_header: dsheader.tex
-linestretch: 1.0
+  bookdown::word_document2:
+    fig_caption: true
+    keep_md: true
+  officedown::rdocx_document:
+header-includes:
+- \usepackage{geometry}
+- \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
+- \setlength\parindent{0.25in}
+- \usepackage{xcolor}
+- \usepackage{tcolorbox}
+- \usepackage{ragged2e}
+- \usepackage{hyperref}
+- \usepackage{float}
+- \hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=BlueViolet, citecolor=BrickRed}
+- \urlstyle{same}
+- \graphicspath{{pbc}{img}}
+- \usepackage{caption}
+- \captionsetup[figure]{font=Large}
+- \captionsetup{font=Large}
+- \usepackage{longtable}
+subtitle: "***or...Dancing the 'Texas Twenty-Two-Step'***"
+linestretch: 1
 fontsize: 18pt
 knitr:
   opts_chunk:
-    echo: FALSE
-    error: FALSE
-    warning: FALSE
-    message: FALSE
+    echo: false
+    error: false
+    warning: false
+    message: false
 ---
 
 \Large
 
 
 ```{r options, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+
 library(knitr)
+
 opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE, messages = FALSE, cache = TRUE)
 
-```
-
-```{r source file of basic plots}
-# source("STAAR Scores 2016-2022 ggplot.R")
 
 ```
+
 
 ```{r load-libraries, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 
 library(knitr)
+
 opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE, messages = FALSE, cache = TRUE)
 
 # load libraries
@@ -90,9 +97,11 @@ library(monochromeR)
 library(ggforce)
 library(kableExtra)
 
+
 ```
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
@@ -109,6 +118,7 @@ cat('
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 # PDF quote code (LaTeX)
+
 cat('
 \\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
   \\begin{minipage}{0.95\\textwidth}
@@ -126,9 +136,22 @@ cat('
 
 ```
 
+
 \vspace{0.5in}
 
-This paper is for those striving to improve the system of learning in their school district.  It is directed toward school boards and superintendents, but anyone can use the theory and techniques to improve their teaching, classrooms, campuses, or departments.  All that is needed is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
+This paper is for those striving to improve the system of learning in their school district.  It is directed toward school boards and superintendents, but anyone can use the simple theory and techniques to significantly improve their teaching, classrooms, campuses, and departments.  
+
+
+To improve our systems of learning in a rational, systematic way we need new information beyond that supplied by merely descriptive reports.  Only a few simple changes are required.  
+
+
+Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the basic quantitative data analysis theory and methods that would give our boards and administrators access to the new information needed.
+
+
+***My hope here is to generate the collaborative interest and energy needed to put these critical resources in the hands of all school boards and administrations.***
+
+
+All that is needed is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
 
 
 \bigskip
@@ -143,12 +166,12 @@ This paper is for those striving to improve the system of learning in their scho
 All school boards and superintendents work very hard to 'keep the lights on' and improve learning in their districts and campuses (or 'campi' if you prefer the Latin form, because it ***is*** funnier).  
 
 
-Administrtation of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board.  It is usually well managed with thoughtful planning and careful attention to fiscal details.
+Administrtation of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board.  It is usually well managed with thoughtful planning and careful attention to fiscal details.  Both TEA and TASB supply quality education and support for these efforts.
 
 
 Improving learning in a district is a very different challenge and requires a different set of skills and knowledge.  School boards, in particular, need help answering the important, practical questions such as:
 
-*  These numbers vary from period to period.  **Does that variation signal anything important?**
+*  These numbers vary from period to period.  **Does that variation signal anything important?**  Could they be due to chance?
 
 *  Is the variation due to normal **random fluctuations** that are present in all measurements, or to some strong influence now present in our system?
 
@@ -160,13 +183,13 @@ Improving learning in a district is a very different challenge and requires a di
 
 * Should we change something right away with an intervention, **or will that make things worse?**
 
-* Are we improving, staying the same, or getting worse, and **how can we tell?**
+* Under current leadership, are we improving, staying the same, or getting worse, and **how can we tell?**
 
 <br>
 
 \bigskip
 
-Currently, there are dozens of situations where we need answers to questions like these.
+Currently, there are dozens of situations where we need better answers to questions like these.  
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
@@ -215,16 +238,15 @@ knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Exa
 ```
 
 
-To help us answer policy questions like these the reports we use to evaluate the performance of programs, pedegogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
+To make the best decisions, the 'description-only' reports we currently use to evaluate the performance of programs, pedegogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
 
 
-To be useful to us in leading our districts, any evaluation of results must provide evidence beyond 'snapshot' reports, or even two or three point comparisons.  As discussed later, trends cannot be established with only two or three data points.
-
+Any evaluation of results must provide us with evidence beyond 'snapshot' reports, or even two or three point comparisons.  As discussed later, trends cannot be established with only two or three data points.
 
 
 \bigskip
 
-Here is an example of what a report looks like that contains the necessary information to help us.  It analyzes public STAAR data provided by TEA, along with a brief interpretation of the chart.  It provides a baseline (context) for evaluating both past and future performance.
+This is a Process Behavior Chart (PBC) and it is an example of what a report looks like that contains the necessary information to help us.  It analyzes public STAAR data provided by TEA, and includes a brief interpretation of the chart.  The PBC provides a baseline (context) for evaluating both past and future performance.
 
 <br>
 
@@ -233,12 +255,13 @@ Here is an example of what a report looks like that contains the necessary infor
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="pbc/xmr-2016-2022-math-approaches-combo.png">
-  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report</figcaption>
 </figure>
 
 <br>
@@ -250,11 +273,12 @@ cat('
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 # PDF code (LaTeX)
+
 cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-approaches-combo.png}
-  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+  \\caption{Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPER description-only report}
 \\end{figure}
 
 \\medskip
@@ -263,6 +287,7 @@ cat('
 
 
 ```
+
 
 <br>
 
@@ -273,7 +298,7 @@ INTERPRETING THE CHART
 
 \bigskip
 
-* The measuremenets do go up and down, but ***there are no detectable differences between them***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  This is called ***common cause variation*** because the forces acting on the system are common to all the results we see.
+* The measuremenets do go up and down, but ***there is no evidence that the movements are more than random variation***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  This is called ***common cause variation*** because the forces acting on the system are common to all the results we see.
 
 
 * In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
@@ -282,10 +307,10 @@ INTERPRETING THE CHART
 * If the process remains fundamentally the same, **the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Approaches Grade Level Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)**.  
 
 
-* Any expectation of results outside those limits, without a significant change to the system, ***would not be justified - at all***.  
+* Given the data in the chart, any expectation of results outside those limits, without a significant change to the system, ***would not be justified - at all***.  Even if that expectation comes from the legislature and the TEA in the form of revised rating criteria.
 
 
-* Any future result, if it falls inside the calculated boundaries ***does not signify an increase or decrease in the performance of the process.*** Understanding this rule prevents 'over-reacting' to random fluctuations.  Every 'up' or 'down' does not mean we are doing better, or worse.
+* Any future result, if it falls inside the calculated boundaries ***does not signify an increase or decrease in the performance of the process.***  Understanding this rule prevents 'over-reacting' to random fluctuations.  Every 'up' or 'down' does not mean we are doing better, or worse.
 
 
 * Confidence in the interpretation will **increase** as you add more data to the chart.  For example, it would be helpful to add years prior to 2016 to see if our interpretation of the data changed.
@@ -328,14 +353,66 @@ cat('
 ```
 
 <br>
+
+\bigskip
+
+
+```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
+# HTML output, TEAL border
+
+cat('
+<div style="border: 4px solid teal; padding: 10px; border-radius: 10px;">
+  <p>Interesting Observation:  Following the COVID pandemic we have all heard about the loss-of-learning "crises" in schools.  I wanted to see if such a "crises" could be detected using quantitative methods; not just personal opinion.  The quantitative evidence of the Process Behavior Chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
+</div>
+')
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX), TEAL border
+
+  cat('
+\\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
+')
+  cat('
+Interesting Observation:  Following the COVID pandemic we have all heard about the loss-of-learning "crises" in schools.  I wanted to see if such a "crises" could be detected using quantitative methods; not just personal opinion.  The quantitative evidence of the Process Behavior Chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective
+')
+  cat('\\end{tcolorbox}
+      ')
+
+
+```
+
+<br>
+
+\bigskip
+
+
+<br>
 <br>
 
 \vspace{0.5in}
 
-**WHAT'S WRONG WITH THE REPORTS WE USE NOW?**
+**WHAT'S WRONG WITH THE 'DESCRIPTION-ONLY' REPORTS WE USE NOW?**
+
+\bigskip
+
+The aim of a TEA report is descriptive.  ***How many or how much.***  They are estimates of how many people belong to this or that category for a specified academic year.  Or, to report the financial aspects of operations during the school year.  Their aim is **NOT** to find out **WHY** there are so many or so few in this or that category: merely how many.  
 
 
-The TEA collects data from every school in Texas, performs various calculations, and produces reams of reports and tables summarizing their results by academic year.  These reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.  
+The action to be taken is on the district, campus, or people studied.  It is a process designed for handing out reward and punishment.
+
+
+On the other hand, school boards look to take action on district-level processes (the cause-system) that produced the data described in the TEA 'description-only' reports.  The aim of board policy is to ***improve learning in the future.***  
+
+
+Interest centers on future learning, not the learning of the past.   For example: adopt Policy B over A, or hold on to Policy A, or continuation (with study) of Policy B.
+
+
+The TEA collects data from every school in Texas, performs a multitude of calculations, and produces reams of 'description-only' reports and tables summarizing their results by academic year.  These 'description-only' reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.  
 
 \medskip
 
@@ -345,21 +422,25 @@ These statistical summaries are available to the public and the school districts
 Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even [\textcolor{blue}{\url{Ron Popeil}}](https://en.wikipedia.org/wiki/Ron_Popeil) [the inventor of the Chop-O-Matic](https://en.wikipedia.org/wiki/Ron_Popeil) would be envious!  
 
 
-After ernestly pouring over such reports users have a sense that a Ouija Board might be better.
+After ernestly pouring over such 'description-only' reports users are left with a vague sense that a Ouija Board might be better!
 
+<br>
+
+\bigskip
   
-Here's a partial example from a TEA report called a 'Snapshot':
+Here's a partial example from a 'description-only' TEA report called a 'Snapshot':
 <br>
 
 \medskip
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="img/staar-snapshot-example-2021-2022.png"> 
-  <figcaption>Fig:  Small sample from TEAs Snapshot report</figcaption>
+  <figcaption>Fig:  Small sample from TEAs Snapshot descrption-only  report</figcaption>
 </figure>
 
 <br>
@@ -376,7 +457,7 @@ cat('
 \\begin{figure}[H] 
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{img/staar-snapshot-example-2021-2022.png}
-  \\caption{Small sample from TEAs Snapshot report}
+  \\caption{Small sample from TEAs Snapshot description-only report}
 \\end{figure}
 
 \\medskip
@@ -396,19 +477,20 @@ The entire report can be found here:
 \bigskip
 
 <br>
-And, here's a partial example from a TEA report called a 'School Report Card':
+And, here's a partial example from a TEA 'description-only' report called a 'School Report Card':
 
 <br>
 
 \medskip
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="img/staar-report-card-example-2021-2022.png">
-  <figcaption>Fig:  Small sample from TEAs School Report Card report</figcaption>
+  <figcaption>Fig:  Small sample from TEAs School Report Card description-only report</figcaption>
 </figure>
 
 <br>
@@ -425,7 +507,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 4.0in]{img/staar-report-card-example-2021-2022.png}
-  \\caption{Small sample from TEAs School Report Card}
+  \\caption{Small sample from TEAs description-only School Report Card}
 \\end{figure}
   
 
@@ -469,20 +551,21 @@ So, what is a school district to make of these mountains of aggregated numbers? 
 **OBSTACLE #1**
 
 
-When it comes to improving the system of education in a district this 'snapshot' view of the data has several very big problems.  One is aggregation.  The TEA reports aggregate more than one rating level into a single reporting level.  It combines the 'Approaches Grade Level' AND the 'Meets Grade Level' AND the 'Masters Grade Level' ratings all into one combined total and calls it the "Approaches Grade Level Standard AND HIGHER" level.
+When it comes to improving the system of education in a district this 'snapshot' view of the data has several very big problems.  One is aggregation.  The TEA 'description-only' reports aggregate more than one rating level into a single reporting level.  It combines the 'Approaches Grade Level' AND the 'Meets Grade Level' AND the 'Masters Grade Level' ratings all into one combined total and calls it the "Approaches Grade Level Standard AND HIGHER" level.
 
 
 To make that category useful for improvement efforts we have to break it into the three separate levels, so each represents a single situation.  Currently, that turns out to be quite tedious and extremely time-consuming.  Just for fun, I call this situation 'dancing the Texas Twenty-Two-Step' - because it will take at least twenty-two additional steps to make the measurements useful!  
 
 
-The 'Snapshot' report offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or even tax-paying citizen make an analysis aimed at improving future learning.  One might call it a triumph of computation over value.  
+The 'Snapshot' 'description-only' report offered by the TEA is a good example.  My hat is off to their programmers.  It is an impressive compilation of statistics all in one place.  It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or even tax-paying citizen make an analysis aimed at improving future learning.  One might call it a triumph of computation over value.  
 <br>
 
 
-Although this aggregation permits TEA to render abstract judgments about a district or campus, the lack of specificity renders these reports unsuitable for understanding any particular process, category or level your board may be interested in monitoring or improving.
+Although this aggregation permits TEA to render abstract judgments about a district or campus, the lack of specificity renders these 'description-only' reports unsuitable for understanding any particular process, category or level your board may be interested in monitoring or improving.
+<br>
 <br>
 
-\medskip
+\bigskip
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
@@ -518,10 +601,11 @@ By analogy, it is like trying to repair your car by reading the overall repair r
 
 \bigskip
 
-Here is an example of aggregated STAAR categories in a TEA report:  
+Here is an example of aggregated STAAR categories in a TEA 'description-only' report:  
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
@@ -560,6 +644,7 @@ The section reporting STAAR scoring by ethnicity:
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
@@ -602,7 +687,7 @@ cat('
 **OBSTACLE #2**
 
 
-These reports are 'ill-suited' for district improvement efforts for another reason:  the TEA reports are **siloed by academic year**, making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no meaningful analysis is possible.***
+These 'description-only' reports are 'ill-suited' for district improvement efforts for another reason:  the TEA 'description-only' reports are **siloed by academic year**, making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze.  In fact, without time-period-by-time-period data ***no meaningful analysis is possible.***
 
 
 This siloing of academic years stands as a bristling obstruction to the presentation of baseline data so crucial for analysis of past performance and estimation of future results.  Even the least experienced board members intuitively know the importance of this numerical context when reviewing data for their district.
@@ -617,6 +702,7 @@ This siloing of academic years stands as a bristling obstruction to the presenta
 \medskip
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
@@ -633,6 +719,7 @@ cat('
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 # PDF quote code (LaTeX)
+
 cat('
 \\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
     \\textbf{"At sea one day you will smell land where there be no land."} \\\\
@@ -648,7 +735,7 @@ cat('
 <br>
 
 
-Obstacle number 3 is not related to the TEA reports at all.  It has to do with our human nature (or, as Jessica Rabbit put it in the 1988 film 'Who Framed Roger Rabbit':  "I'm not bad, I'm just drawn this way!").
+Obstacle number 3 is not related to the TEA 'description-only' reports at all.  It has to do with our human nature (or, as Jessica Rabbit put it in the 1988 film 'Who Framed Roger Rabbit':  "I'm not bad, I'm just drawn this way!").
 
 
 For survival, humans evolved with the ability to rapidly detect patterns.  That instinct can lead us astray when studying our data.  Unfortunately, we quite naturally see 'trends' and 'signals' where there are none.  
@@ -661,6 +748,7 @@ Consider that for any three measurements there are at least 10 completely random
 <br>
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
@@ -698,6 +786,7 @@ How many of those 'trends' do you see in this example of TEA data placed on a ba
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
@@ -715,6 +804,7 @@ cat('
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
 
 # PDF code (LaTeX)
+
 cat('
 \\begin{figure}[H] 
   \\centering
@@ -732,10 +822,10 @@ cat('
 
 \bigskip
 
-So, ***we need a report that will separate the 'common cause' variation (routine variation) from the 'special cause' variation that signals a true trend or a detectable event that changes the system.***  
+So, ***we need a analytic report that will separate the 'common cause' variation (routine variation) from the 'special cause' variation that signals a true trend or a detectable event that changes the system.***  
 
 
-Our current reports do not make that separation for us.
+Our current 'description-only' reports do not make that separation for us.
 
 
 <br>
@@ -750,7 +840,7 @@ Our current reports do not make that separation for us.
 Obstacle #3 is about our perceptions.  Obstacle #4 is about our emotions.  We have a very human impulse to intervene any time we feel something is 'wrong' and needs to be 'fixed.'  The incentives for board members to seek interventions are many and varied, but the type of changes proposed really matters.  This is a situation where board members must remain vigilant about getting involved in matters that are administrative (the responsibility of the superintendent) and not policy (the responsibility of the board).
 
 
-The problem arises if we react to a result that is merely random ('common-cause'  variation) as if it were a 'special cause' signal.  This is called 'tampering' and is guaranteed to make things worse.  The variation we see will increase and our good results will be diluted accordingly.  At worst, we can de-stabalize a stable system.  
+The problem arises if we react to a result that is merely random ('common-cause'  variation) as if it were a 'special cause' signal.  This is called 'tampering' and is ***guaranteed to make things worse.***  The variation we observe will increase and our good results will be diluted accordingly.  At worst, we can de-stabalize a stable system.  
 
 
 This can be particularly acute when there is an 'incident' involving misfortune or safety.  Although rare, these events may be quite upsetting.  However, trying to keep unpleasant events from 'ever happening again' can make things worse, not better.
@@ -768,7 +858,7 @@ It is part of the leadership responsibility of boards to provide a measured and 
 **NEW INFORMATION TO HELP US**
 
 
-What makes these new reports so powerful are three unique features:
+What makes these new analytic reports so powerful are three unique features:
 
 1. Prior period results for the process are ***plotted in time order***, oldest to newest, left to right (the more time periods presented the better).  This is called ***context.***
 
@@ -776,12 +866,15 @@ What makes these new reports so powerful are three unique features:
 
 3. One simple calculation that sets the upper and lower bounds of results we can reasonably expect in the future.  This is called ***analysis.***
 
+
+
+
 \medskip
 
-***All we need are just those three things***; context, estimate of future performance, and analysis.  All three use simple arithmetic; not even algebra.  But, none of the reports currently available have all three elements.  Usually, they have none of the three.
+***All we need are just those three things***; context, estimate of future performance, and analysis.  All three use simple arithmetic; not even algebra.  But, none of the 'descrptive-only' reports currently available have all three elements.  Usually, they have none of the three.
 
 
-Accordingly, those reports cannot answer these important questions.  We are left only with a vague intuition about what the reports we get are trying to tell us.  Intuition and personal experience have proven to be unreliable guides for action on policy, performance, and pedagogy.
+Accordingly, those 'description-only' reports cannot answer these important questions.  We are left only with a vague intuition about what the data are trying to tell us.  Intuition and personal experience have proven to be unreliable guides for action on policy, performance, and pedagogy.
 
 <br>
 
@@ -840,7 +933,7 @@ For those thinking about the additional work needed to provide an anlysis when r
 
 **OVERCOMING THE OBSTACLES**
 
-As it turns out, creating the reports we need is very simple - **IF** we can get our data into the right form for analysis.  By reporting out results in the usual formats, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) appeaer to be able to help us with this particular problem.  It is up to us to take control of our own reporting needs.
+As it turns out, creating the analytic reports we need is very simple - **IF** we can get our data into the right form for analysis.  By reporting out results in the usual 'description-only' formats, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) appeaer to be able to help us with this particular problem.  It is up to us to take control of our own reporting needs.
 
 
 <br>
@@ -853,7 +946,7 @@ As it turns out, creating the reports we need is very simple - **IF** we can get
 
 \bigskip
 
-After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' reports, and 1 TAPR report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' 'description-only' reports, and 1 TAPR 'descriptinve-only' report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
 <br>
 
 \vspace{0.6in}
@@ -893,12 +986,13 @@ Like everyone else, I wanted some numerical context so I put the data in the for
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="img/staar-2016-2022-disagg-math-all-ratings-annot.png">
-  <figcaption>Fig:  Disaggregated data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+  <figcaption>Fig:  Disaggregated data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report</figcaption>
 </figure>
 
 <br>
@@ -915,7 +1009,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{img/staar-2016-2022-disagg-math-all-ratings-annot.png}
-  \\caption{Disaggregated data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+  \\caption{Disaggregated data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report}
 \\end{figure}
 
 \\medskip
@@ -930,7 +1024,7 @@ cat('
 \medskip
 
 
-However, I know from long experience that it is dangerous to rely solely on visual inspection of data that is simply displayed and not analyzed.
+However, I know from training and long experience that it is dangerous to rely solely on visual inspection of data that is simply displayed and not analyzed.
 
 
 The analysis tells us a very different story.
@@ -941,12 +1035,13 @@ The analysis tells us a very different story.
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="pbc/xmr-2016-2022-math-masters-only.png">
-  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report</figcaption>
 </figure>
 
 <br>
@@ -963,7 +1058,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-masters-only.png}
-  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+  \\caption{Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report}
 \\end{figure}
 
 \\medskip
@@ -984,12 +1079,13 @@ And, here's the one TEA does not provide at all that school boards may been keen
 \medskip
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="pbc/xmr-2016-2022-math-failing.png">
-  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report</figcaption>
 </figure>
 
 <br>
@@ -1006,7 +1102,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-failing.png}
-  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+  \\caption{Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-onlly report}
 \\end{figure}
 
 \\medskip
@@ -1020,7 +1116,7 @@ cat('
 
 \bigskip
 
-These reports were created using the disagreggated data and contain the necessary information to help us.  Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole.  They provide a baseline (context) for evaluating both past and future performance in these categories and levels.
+These additional analytic reports (PBCs) were created using the disagreggated data and contain the necessary information to help us.  Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole.  They provide a baseline (context) for evaluating both past and future performance in these additional categories and levels.
 
 <br>
 
@@ -1028,12 +1124,13 @@ These reports were created using the disagreggated data and contain the necessar
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
+
 # HTML output
 
 cat('
 <figure>
   <img src="pbc/xmr-2016-2022-math-meets-only.png">
-  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report</figcaption>
+  <figcaption>Fig:  Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report</figcaption>
 </figure>
 
 <br>
@@ -1050,7 +1147,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-meets-only.png}
-  \\caption{Data taken from 5 TEA "Snapshot" Reports and 1 TAPR report}
+  \\caption{Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report}
 \\end{figure}
 
 \\medskip
@@ -1066,7 +1163,7 @@ INTERPRETING THE CHARTS
 
 \bigskip
 
-* The measuremenets do go up and down, but ***there are no detectable differences between them*** for any category or level.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  All display ***common cause variation*** because the forces creatomg the ups and downs are common to all the results we see.
+* The measuremenets do go up and down, but ***there is no evidence that the movements are more than random variation***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  All display ***common cause variation*** because the forces creatomg the ups and downs are common to all the results we see.
 
 
 * In this case, the charts show that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the processes are ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
@@ -1086,61 +1183,6 @@ INTERPRETING THE CHARTS
 
 * This charts contain all the information this data can reveal.  ***If you need or want more information you have to collect more data***.
 
-
-
-
-
-The reaction of management (which includes the school board) should be completely different if the system or process indicates a stable state (predictable) than when it shows signals of being unstable (statistically speaking, of course). 
-
-
-Reacting to so-called performance indicators that fall within the 'normal' range of a predictable process is ***harmful.***  It makes things ***worse***; no matter how emotional you may become if you think you see things 'going in the wrong direction.'
-
-
-Reacting to indicators falling outside the identified 'normal' range is ***productive***.  If the indicator is in the 'good' direction efforts to identify the causes and duplicate them are almost always successful.  If they fall in the 'bad' direction, efforts to identify the causes and remove them are worthwhile.
-
-
-All data I've seen so far as a board member are descriptive only, with no analysis present.  The most important step, analysis, is missing.
-<br>
-<br>
-
-\bigskip
-\bigskip
-
-
-<br>
-
-\bigskip
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-
-# HTML output, RED border
-
-cat('
-<div style="border: 4px solid red; padding: 10px; border-radius: 10px;">
-  <p>Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
-</div>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX), RED border
-
-  cat('
-\\begin{tcolorbox}[colback=white, colframe=red, boxrule=2pt, arc=4pt]
-')
-  cat('
-Another Note:  Even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.
-')
-  cat('\\end{tcolorbox}
-      ')
-
-
-```
-
 <br>
 
 \bigskip
@@ -1152,130 +1194,106 @@ Another Note:  Even the extreme government measures imposed during the COVID-19 
 
 if (knitr::is_html_output()) {
 cat('<div style="border: 4px solid blue; padding: 10px; border-radius: 10px;">')
-cat('<p>Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
+cat('<p>***Technical Note For the Statistically Curious:***  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>')
 cat('</div>')
 } else if (knitr::is_latex_output()) {
   cat('\\begin{tcolorbox}[colback=white, colframe=blue, boxrule=2pt, arc=4pt]')
-  cat('Technical Note For the Statistically Curious:  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.')
+  cat('
+      \\textbf{\\textit{Technical Note For the Statistically Curious:}}  The calculated limits are NOT set at 3 standard deviations above and below the average.  The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.')
   cat('\\end{tcolorbox}')
 }
 
 ```
 
 
-
-
-
-
 <br>
 
-\bigskip
+\vspace{0.5in}
+
+**LEADERSHIP REACTION**
+
+\medskip
+
+The content of your reports matter.  The appropriate reaction of management (which includes the school board) is ***completely different*** if the system or process indicates a ***stable state*** (predictable) than when it shows evidence of being in an ***unstable state*** (statistically speaking, of course). 
 
 
-
-**A SOLUTION**
-
-To improve we must move from a 'snapshot' point of view to an 'analysis' point of view.  ***There is no in-between.***  That means the data we seek must include the context of time.  All improvement work requires time-period-by-time-period data.  
+Changing a stable process in reaction to so-called performance indicators (KPIs) that fall within the 'normal' range of a predictable process is ***harmful.***  It makes things ***worse***; no matter how emotional you may become if you think you see things 'going in the wrong direction.'
 
 
-The crucial information for analysis of process and district capability (and the prediction of future performance) is contained in the order of occurrence found in the time-period-by-time-period data.  ***The more periods included in the analysis, the stronger the evidence for your inferences from the charts.***  
+Reacting to indicators falling outside the identified 'normal' range is ***productive***.  If the indicator is in the 'good' direction efforts to identify the causes and duplicate them are almost always successful.  If they fall in the 'bad' direction, efforts to identify the causes and remove them are worthwhile.
 
 
-Humans naturally seek context.  That is where notions such as 'this month vs last month vs YTD vs a year ago this month' arose.  Those are insufficient for analysis, but they soothe our need for context of some sort.
+***If your reports are 'description-only' you cannot possibly determine the best, most appropriate action for the circumstances.***  
 
 
-
-
+All data I've seen so far as a board member are 'descriptive only', with no analysis present.  The most important step, analysis, is missing.
 <br>
-
-
-
-
-  
-Managing a district consists of budgeting,  administration, and resource allocation.  Essential, to be sure.  
-
-Budgeting is based on (hopefully) very careful calculations of estimated revenue and expenses expected for the next academic year.  Resource allocation within and between budget categories are determined by the priorities and risk tolerance of the Board of Trustees.  
-
-Resources for facility expansion and improvement depend on both the demographics of the district and the vision of the Executive team.
-  
-  
-District improvement is a totally different exercise.  To improve, boards must be able to assess the demonstrated capability and effectiveness of learning in their district.  .
-  
-  
-  
-  
-The context of **TIME** is crucial to assess the capability and effectiveness of any system or process, including learning.  
-
-Nearly every district has a 'reputation' (for better or worse) in the region, state, or nation.  Some districts have reputations for great athletic programs, some for music/arts, some for academics.  Those reputations are built over time.
-
-
-
-STAAR scoring by subject matter (from the 2022-2023 Snapshot)  To view entire report from pdf format click here:   [\textcolor{blue}{\url{pdf}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
-<br>
-To view entire report from html format click here:  
-[(html)](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
 <br>
 
 
+\vspace{0.5in}
 
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-# HTML output
 
-cat('
-<figure>
-  <img src="img/staar-snapshot-by-subj-2022-2023-annot.png">
-  <figcaption>Fig:  his is a caption for the image.</figcaption>
-</figure>
+**BEGIN WHERE YOU ARE!**
 
+
+*  We do not have to wait for TEA to begin providing data in the form we need it.  We don't have to wait for TASB to offer training in the appropriate tools and methods to extract the new information we need for improvement.  
+
+
+It is ridiculously easy to plot dots in time order on a piece of paper and draw lines between the dots.  Maria in second grade can do it.  It takes very little training to learn how to construct and use a chart.  When people in the organization begin 'plotting the dots' amazing ideas and insights bubble up from the people closest to the action - where it is most valuable.  
+
+
+*  You don't need to wait years to gather high-quality 'baseline' data.  In the real world data is never pristine.  Use what you have now and improve future data collection as you go.  You should strive to get as much data as possible but a valid analysis can be done with as few as 6 data points (the ideal is 25 points, or more).
+
+
+*  You don't have to have 'everybody on board' to begin.  Every district, department, function, and classroom generates data every day that can be used to help answer the big, important questions.  Those interested in such questions can start now.  Here are some examples:
+
+
+**SCHOOL BOARDS**
+
+Metrics and goals defined in strategic plans, district improvement plans, TEA scoring targets, safety and other district-level initiatives can and should be assessed and evaluated with the aid of the new information provided by a PBC.  Even financial information can be analyzed this way.
+
+
+
+**SUPERINTENDENTS & ADMINISTRATIONS**
+
+Legacy programs and efforts to introduce new programs aimed at improvement are all perfect candidates for this simple new chart. Insight into campus-level issues (good and bad) are best analyzed with the new information.  Insight gathered this way helps answer questions like, "Is this initiative or program producing the results we want?"
+
+
+**INSTRUCTION**
+
+
+Classroom attendence, MAP scores, disciplinary events, new pedegogies, can be assessed with the aid of the new information.  Anything a teacher may be concerned about can quickly and easily be tracked and analyzed.
+
+
+
+**FUNCTIONAL AREAS**
+
+
+Facilties managers, bus drivers, custodians can ask and answer questions such as:
+
+
+* Are our intitiatives to reduce utility costs working?  By how much?  At which campuses?
+
+* Are late-arrivals decreasing?  Are disciplinary actions during travel increasing?
+
+* Can we reduce supply costs without compromising quality?  How frequently should restrooms be re-stocked?  At which campuses?
 <br>
-')
+<br>
 
-```
+\vspace{0.4in}
 
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-
-cat('
-\\begin{figure}[H]  
-  \\centering
-  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{img/staar-snapshot-by-subj-2022-2023-annot.png}
-  \\caption{This is a caption for the image.}
-\\end{figure}
+**SUMMARY**
 
 
-\\medskip
-
-')
-  
-
-```
+To go from monitoring a system to improving a system we must move from a 'snapshot' point of view to an 'analysis' point of view.  ***There is no in-between.***  That means the data we seek must include the context of time order, .  All improvement work requires time-period-by-time-period data.  
 
 
+The crucial information for analysis of district capability (and the prediction of future performance) is contained in the order of occurrence found in the time-period-by-time-period data.  ***The more periods included in the analysis, the stronger the evidence for your inferences from the charts.***  
 
 
+Humans naturally seek context.  That is where notions such as 'this month vs last month vs YTD vs a year ago this month' arose.  Those are completely insufficient for analysis, but they soothe our need for context of some sort.
 
-
-School boards deal with two types data:
-
-* Enumerative:  quantitative information limited to a description of the past, usually for compliance purposes.
-
-* Analytic:  data subjected to analysis for estimating a causal explanation of phenomena observed in the past, with the aim of improvement in the future.
-
-
-
-The aim of a TEA report is descriptive.  How many or how much.  They are estimates of how many people belong to this or that category for a specified academic year.  Or, to report the financial aspects of operations during the school year.  Their aim is NOT to find out WHY there are so many or so few in this or that category: merely how many.  
-
-
-School boards should look to take action on the district-level processes, or cause-system, that produced the data described in the TEA reports, the aim being to improve learning in the future.  Interest centers on future learning, not the learning of the past.   For example : adopt Policy B over A, or hold on to Policy A, or continue the study of Policy B.
-
-Enumerative study:  A statistical study in which action will be taken on the material in the frame being studied.
-
-Analytic study: A statistical study in which action will be taken on the process or cause-system that produced the frame being studied. The aim being to improve practice in the future.
-
-
-In other words, an enumerative study is a statistical study in which the focus is on judgment of results, and an analytic study is one in which the focus is on improvement of the process or system which created the results being evaluated and which will continue creating results in the future. A statistical study can be enumerative or analytic, but it cannot be both.
 
 
 Statistical theory in enumerative studies is used to describe the precision of estimates and the validity of hypotheses for the population studied. In analytical studies, the standard error of a statistic does not address the most important source of uncertainty, namely, the change in study conditions in the future. 
@@ -1283,228 +1301,5 @@ Statistical theory in enumerative studies is used to describe the precision of e
 
 Deming's philosophy is that management should be analytic instead of enumerative. In other words, management should focus on improvement of processes for the future instead of on judgment of current results. 
 
-
-That 27% must in part depend on chance. If we imagine a set of constant conditions, Statistics and Reality (draft) Page 2 Nov 21, 1998 which would lead on average to 100 murders, we can, on the simplest mathematical model, expect the number we actually see to be anything between 70 and 130.
-
-
-If there were 130 murders one year, and 70 the next, many people would think that there had been a great improvement: but this could be just chance.  So the first question we could ask is, “Could the 27% reduction be due to chance?”
-
-
-That is the least of our problems. The murders may be related, as in a war between drug barons. If so, the model is wrong, since it assumes that murders are independent. Or the methods of counting might have changed from one year to the next (are you counting all suspicious deaths, or only cases solved?). Without knowing about such things we cannot predict from these figures to what will
-happen next year. So if we want to draw the conclusion that the 27% reduction is a “real” one, that is, one which will continue in the future, we must use knowledge about the problem that is not given by those figures alone.  Even less can we predict accurately what would happen in a different city, or a different country.  The causes of crime, or the effect of a change in policing methods, may be completely different.
-
-Then your actions on the basis of the information available become much more effective. Even more, your actions to get more information improve, because when you understand the sources of uncertainty, you understand how to reduce it.
-
-
-
-
-
-
-
-
-
-
-
-
-It seems that it might help if we could look at, say, six years of the 'All Subjects' category at one time.
-
-Well, here it is:
-
-<!-- \begin{figure}[H]  -->
-<!--   \centering -->
- <!-- includegraphics[width = 1.0\textwidth, height = 3.0in]{img/staar-approaches-or-higher-all-subj-2022-2023.png} -->
-<!--   \caption{This is a caption for the image.} -->
-<!-- \end{figure} -->
-
-
-<!-- <img src="img/staar-approaches-or-higher-all-subj-2022-2023.png"> -->
-
-
-
-Well, there's nothing for it but to get to work.  Here they are, 
-
-
-
-
-
-
-
-
-
-See Fig. 1
-
-
-
-
-
-
-
-
-
-```{r staar-2016-2022-by-subject-approaches2, fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Smoke a Head!"}
-```
-
-
-```{r staar-2016-2022-by-subject-approaches3, fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Chew the Root!"}
-
-```
-
-
-
-If we try to look at the data over the last 6 years we still have the problem of the 'TEA Twenty-Two Step'!
-
-
-
-
-
-
-
-
-
-
-As a board, we should focus first on the combined results of all subjects tested.  This, purportedly, is the performance of the district taken as a whole:
-
-
-
-```{r approaches-all-subjects, fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Everything All Grouped Together!"}
-
-# Use gghighlight to highlight the first grouping
-
-# staar_2016_2022_by_subject_approaches + 
-#   gghighlight(subject == unique(subject)[1], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
-
-```
-
-<!-- A previous plot shows the relationship between x and y variables Fig:   \@ref(fig:approaches-all-subjects). -->
-
-```{r fig.width = 7.5, fig.height = 6,echo = FALSE, echo = FALSE, fig.cap = "Everything All Grouped Together!"}
-
-# Use gghighlight to highlight the 2nd grouping
-
-# staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[2], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
-
-```
-
-
-<!-- The a previous plot shows the relationship between x and y variables \@ref(fig:approaches-all-subjects). -->
-
-
-```{r fig.width = 7.5, fig.height = 6,echo = FALSE, echo = FALSE, fig.cap = "Everything All Grouped Together!"}
-
-# Use gghighlight to highlight the 3rd grouping
-
-# staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[3], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
-
-```
-
-
-<!-- A previous plot shows the relationship between x and y variables \@ref(fig:approaches-all-subjects). -->
-
-
-```{r fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Everything All Grouped Together!"}
-
-# Use gghighlight to highlight the fourth grouping
-
-# staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[4], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
-
-```
-
-```{r fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Everything All Grouped Together!" }
-
-# Use gghighlight to highlight the fifth grouping
-
-# staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[5], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
-
-```
-
-
-
-```{r fig.width = 7.5, fig.height = 6,echo = FALSE,}
-# Use gghighlight to highlight the sixth grouping
-
-# staar_2016_2022_by_subject_approaches + 
-#   gghighlight(subject == unique(subject)[6], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
-
-```
-
-
-The next rating category also contains more than one rating level.  It combines the 'At Meets' AND the 'At Masters' into one combined total.
-
-
-
-<!-- \includegraphics[width = 1.0\textwidth, height = 3.0in]{tasb-2-step-step-2-meets.pdf} -->
-<!-- <img src="img/tasb-2-step-step-2-meets.png"> -->
-
-
-This rating category is the exception; it contains only one rating level.  It shows ONLY the 'At Masters' level totals.
-
-
-
-<!-- \includegraphics[width = 1.0\textwidth]{tasb-2-step-step-3-masters.pdf} -->
-<!-- <img src="img/tasb-2-step-step-3-masters.png"> -->
-
-
-
-
-
-
-
-
-
-
-```{r data-wrangling-if-needed}
-
-```
-
-<br>
-
-\bigskip
-
-**WHY MORE THAN 3 TIME PERIODS ARE NEEDED**
-
-\medskip
-
-<br>
-
-
-Here we see a comprehensive view of all subject categories for the compound level of achievement called 'Meets Grade Level Standard **AND ABOVE**' for all years in the sample:
-
-
-
-```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
-# HTML output
-
-cat('
-<figure>
-  <img src="img/staar-combo-level-mts-6-subj-2016-2022-annot.png">
-  <figcaption>Fig:  IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.</figcaption>
-</figure>
-
-<br>
-')
-
-```
-
-
-```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
-
-# PDF code (LaTeX)
-cat('
-\\begin{figure}[H]  
-  \\centering
-  \\includegraphics[width=1.0\\textwidth, height=5.0in]{img/staar-combo-level-mts-6-subj-2016-2022-annot.png}
-  \\caption{IS THIS A BUSY GRAPH, OR WHAT!?  Still, take a moment to read it.}
-\\end{figure}
-
-
-\\medskip
-
-')
-  
-
-```
-
-
-Interest is focused on ***the system (or process) that will produce the future output***; not the output of the past.  
 
 

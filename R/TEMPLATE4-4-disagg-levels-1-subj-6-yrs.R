@@ -3,6 +3,10 @@
 ######################################################################
 
 
+#####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
+#####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
+
+
 #####  USE gghighlight TO HIGHLIGHT ONE, OR MORE, ITEMS OF INTEREST  #####
 #####   See below in plot code:  gghighlight(subject == "all_subj")  #####
 #####                   Use 'calculate_per_facet' and                #####
@@ -371,9 +375,12 @@ filter(rating %in% c('approaches_only',
     hjust = 0.5
   ) +
   
+  # use this to allow for specific color coding below
+  
+scale_color_identity() +
   
 #####    IT IS ABSOLUTELY CRITICAL TO SET THESE CONDITIONAL   #####
-#####    FORMATTING PARAMETERS TO THE PROPER LENGTHS OF THE   #####
+#####   FORMATTING PARAMETERS TO THE PROPER LENGTHS FOR THE   #####
 #####  BARS TO GET THE SCORE VALUES AND YEAR LABELS IN THEIR  #####
 #####   PROPER PLACES INSIDE/OUTSIDE AND ON TOP OF THE BARS   #####
 
@@ -399,14 +406,14 @@ filter(rating %in% c('approaches_only',
       # halign = case_when(value < .30 ~ 0,
       #                   TRUE ~ .5),
       
-      # If scores are set outside bars, set text color to white, 
-      color = case_when(value > .20 ~ "white",
+      # If label is set outside bar set text color to black, else white
+      color = case_when(value > .10 ~ "black",
                         TRUE ~ "white")
-    ),
+    ), # end of aes call
     position = position_dodge2(0.9),
     fontface = "bold",
     family = "Trebuchet MS",
-    color = dark_text, # this argument overrides conditional coloring above
+    # color = dark_text, # this argument will override conditional coloring above
     size = 4  # Adjust the font size as needed
   ) +
   

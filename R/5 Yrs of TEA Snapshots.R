@@ -1,5 +1,12 @@
 ##### SCUC EXPLORATORY ANALYSIS ON SEVERAL VARIABLES FOUND IN THE 5 YEARS OF TEA SNAPSHOP REPORT DATA #####
 
+
+#####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
+#####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
+
+
+
+
 # load libraries
 
 library(readxl)
