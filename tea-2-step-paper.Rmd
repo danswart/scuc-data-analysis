@@ -1,10 +1,19 @@
 ---
 title: "Analyzing Data for School District Improvement"
+subtitle: "***or...Dancing the 'Texas Twenty-Two-Step'***"
 author:
-- Professor Strabismus
-- University of Mars
+- Dan Swart
+- SCUC-ISD Board of Trustees
+- Seat 6
 date: "`r Sys.Date()`"
 output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption: true
+    documentclass: book
+    classoption: 16pt
+    includes:
+      in_header: dsheader.tex
   bookdown::html_document2:
     css:
     - "swart-20240104.css"
@@ -14,13 +23,6 @@ output:
     includes:
       in_header: header.html
     self_contained: true
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    fig_caption: true
-    documentclass: book
-    classoption: 16pt
-    includes:
-      in_header: dsheader.tex
   bookdown::word_document2:
     fig_caption: true
     keep_md: true
@@ -41,7 +43,6 @@ header-includes:
 - \captionsetup[figure]{font=Large}
 - \captionsetup{font=Large}
 - \usepackage{longtable}
-subtitle: "***or...Dancing the 'Texas Twenty-Two-Step'***"
 linestretch: 1
 fontsize: 18pt
 knitr:
@@ -107,9 +108,9 @@ library(kableExtra)
 
 cat('
 <blockquote class="my-quote">
-  <p><strong>"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a community of user groups to ignite the collaborative energy needed to put these critical resources in the hands of all school boards and administrations.  If you are interested in using this proven technology to help you improve learning in your district please contact me."</strong></p>
-  <p class="quote-author">          — Professor Strabismis</p>
-  <p class="quote-description" style="text-align: right; font-style: italic;">University of Mars</p>
+  <p><strong>"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.   I hope to ignite the collaborative energy needed to put the best resources available in the hands of all school boards and administrations.  Those interested in using data to help improve learning in their district feel free to contact me."</strong></p>
+  <p class="quote-author">          — Dan Swart</p>
+  <p class="quote-description" style="text-align: right; font-style: italic;"></p>
 </blockquote>
 ')
 
@@ -124,12 +125,12 @@ cat('
 \\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
   \\begin{minipage}{0.95\\textwidth}
     \\raggedright
-    \\large{\\textbf{"My aim here is to contribute something to the improvement of learning in our school district; or any school district. My goal is to build a community of user groups to ignite the collaborative energy needed to put these critical resources in the hands of all school boards and administrations.  If you are interested in using this proven technology to help you improve learning in your district please contact me."}}
+    \\large{\\textbf{"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.   I hope to ignite the collaborative energy needed to put the best resources available in the hands of all school boards and administrations.  Those interested in using data to help improve learning in their district feel free to contact me."}}
   \\end{minipage}\\\\[5pt]
   \\begin{minipage}{0.95\\textwidth}
     \\raggedleft
-    \\small{Professor Strabismus}\\\\
-    \\emph{University of Mars}
+    \\small{Dan Swart}\\\\
+    \\emph{}
   \\end{minipage}
 \\end{tcolorbox}
 ')
@@ -140,16 +141,45 @@ cat('
 
 \vspace{0.5in}
 
-This paper is for those striving to improve the system of learning in their school district.  It is directed toward school boards and superintendents, but anyone can use the simple theory and techniques to significantly improve their teaching, classrooms, campuses, and departments.  
+**INTRODUCTION**
+
+Everyone at every level in a school district receives data when trying to answering the big, important, practical questions such as:
+
+*  These numbers vary from period to period.  **Does that variation signal anything important?**
+
+*  Is the variation due to normal **random fluctuations** that are present in all measurements, or to some strong influence now present in the system?
+
+*  Do these varying numbers **constitute a trend** (good, or bad)?
+
+*  What is the **demonstrated capability** of our district to deliver STAAR scores (or any other results) in the various categories and levels?  In other words, what is **rational** to expect from our system **in the future?**
+
+*  **Should we continue** a particular approach, **abandon** it, or **continue it with modification?**  
+
+* Should we change something right away with an intervention, **or will that make things worse?**
+
+* Under current leadership, are we improving, staying the same, or getting worse, and **how can we tell?**
+
+<br>
+
+\bigskip
+
+***If you are a board member, district employee, or concerned citizen who asks themselves these very questions this paper can help you.  If you find little value in using data as a guide for action this paper is definitely not for you.***
+
+<br>
+
+\vspace{0.5in}
+
+
+This paper is for anyone striving to improve learning and governance in their school district.  It is directed toward school boards and superintendents, but anyone can use the simple theory and techniques to significantly improve their teaching, classrooms, campuses, and departments.  
 
 
 To improve our systems of learning in a rational, systematic way we need new information beyond that supplied by merely descriptive reports.  Only a few simple changes are required.  
 
 
-Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the appropriate methods and tools that would give our boards and administrators access to the new information needed.
+Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the appropriate methods and tools that would give school boards and administrators access to the new information they need.
 
 
-All that is needed is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
+All that is required is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
 
 
 \bigskip
@@ -164,30 +194,13 @@ All that is needed is an open mind, willingness to do things a little differentl
 All school boards and superintendents work very hard to 'keep the lights on' and improve learning in their districts and campuses (or 'campi' if you prefer the Latin form, because it ***is*** funnier).  
 
 
-Administrtation of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board.  It is usually well managed with thoughtful planning and careful attention to fiscal details.  Both TEA and TASB supply quality education and support for the budgeting element of school board responsibility.
+Administration of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board.  It is usually well managed with thoughtful planning and careful attention to fiscal details.  Both TEA and TASB supply quality education and support for the budgeting element of school board responsibility.
 
 
-Improving learning in a district is a very different challenge and requires a different set of skills and knowledge.  School boards, in particular, need help answering the important, practical questions such as:
+Improving learning in a district is a very different challenge and requires a different set of skills and knowledge.  
 
-*  These numbers vary from period to period.  **Does that variation signal anything important?**
 
-*  Is the variation due to normal **random fluctuations** that are present in all measurements, or to some strong influence now present in the system?
-
-*  Do these varying numbers **constitute a trend** (good, or bad)?
-
-*  What is the **demonstrated capability** of our district to deliver STAAR scores (or any other results) in the varous categories and levels?  In other words, what is **rational** to expect from our system **in the future?**
-
-*  **Should we continue** a particular approach, **abandon** it, or **continue it with modification?**  
-
-* Should we change something right away with an intervention, **or will that make things worse?**
-
-* Under current leadership, are we improving, staying the same, or getting worse, and **how can we tell?**
-
-<br>
-
-\bigskip
-
-Currently, there are dozens of situations where we need better answers to questions like these.  
+Currently, there are dozens of situations where we need better answers in areas like these.  
 
 
 ```{r, echo=FALSE, eval=knitr::is_html_output(), results='asis'}
@@ -201,7 +214,7 @@ example_metrics_table <- data.frame(column1, column2)
 
 # Create a table
 
-knitr::kable(example_metrics_table, "simple", col.names = c("Example Metric", "Example Metric"), booktabs = TRUE, caption = "**Here are a just a few examples where we seek those answers, but find none:**") %>% 
+knitr::kable(example_metrics_table, "simple", col.names = c("Example Metric", "Example Metric"), booktabs = TRUE, caption = "**Here are just a few examples of such challenges facing school districts today:**") %>% 
 
 # Use kableExtra to add formatting
 
@@ -225,7 +238,7 @@ example_metrics_table <- data.frame(column1, column2)
 
 # Create a table
 
-knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Example Metric"), caption = "Here are a just a few examples where we seek those answers, but find none:") %>% 
+knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Example Metric"), caption = "Here are just a few examples of such challenges facing school districts today:") %>% 
 
 # Use kableExtra for formatting
   kable_styling(latex_options = c("scale_down", "HOLD_position"), font_size = 14) %>%
@@ -236,10 +249,10 @@ knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Exa
 ```
 
 
-To make the best decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedegogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
+To make the best decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
 
 
-Any evaluation of results must go beyond what is contained in 'snapshot' reports, or even reports with two or three-point comparisons.  As discussed later, trends cannot be established with only two or three data points in a ***'description-only'*** report.
+Any evaluation of results must go beyond what is contained in 'snapshot' reports, or even reports with two-point or three-point comparisons.  As discussed later, trends cannot be established with only two or three data points.
 
 
 As it turns out, the new information we need is already there in our data, but it is 'hidden'.  As long as we continue to use and rely on ***'description-only'*** reports this critical information ***will remain hidden from us.***
@@ -247,13 +260,13 @@ As it turns out, the new information we need is already there in our data, but i
 
 \bigskip
 
-The following report is called an ***Individuals-MovingRange Chart (XmR chart)***[^1] [^2] and it is an example of what a report looks like that contains the necessary information to help us.  This chart analyzes public STAAR data provided by TEA, and includes a brief interpretation of the chart.  The XmR chart provides a baseline (context) for evaluating both past and future performance.
+The following report is called an ***Individuals-Moving Range Chart (XmR chart)***[^1] [^2] and it is an example of what a report looks like that contains the necessary information to help us.  This chart analyzes public STAAR data provided by TEA, and includes a brief interpretation of the chart.  The XmR chart provides a baseline (context) for evaluating both past and future performance.
 
 
-[^1]: Technically, the chart shown is the 'Individuals' chart.  A complete XmR chart presentation also includes the 'MovingRange' chart that plots the size of the up-and-down changes between data points.  The MovingRange chart is used to calculate the range of values that is considered 'normal' for the process (i.e., the 'common cause' variation present in the process).
+[^1]: Technically, the chart shown is the 'Individuals' chart.  A complete XmR chart presentation also includes the 'Moving Range' chart that plots the size of the up-and-down changes between data points.  The Moving Range chart is used to calculate the range of values that is considered 'normal' for the process (i.e., the 'common cause' variation present in the process).
 <br>
 
-[^2]:  The 'XmR' chart is one of a family of 'control charts' invented and developed by Walter A. Shewhart in 1929 while an engineer at Bell Telephone Labratories.   They are still the premier tool for understanding variation by separating 'common cause' variation from 'special cause' variation.  The XmR chart will cover nearly all situations to be found in practice in the field of education.
+[^2]:  The 'XmR' chart is one of a family of 'control charts' invented and developed by Walter A. Shewhart in 1929 while an engineer at Bell Telephone Laboratories.   They are still the premier tool for understanding variation by separating 'common cause' variation from 'special cause' variation.  The XmR chart will cover nearly all situations to be found in practice in the field of education.
 
 
 <br>
@@ -308,7 +321,7 @@ INTERPRETING THE CHART[^3]
 
 \bigskip
 
-* The measuremenets do go up and down, but ***there is no numerical evidence that the movements are more than random variation***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  This is called ***common cause variation*** because the forces acting on the system are common to all the results we see.
+* The measurements do go up and down, but ***there is no numerical evidence that the movements are more than random variation***.  The ups and downs are almost certainly due to the many random forces acting on the cause system that produced the results.  This is called ***common cause variation*** because the forces acting on the system are common to all the results we see.
 
 
 * In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends[^4] identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
@@ -319,7 +332,7 @@ INTERPRETING THE CHART[^3]
 * If the process remains fundamentally the same, **the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Approaches Grade Level Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)**.  
 
 
-* Given the data in the chart, any expectation of results outside those limits, without a significant change to the system, ***would not be justified - at all***.  Even if that expectation comes from the legislature and the TEA in the form of revised rating criteria.
+* Given the data in the chart, any expectation of results outside those limits, without a significant change to the system, ***would not be justified - at all*** (even if that expectation comes from the legislature and the TEA in the form of revised scoring criteria).
 
 
 * Any future result, if it falls inside the calculated boundaries ***does not signify an increase or decrease in the performance of the process.***  Understanding this rule prevents 'over-reacting' to random fluctuations.  Every 'up' or 'down' does not mean we are doing better, or worse.
@@ -421,7 +434,7 @@ The action to be taken is on the district, campus, or people studied.  It is a p
 On the other hand, school boards look to take action on district-level processes (the cause-system) that produced the data described in the TEA 'description-only' reports.  The aim of board policy in this situation is to ***improve learning in the future.***  
 
 
-Interest centers on future learning, not the learning of the past.   For example: adopt Policy B over A, or hold on to Policy A, or try Policy B on a small scale (with further study).
+Interest centers on future learning, not the learning of the past.   For example: adopt Policy B over A, or hold on to Policy A, or try Policy C on a small scale (with further study).
 
 
 The TEA collects data from every school in Texas, performs a multitude of calculations, and produces reams of ***'description-only'*** reports and tables summarizing their results by academic year.  These ***'description-only'*** reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.  
@@ -434,7 +447,7 @@ These statistical summaries are available to the public and the school districts
 Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are 'sliced and diced' to an extent that even [\textcolor{blue}{\url{Ron  Popeil}}](https://en.wikipedia.org/wiki/Ron_Popeil) <a href="https://en.wikipedia.org/wiki/Ron_Popeil" target="_blank">the inventor of the Chop-O-Matic</a> would be envious!
 
 
-After ernestly pouring over such ***'description-only'*** reports users are left with a vague sense that a Ouija Board might be just as good!
+After earnestly pouring over such ***'description-only'*** reports users are left with a vague sense that a Ouija Board might be just as good!
 
 <br>
 
@@ -482,7 +495,7 @@ cat('
 \medskip
 
 The entire report can be found here:  
-[\textcolor{blue}{\url{PDF}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas) 
+[\textcolor{blue}{\url{PDF Link}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas) 
 
 
 <a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas" target="_blank">(HTML Link)</a>
@@ -536,7 +549,7 @@ cat('
 
 
 The entire report can be found here:  
-[\textcolor{blue}{\url{PDF}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=C&prgopt=reports/src/src.sas&id=094902003) 
+[\textcolor{blue}{\url{PDF Link}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=C&prgopt=reports/src/src.sas&id=094902003) 
 
 
 <a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=C&prgopt=reports/src/src.sas&id=094902003" target="_blank">(HTML Link)</a>
@@ -708,7 +721,7 @@ These ***'description-only'*** reports are 'ill-suited' for district improvement
 This siloing of academic years stands as a bristling obstruction to the analysis of past performance and estimation of future results.  Even the least experienced board members intuitively know the importance of numerical context when reviewing data for their district.  
 
 
-It was our innate desire for context that created the 'this-month vs this-month-last-year vs year-to-date' presentation so popular today.  'This vs that' presentations are two-point comparisons that waste more resources than all the unnessesary meetings put together.
+It was our innate desire for context that created the 'this-month vs this-month-last-year vs year-to-date' presentation so popular today.  'This vs that' presentations are two-point comparisons that waste more resources than all the unnecessary meetings put together.
 <br>
 <br>
 
@@ -864,7 +877,7 @@ Obstacle #3 is about our perceptions.  Obstacle #4 is about our emotions.  We ha
 This is also a situation where board members must remain vigilant about getting involved in matters that are administrative (the responsibility of the superintendent) and not district policy (the responsibility of the board).
 
 
-The problem arises if we react to a result that is merely random ('common-cause'  variation) as if it were a 'special cause' signal.  This is called 'tampering' and is ***guaranteed to make things worse.***  The variation we observe will increase and our good results will be diluted accordingly.  At worst, we can de-stabalize a stable system that people have worked hard to develop.  
+The problem arises if we react to a result that is merely random ('common-cause'  variation) as if it were a 'special cause' signal.  This is called 'tampering' and is ***guaranteed to make things worse.***  The variation we observe will increase and our good results will be diluted accordingly.  At worst, we can de-stabilize a stable system that people have worked hard to develop.  
 
 
 This can be particularly acute when there is an 'incident' involving misfortune or safety.  Although rare, these events may be quite upsetting.  However, trying to keep unpleasant events from 'ever happening again' can make things worse, not better.
@@ -882,11 +895,11 @@ It is part of the leadership responsibility of boards to provide a measured and 
 **NEW INFORMATION TO HELP US**
 
 
-What makes these new analytic reports so powerful are three unique features:
+What makes these new reports so powerful are three unique features:
 
 1. Prior period results for the process are ***plotted in time order***, oldest to newest, left to right (the more time periods presented the better).  This is called ***context.***
 
-2. An average (or median) for the entire group of results, plotted as a centerline.  If the process is stable, this is the ***best estimate for future results.***
+2. An average (or median) for the entire group of results, plotted as a center line.  If the process is stable, this is the ***best estimate for future results.***
 
 3. One simple calculation that sets the upper and lower bounds of results we can reasonably expect in the future.  This is called ***analysis.***
 
@@ -957,7 +970,7 @@ For those thinking about the additional work needed to provide an anlysis when r
 
 **OVERCOMING THE OBSTACLES**
 
-As it turns out, creating the analytic reports we need is very simple - **IF** we can get our data into the right form for analysis.  By reporting out results in the usual ***'description-only'*** formats, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) appeaer to be able to help us with this particular problem.  It is up to us to take control of our own reporting needs.
+As it turns out, creating the analytic reports we need is very simple - **IF** we can get our data into the right form for analysis.  By reporting out results in the usual ***'description-only'*** formats, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) appear to be able to help us with this particular problem.  It is up to us to take control of our own reporting needs.
 
 
 <br>
@@ -966,11 +979,9 @@ As it turns out, creating the analytic reports we need is very simple - **IF** w
 
 **GETTING BLOOD FROM THE TURNIP**
 
-<br>
-
 \bigskip
 
-After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' ***'description-only'*** reports, and 1 TAPR 'descriptinve-only' report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
+After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' ***'description-only'*** reports, and 1 TAPR 'descriptive-only' report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.  (No STAAR scores were available for the 2019 academic year.)
 <br>
 
 \vspace{0.6in}
@@ -1188,7 +1199,7 @@ INTERPRETING THE CHARTS
 
 \bigskip
 
-* The measuremenets do go up and down, but ***there is no evidence that the movements are more than random variation***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  All display ***common cause variation*** because the forces creatomg the ups and downs are common to all the results we see.
+* The measurements do go up and down, but ***there is no evidence that the movements are more than random variation***.  The ups and downs are almost certainly due to the many random forces acting on the cause system that produced the results.  All display ***common cause variation*** because the forces creating the ups and downs are common to all the results we see.
 
 
 * In this case, the charts show that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the processes are ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
@@ -1230,7 +1241,7 @@ cat('</div>')
 
 ```
 
-
+<br>
 <br>
 
 \vspace{0.5in}
@@ -1248,7 +1259,7 @@ Changing a stable process in reaction to so-called performance indicators (KPIs)
 Reacting to indicators falling outside the identified 'normal' range is ***productive***.  If the indicator is in the 'good' direction efforts to identify the causes and duplicate them are almost always successful.  If they fall in the 'bad' direction, efforts to identify the causes and remove them are worthwhile.
 
 
-***If your reports are 'description-only' you cannot possibly determine the best, most appropriate action for the circumstances.***  
+***If your reports are 'description-only' you cannot possibly determine the most appropriate action for the circumstances.***  
 
 
 Should we do nothing when we think we need a change?  ***ABSOLUTELY NOT!***  However, **WHAT** we do and **HOW** we do it is very different under each condition.  Those who simply want 'change', without regard to what is appropriate, will always make things worse.
@@ -1273,6 +1284,9 @@ Should we do nothing when we think we need a change?  ***ABSOLUTELY NOT!***  How
 
 *  You don't have to have 'everybody on board' to begin.  Every district, department, function, and classroom generates data every day that can be used to help answer the big, important questions.  Those interested in such questions can start now.  Here are some examples:
 
+<br>
+
+\vspace{0.5in}
 
 **SCHOOL BOARDS**
 
@@ -1280,7 +1294,7 @@ Metrics and goals defined in strategic plans, district improvement plans, TEA sc
 
 
 
-**SUPERINTENDENTS & ADMINISTRATIONS**
+**SUPERINTENDENTS & ADMINISTRATORS**
 
 Legacy programs and efforts to introduce new programs aimed at improvement are all perfect candidates for this simple new chart. Insight into campus-level issues (good and bad) are best analyzed with the new information.  Insight gathered this way helps answer questions like, "Is this initiative or program producing the results we want?"
 
@@ -1288,17 +1302,17 @@ Legacy programs and efforts to introduce new programs aimed at improvement are a
 **INSTRUCTION**
 
 
-Classroom attendence, MAP scores, disciplinary events, new pedegogies, can be assessed with the aid of the new information.  Anything a teacher may be concerned about can quickly and easily be tracked and analyzed.
+Classroom attendance, MAP scores, disciplinary events, new pedagogues, can be assessed with the aid of the new information.  Anything a teacher may be concerned about can quickly and easily be tracked and analyzed.
 
 
 
 **FUNCTIONAL AREAS**
 
 
-Facilties managers, bus drivers, custodians can ask and answer questions such as:
+Facilities managers, bus drivers, custodians can ask and answer questions such as:
 
 
-* Are our intitiatives to reduce utility costs working?  By how much?  At which campuses?
+* Are our initiatives to reduce utility costs working?  By how much?  At which campuses?
 
 * Are late-arrivals decreasing?  Are disciplinary actions during travel increasing?
 
