@@ -5,6 +5,13 @@ author:
 - University of Mars
 date: "`r Sys.Date()`"
 output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption: true
+    documentclass: book
+    classoption: 16pt
+    includes:
+      in_header: dsheader.tex
   bookdown::html_document2:
     css:
     - "swart-20240104.css"
@@ -13,13 +20,6 @@ output:
     fontsize: 18pt
     includes:
       in_header: header.html
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    fig_caption: true
-    documentclass: book
-    classoption: 16pt
-    includes:
-      in_header: dsheader.tex
   bookdown::word_document2:
     fig_caption: true
     keep_md: true
@@ -145,10 +145,10 @@ This paper is for those striving to improve the system of learning in their scho
 To improve our systems of learning in a rational, systematic way we need new information beyond that supplied by merely descriptive reports.  Only a few simple changes are required.  
 
 
-Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the basic quantitative data analysis theory and methods that would give our boards and administrators access to the new information needed.
+Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the appropriate methods and tools that would give our boards and administrators access to the new information needed.
 
 
-***My hope here is to generate the collaborative interest and energy needed to put these critical resources in the hands of all school boards and administrations.***
+***My hope here is to ignite the collaborative interest and energy required to put these critical resources in the hands of all school boards and administrations.***
 
 
 All that is needed is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
@@ -166,20 +166,20 @@ All that is needed is an open mind, willingness to do things a little differentl
 All school boards and superintendents work very hard to 'keep the lights on' and improve learning in their districts and campuses (or 'campi' if you prefer the Latin form, because it ***is*** funnier).  
 
 
-Administrtation of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board.  It is usually well managed with thoughtful planning and careful attention to fiscal details.  Both TEA and TASB supply quality education and support for these efforts.
+Administrtation of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board.  It is usually well managed with thoughtful planning and careful attention to fiscal details.  Both TEA and TASB supply quality education and support for the budgeting element of school board responsibility.
 
 
 Improving learning in a district is a very different challenge and requires a different set of skills and knowledge.  School boards, in particular, need help answering the important, practical questions such as:
 
-*  These numbers vary from period to period.  **Does that variation signal anything important?**  Could they be due to chance?
+*  These numbers vary from period to period.  **Does that variation signal anything important?**
 
-*  Is the variation due to normal **random fluctuations** that are present in all measurements, or to some strong influence now present in our system?
+*  Is the variation due to normal **random fluctuations** that are present in all measurements, or to some strong influence now present in the system?
 
-*  Do these different numbers **constitute a trend** (good, or bad)?
+*  Do these varying numbers **constitute a trend** (good, or bad)?
 
 *  What is the **demonstrated capability** of our district to deliver STAAR scores (or any other results) in the varous categories and levels?  In other words, what is **rational** to expect from our system **in the future?**
 
-*  **Should we continue** this approach, **abandon** it, or **continue it with modification?**  
+*  **Should we continue** a particular approach, **abandon** it, or **continue it with modification?**  
 
 * Should we change something right away with an intervention, **or will that make things worse?**
 
@@ -238,15 +238,25 @@ knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Exa
 ```
 
 
-To make the best decisions, the 'description-only' reports we currently use to evaluate the performance of programs, pedegogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
+To make the best decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedegogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
 
 
-Any evaluation of results must provide us with evidence beyond 'snapshot' reports, or even two or three point comparisons.  As discussed later, trends cannot be established with only two or three data points.
+Any evaluation of results must provide us with evidence beyond 'snapshot' reports, or even two or three point comparisons, to form an opinion on how a process is operating.  As discussed later, trends cannot be established with only two or three data points on a ***'description-only'*** report.
+
+
+As it turns out, the new information we need is already there in our data, but it is 'hidden'.  As long as we continue to use and rely on ***'description-only'*** reports this critical information ***will remain hidden from us.***
 
 
 \bigskip
 
-This is a Process Behavior Chart (PBC) and it is an example of what a report looks like that contains the necessary information to help us.  It analyzes public STAAR data provided by TEA, and includes a brief interpretation of the chart.  The PBC provides a baseline (context) for evaluating both past and future performance.
+This report is called an ***Individuals-MovingRange Chart (XmR chart)***[^1] [^2] and it is an example of what a report looks like that contains the necessary information to help us.  This chart analyzes public STAAR data provided by TEA, and includes a brief interpretation of the chart.  The XmR chart provides a baseline (context) for evaluating both past and future performance.
+
+
+[^1]: Technically, the chart shown is the 'Individuals' chart.  A complete XmR chart presentation also includes the 'MovingRange' chart that plots the size of the up-and-down changes between data points.  The MovingRange chart is used to calculate the range of values that is considered 'normal' for the process (i.e., the 'common cause' variation present in the process).
+<br>
+
+[^2]:  The 'XmR' chart is one of a family of 'control charts' invented and developed by Walter A. Shewhart in 1929 while an engineer at Bell Telephone Labratories.   They are still the premier tool for understanding variation by separating 'common cause' variation from 'special cause' variation.  The XmR chart will cover nearly all situations to be found in practice in the field of education.
+
 
 <br>
 
@@ -293,15 +303,19 @@ cat('
 
 \bigskip
 
-INTERPRETING THE CHART  
+INTERPRETING THE CHART[^3]  
+
+[^3]: Since interpretation of the chart concerns ***future*** results expected of the process, the chart represents evidence that should influence our degree of belief in what the future holds.  Since the future is uncertain, there is some probability that our expectation will be wrong.  Additional data helps a lot to reduce the uncertainty but will never eliminate it. 
 
 
 \bigskip
 
-* The measuremenets do go up and down, but ***there is no evidence that the movements are more than random variation***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  This is called ***common cause variation*** because the forces acting on the system are common to all the results we see.
+* The measuremenets do go up and down, but ***there is no numerical evidence that the movements are more than random variation***.  The ups and downs are due to the many random forces acting on the cause system that produced the results.  This is called ***common cause variation*** because the forces acting on the system are common to all the results we see.
 
 
-* In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
+* In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends[^4] identified.  Accordingly, the process is ***stable***, with a ***predictable capability***.  Of the many forces influencing the results, no one of them is predominant.  If one force (or a small combination) was predominate the chart would reveal it.
+
+[^4]: Statistical techniques to detect 'trends' exist and require 7 or more data points to detect.  A special 'trend' occurs when a point falls outside the range of 'normal' variation.  This is called a 'special' cause of variation.  The rules to detect these trends are easily learned and are built in to software that specializes in control chart preparation.
 
 
 * If the process remains fundamentally the same, **the proportion of students in the district taking the STAAR exam in Math that reach the level of 'Approaches Grade Level Standard, or Higher' will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)**.  
@@ -363,7 +377,7 @@ cat('
 
 cat('
 <div style="border: 4px solid teal; padding: 10px; border-radius: 10px;">
-  <p>Interesting Observation:  Following the COVID pandemic we have all heard about the loss-of-learning "crises" in schools.  I wanted to see if such a "crises" could be detected using quantitative methods; not just personal opinion.  The quantitative evidence of the Process Behavior Chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
+  <p>Interesting Observation:  Following the COVID pandemic we all heard about the loss-of-learning "crises" in schools.  I wanted to see if such a "crises" could be detected using quantitative methods; not just personal opinion.  The quantitative evidence of the Process Behavior Chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective.</p>
 </div>
 ')
 
@@ -378,7 +392,7 @@ cat('
 \\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
 ')
   cat('
-Interesting Observation:  Following the COVID pandemic we have all heard about the loss-of-learning "crises" in schools.  I wanted to see if such a "crises" could be detected using quantitative methods; not just personal opinion.  The quantitative evidence of the Process Behavior Chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective
+Interesting Observation:  Following the COVID pandemic we all heard about the loss-of-learning "crises" in schools.  I wanted to see if such a "crises" could be detected using quantitative methods; not just personal opinion.  The quantitative evidence of the Process Behavior Chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the natural limits.  Or, the counter-measures employed by the district were very effective
 ')
   cat('\\end{tcolorbox}
       ')
@@ -1116,7 +1130,7 @@ cat('
 
 \bigskip
 
-These additional analytic reports (PBCs) were created using the disagreggated data and contain the necessary information to help us.  Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole.  They provide a baseline (context) for evaluating both past and future performance in these additional categories and levels.
+These additional reports (XmR charts) were created using the disagreggated data and contain the necessary information to help us.  Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole.  They provide a baseline (context) for evaluating both past and future performance in these additional categories and levels.
 
 <br>
 
@@ -1251,7 +1265,7 @@ It is ridiculously easy to plot dots in time order on a piece of paper and draw 
 
 **SCHOOL BOARDS**
 
-Metrics and goals defined in strategic plans, district improvement plans, TEA scoring targets, safety and other district-level initiatives can and should be assessed and evaluated with the aid of the new information provided by a PBC.  Even financial information can be analyzed this way.
+Metrics and goals defined in strategic plans, district improvement plans, TEA scoring targets, safety and other district-level initiatives can and should be assessed and evaluated with the aid of the new information provided by an XmR chart.  Even financial information can be analyzed this way.
 
 
 
@@ -1286,20 +1300,13 @@ Facilties managers, bus drivers, custodians can ask and answer questions such as
 **SUMMARY**
 
 
-To go from monitoring a system to improving a system we must move from a 'snapshot' point of view to an 'analysis' point of view.  ***There is no in-between.***  That means the data we seek must include the context of time order, .  All improvement work requires time-period-by-time-period data.  
+To go from monitoring a system to improving a system we must move from a 'snapshot' point of view to an 'analysis' point of view.  ***There is no in-between.***  That means the data we use must include the context of time order, an estimate of future performance, and a range of values we can think of as 'normal' variation.    
 
 
 The crucial information for analysis of district capability (and the prediction of future performance) is contained in the order of occurrence found in the time-period-by-time-period data.  ***The more periods included in the analysis, the stronger the evidence for your inferences from the charts.***  
 
 
-Humans naturally seek context.  That is where notions such as 'this month vs last month vs YTD vs a year ago this month' arose.  Those are completely insufficient for analysis, but they soothe our need for context of some sort.
-
-
-
-Statistical theory in enumerative studies is used to describe the precision of estimates and the validity of hypotheses for the population studied. In analytical studies, the standard error of a statistic does not address the most important source of uncertainty, namely, the change in study conditions in the future. 
-
-
-Deming's philosophy is that management should be analytic instead of enumerative. In other words, management should focus on improvement of processes for the future instead of on judgment of current results. 
+Management in all forms is prediction.  Therefore, management should use analytic instead of description-only information.  Management should focus on improvement of processes for future results, not solely on judgment of past results. 
 
 
 
