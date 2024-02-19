@@ -1,0 +1,184 @@
+#####  CONTROL CHARTS IN R   #####
+#####  FOR PRODUCING IMAGES  #####
+#####  FOR RMARKDOWN PAPERS  #####
+
+#####  USING SYNTHETIC DATA  #####
+
+#####  A RUN CHART IN R WITH qicharts2 #####
+
+# Load necessary libraries
+library(qicharts2)
+
+# Set the seed for reproducibility
+set.seed(123)
+
+# Number of data points
+num_points <- 15
+
+# Generate 15 random positive integers
+values <- sample.int(10, num_points, replace = TRUE)
+
+# Create a sequence of 15 dates
+dates <- seq(as.Date("2024-01-01"), by = "day", length.out = num_points)
+
+# Create a data frame
+df <- data.frame(Date = dates, Value = values)
+
+
+# Create basic run chart
+
+qicharts2::qic(
+  x = dates,
+  y = values,
+  n = NULL, 
+  data = df,
+  # facets = NULL,
+  # notes = NULL,
+  chart = "run",
+  agg.fun = "median",
+  method = "anhoej",
+  # multiply = 1,
+  # freeze = NULL,
+  # part = NULL,
+  # exclude = NULL,
+  # target = NA * 1,
+  # cl = NA * 1,
+  # nrow = NULL,
+  # ncol = NULL,
+  # scales = "fixed",
+  title = "Run Chart created with qicharts2",
+  ylab = "Measurement",
+  xlab = "",
+  subtitle = "Subtitle goes here",
+  caption = "Caption goes here",
+  # part.labels = NULL,
+  show.labels = TRUE,
+  # show.95 = FALSE,
+  decimals = 1,
+  point.size = 2.0,
+  # x.period = NULL,
+  # x.format = NULL,
+  x.angle = 45,
+  x.pad = 1,
+  y.expand = NULL,
+  y.neg = FALSE,
+  # y.percent = FALSE,
+  # y.percent.accuracy = NULL,
+  # show.grid = TRUE,
+  # flip = FALSE,
+  # strip.horizontal = FALSE,
+  # print.summary = TRUE,
+  # return.data = TRUE
+  # 
+)
+
+
+
+
+ # Create basic Individuals chart with qicharts2 
+
+qicharts2::qic(
+  x = dates,
+  y = values,
+  n = NULL, 
+  data = df,
+  # facets = NULL,
+  # notes = NULL,
+  chart = "i",
+  agg.fun = "mean",
+  method = "anhoej",
+  # multiply = 1,
+  # freeze = NULL,
+  # part = NULL,
+  # exclude = NULL,
+  # target = NA * 1,
+  # cl = NA * 1,
+  # nrow = NULL,
+  # ncol = NULL,
+  # scales = "fixed",
+  title = "Individuals Chart created with qicharts2",
+  ylab = "Measurement",
+  xlab = "",
+  subtitle = "Subtitle goes here",
+  caption = "Caption goes here",
+  # part.labels = NULL,
+  show.labels = TRUE,
+  # show.95 = FALSE,
+  decimals = 1,
+  point.size = 2.0,
+  # x.period = NULL,
+  # x.format = NULL,
+  x.angle = 45,
+  x.pad = 1,
+  y.expand = NULL,
+  y.neg = FALSE,
+  # y.percent = FALSE,
+  # y.percent.accuracy = NULL,
+  # show.grid = TRUE,
+  # flip = FALSE,
+  # strip.horizontal = FALSE,
+  # print.summary = TRUE,
+  # return.data = TRUE
+  # 
+)
+
+
+
+
+
+
+#####  UUSING ggQC PACKAGE  #####
+#####  See http://rcontrolcharts.com/ for documentation  #####
+#####  I PREFER THIS PACKAGE FOR CREATING BASIC  #####
+#####  CONTROL CHARTS FOR INCLUSION IN RMARKDOWN PAPERS  #####
+
+
+# Load libraries
+library(tidyverse)
+library(ggQC)
+
+# Set the seed for reproducibility
+set.seed(123)
+
+# Number of data points
+num_points <- 15
+
+# Generate 15 random positive integers
+values <- sample.int(10, num_points, replace = TRUE)
+
+# Create a data frame
+df <- data.frame(Date = seq(as.Date("2024-01-01"), by = "day", length.out = num_points), Value = values)
+
+# Create the Individuals chart using ggQC
+ggplot2::ggplot(df, aes(x = Date, y = Value)) +
+  ggplot2::geom_point() + #add the points
+  ggplot2::geom_line() + #add the lines
+  ggQC::stat_QC(
+    mapping = NULL,
+    data = NULL,
+    geom = "hline",
+    position = "identity",
+    na.rm = FALSE,
+    show.legend = NA,
+    inherit.aes = TRUE,
+    n = NULL,
+    method = "XmR",
+    color.qc_limits = "red",
+    color.qc_center = "blue",
+    color.point = "black",
+    color.line = "black",
+    physical.limits = c(0, NA), # Set lower limit to 0
+    auto.label = T,
+    limit.txt.label = c("LCL", "UCL"),
+    label.digits = 2,   #Use two digit in the label
+    show.1n2.sigma = F  #Show 1 and two sigma lines
+  ) + 
+  ggplot2::scale_x_date(date_breaks = "1 day", date_labels = "%Y-%m-%d") +  # Set date breaks and labels
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +  # Rotate x-axis labels
+  ggplot2::ggtitle("Individuals Chart created with ggQC") +
+  ggplot2::labs(subtitle = "This is a subtitle", caption = "This is a caption") +
+  ggplot2::ylab("New Y-axis Label") +  # Change y-axis label
+  ggplot2::xlab("New X-axis Label")    # Change x-axis label
+
+
+
