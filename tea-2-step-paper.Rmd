@@ -108,9 +108,11 @@ library(kableExtra)
 
 cat('
 <blockquote class="my-quote">
-  <p><strong>"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.   
+  <p>
+"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.   
 
-I look forward to the day when everyone at every level learns to use two simple tools that make possible and encourages the study of methods of learning and administration (inputs) and their impact on the results observed (outputs) at the local level.  Those interested in using data to help improve learning in their district please feel free to contact me."</strong></p>
+I look forward to the day when everyone at every level is comfortable sketching a simple flow diagram, trying some changes, and plotting the results to see if the changes worked.  This straightforward process makes possible and encourages the study of different methods of learning and administration (inputs) and their impact on the results observed (outputs) ***at the local level.***  Those interested in using data to help improve learning in their district please feel free to contact me."
+</p>
   <p class="quote-author">          — Dan Swart</p>
   <p class="quote-description" style="text-align: right; font-style: italic;"></p>
 </blockquote>
@@ -127,15 +129,15 @@ cat('
 \\begin{tcolorbox}[colback=white, colframe=teal, boxrule=2pt, arc=4pt]
   \\begin{minipage}{0.95\\textwidth}
     \\raggedright
-    \\large{\\textbf{"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.}}
+    \\large{"My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.}
 
 \\vspace{12pt}  % Add vertical space here
 
-\\large{\\textbf{I look forward to the day when everyone at every level learns to use two simple tools that make possible and encourages the study of methods of learning and administration (inputs) and their impact on the results observed (outputs) at the local level.  Those interested in using data to help improve learning in their district please feel free to contact me."}}
+\\large{I look forward to the day when everyone at every level is comfortable sketching a simple flow diagram, trying some changes, and plotting the results to see if the changes worked.  This straightforward process makes possible and encourages the study of different methods of learning and administration (inputs) and their impact on the results observed (outputs) \\textbf{\\textit{at the local level.}}  Those interested in using data to help improve learning in their district please feel free to contact me."}
   \\end{minipage}\\\\[5pt]
   \\begin{minipage}{0.95\\textwidth}
     \\raggedleft
-    \\small{Dan Swart}\\\\
+    \\large{Dan Swart}\\\\
     \\emph{}
   \\end{minipage}
 \\end{tcolorbox}
@@ -261,7 +263,7 @@ knitr::kable(example_metrics_table, "pipe", col.names = c("Example Metric", "Exa
 ```
 
 
-To make the best decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
+To make better decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
 
 
 Any evaluation of results must go beyond what is included in 'snapshot' reports, or even reports with two-point or three-point comparisons.  As discussed later, trends cannot be established with only two or three data points.
@@ -1326,14 +1328,15 @@ Reacting to indicators falling outside the identified 'normal' range is ***produ
 cat('
 <div style="border: 4px solid red; padding: 10px; border-radius: 10px;">
   <p>
-***Cautionary Note:  Districts should cease dependence on recommendations for action based on outside observational studies relying solely on correlations deemed "statistically significant".  This so-called "evidence based" research is not based on generally accepted "cause and effect" experimental design.  Despite the obligatory disclaimers, calls for action often imply "cause and effect" relationships.
+***Cautionary Note:***  Districts should cease dependence on recommendations for action based on outside observational studies relying solely on correlations deemed "statistically significant".  This so-called "evidence based" research is not based on generally accepted "cause and effect" experimental design.  Despite the obligatory disclaimers, calls for action often imply "cause and effect" relationships.[^5]
 
-Remember, theories of a flat earth were "evidence based", as are most stereotypes.  The strength and quality of the evidence is more important than whether there is any evidence at all. It is far better to see what works in your district through the use of these methods and your own efforts.***
+Remember, theories of a flat earth were "evidence based", as are most stereotypes.  The strength and quality of the evidence is more important than whether there is any evidence at all. It is far better to see what works in your district through the use of these methods and your own efforts.
 </p>
 </div>
 ')
 
 ```
+
 
 
 ```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
@@ -1344,7 +1347,7 @@ Remember, theories of a flat earth were "evidence based", as are most stereotype
 \\begin{tcolorbox}[colback=white, colframe=red, boxrule=2pt, arc=4pt]
 ')
   cat('
-\\textbf{Cautionary Note:  Districts should cease dependence on recommendations for action based on outside observational studies relying solely on correlations deemed "statistically significant".  This so-called "evidence based" research is not based on generally accepted "cause and effect" experimental design.  Despite the obligatory disclaimers, calls for action often imply "cause and effect" relationships.}  
+\\textbf{Cautionary Note:  Districts should cease dependence on recommendations for action based on outside observational studies relying solely on correlations deemed "statistically significant".  This so-called "evidence based" research is not based on generally accepted "cause and effect" experimental design.  Despite the obligatory disclaimers, calls for action often imply "cause and effect" relationships.\\footnote{See for instance https://scholarworks.umt.edu/etd/1387/}}  
 
 \\vspace{12pt}  % Add vertical space here
 
@@ -1353,15 +1356,21 @@ Remember, theories of a flat earth were "evidence based", as are most stereotype
   cat('\\end{tcolorbox}
       ')
 
-
+  
 ```
 
 <br>
 
 \bigskip
 
+[^5]:  See for instance https://scholarworks.umt.edu/etd/1387/
 
-Should we do nothing when we think we need a change?  ***ABSOLUTELY NOT!***  However, **WHAT** we do and **HOW** we do it is very different under each condition.  Those who simply want 'change', without regard to what is appropriate, will nearly always make things worse.
+<br>
+
+\bigskip
+
+
+Should we do nothing when we think we need a change?  ***ABSOLUTELY NOT!***  However, **WHAT** we do and **HOW** we do it is very different under each condition.  Those who simply want 'change', without regard to whether or not the process is in a stable state, will nearly always make things worse.
 <br>
 <br>
 
@@ -1438,7 +1447,7 @@ cat('
 <div style="text-align: center;">
   <figure>
     <img src="img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png" style="width: 500px; height: auto;">
-  <figcaption>Fig:  This "description-only" form of report cannot help us</figcaption>
+  <figcaption>Fig:  This "description-only" form of report cannot help us to improve</figcaption>
   </figure>
 </div>
 
@@ -1457,7 +1466,7 @@ cat('
 <div style="text-align: center;">
   <figure>
     <img src="img/crossed-out-staar-src-example-2021-2022-640-380.png" style="width: 500px; height: auto;">
-  <figcaption>Fig:  This "description-only" form of report cannot help us</figcaption>
+  <figcaption>Fig:  This "description-only" form of report cannot help us to improve</figcaption>
   </figure>
 </div>
 
@@ -1474,7 +1483,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 0.75\\textwidth, height = 3.0in]{img/crossed-out-staar-src-example-2021-2022-640-380.png}
-  \\caption{This "description-only" form of report cannot help us}
+  \\caption{This "description-only" form of report cannot help us to improve}
 \\end{figure}
 
 \\medskip
@@ -1494,7 +1503,7 @@ cat('
 \\begin{figure}[H]  
   \\centering
   \\includegraphics[width = 0.75\\textwidth, height = 3.0in]{img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png}
-  \\caption{This "description-only" form of report cannot help us}
+  \\caption{This "description-only" form of report cannot help us to improve}
 \\end{figure}
 
 \\medskip
