@@ -7,6 +7,13 @@ author:
 - Seat 6
 date: "`r Sys.Date()`"
 output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption: true
+    documentclass: book
+    classoption: 16pt
+    includes:
+      in_header: dsheader.tex
   bookdown::html_document2:
     css:
     - "swart-20240104.css"
@@ -16,13 +23,6 @@ output:
     includes:
       in_header: header.html
     self_contained: true
-  bookdown::pdf_document2:
-    latex_engine: xelatex
-    fig_caption: true
-    documentclass: book
-    classoption: 16pt
-    includes:
-      in_header: dsheader.tex
   bookdown::word_document2:
     fig_caption: true
     keep_md: true
@@ -178,10 +178,10 @@ Everyone at every level in a school district is trying to answer important, prac
 \vspace{0.5in}
 
 
-This paper is for anyone striving to improve learning in their school district and think data can help them.  Anyone can use the simple theory and techniques to significantly improve their teaching, classrooms, campuses, departments and districts.  
+This paper is for anyone striving to improve learning in their school district and who think data can help them.  Anyone can use the simple theory and techniques to significantly improve their teaching, classrooms, campuses, departments and districts.  
 
 
-To improve our systems of learning in a rational, systematic way we need new information, beyond that supplied by merely 'description-only' reports.  Only a few simple changes are required.  
+To improve our systems of learning in a rational, systematic way we need new information beyond that supplied by merely 'description-only' reports.  Only a few simple changes are required.  
 
 
 Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the appropriate methods and tools that would give school boards and administrators access to the new information they need.
