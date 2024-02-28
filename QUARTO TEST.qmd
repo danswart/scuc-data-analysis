@@ -6,7 +6,7 @@ author:
   - SCUC-ISD Board of Trustees
   - Seat 6
 date: today
-format: html
+format: pdf
   # html:
   #   css:
   #   - "swart-20240104.css"
@@ -715,7 +715,7 @@ Should we do nothing when we think we need a change?  ***ABSOLUTELY NOT!***  How
 
 \vspace{0.3in}
 
-# ![](img/leander-grade-4-run-chart.png)
+![](img/leander-grade-4-run-chart.png)
 
 <br>
 \vspace{0.3in}
