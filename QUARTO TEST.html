@@ -37,6 +37,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="QUARTO TEST_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="QUARTO TEST_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="QUARTO TEST_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="QUARTO TEST_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="QUARTO TEST_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="QUARTO TEST_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="swart-20240104.css">
@@ -129,7 +132,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Improving learning in a district is a very different challenge and requires a different set of skills and knowledge.</p>
 <p>Currently, there are dozens of situations where we need better ways to evaluate our data.</p>
 <table class="table">
-<caption><span style="font-size: 16pt;"><strong>Here are just a few examples of data that come our way:</strong></span></caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Example Metric</th>
@@ -232,7 +234,7 @@ Interesting Observation:
 <p><a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&amp;_program=perfrept.perfmast.sas&amp;_debug=0&amp;ccyy=2022&amp;lev=D&amp;id=094902&amp;prgopt=reports%2Fsnapshot%2Fsnapshot.sas" target="_blank">(HTML Link)</a></p>
 <p><br> And, here’s a partial example from a TEA <strong><em>‘description-only’</em></strong> report called a ‘School Report Card’:</p>
 <p><br></p>
-<p><img src="img/staar-report-card-example-2021-2022.png" class="img-fluid"></p>
+<p><a href="img/staar-report-card-example-2021-2022.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/staar-report-card-example-2021-2022.png" class="img-fluid"></a></p>
 <p>Fig: Small sample from TEAs School Report Card description-only report</p>
 <p><br></p>
 <p>The entire report can be found here:<br>
@@ -267,10 +269,10 @@ Interesting Observation:
 </div>
 <p><br> </p>
 <p>Here is an example of several STAAR categories grouped together in a TEA <strong><em>‘description-only’</em></strong> report:</p>
-<p><img src="img/staar-snapshot-by-subj-2022-2023-annot.png" class="img-fluid"></p>
+<p><a href="img/staar-snapshot-by-subj-2022-2023-annot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="img/staar-snapshot-by-subj-2022-2023-annot.png" class="img-fluid"></a></p>
 <p>Fig: The first two rows combine more than one achievement level</p>
 <p><br> Here’s the section reporting STAAR scoring by ethnicity:</p>
-<p><img src="img/staar-snapshot-by-ethnicity-2022-2023-annot.png" class="img-fluid"></p>
+<p><a href="img/staar-snapshot-by-ethnicity-2022-2023-annot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="img/staar-snapshot-by-ethnicity-2022-2023-annot.png" class="img-fluid"></a></p>
 <p>Fig: The first two rows combine more than one achievement level</p>
 <p><br> </p>
 </section>
@@ -322,11 +324,11 @@ Note
 <p>For survival, humans evolved with the ability to rapidly detect patterns. That instinct can lead us astray when studying our data. Unfortunately, we quite naturally see ‘trends’ and ‘signals’ where there are none.</p>
 <p>Consider that for any three measurements there are at least 10 completely random arrangements that can arise. And, we have created names to categorize these completely artificial ‘trends’ that we think we see:</p>
 <p><br></p>
-<p><img src="img/10-random-arrangements-of-3-measurements.png" class="img-fluid"></p>
+<p><a href="img/10-random-arrangements-of-3-measurements.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="img/10-random-arrangements-of-3-measurements.png" class="img-fluid"></a></p>
 <p>Fig: Ten random arrangements of 3 measurements</p>
 <p><br> </p>
 <p>How many of those ‘trends’ do you see in this example of TEA data placed on a bar chart?</p>
-<p><img src="img/false-signals-on-bar-charts.png" class="img-fluid"></p>
+<p><a href="img/false-signals-on-bar-charts.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="img/false-signals-on-bar-charts.png" class="img-fluid"></a></p>
 <p>Fig: Do you see any trends or signals in the bars?</p>
 <p><br> </p>
 <p>So, <strong><em>we need a report that can separate the ‘common cause’ variation (routine variation) from the ‘special cause’ variation that signals a true trend, or a detectable event that changes the system.</em></strong></p>
@@ -458,7 +460,7 @@ Note
 <p>When looking at the results in the table above it would be difficult <strong><em>NOT</em></strong> to feel something about several categories, particularly the changes observed in the ‘Masters Standard’ and the ‘Failing’ columns. They seem large; and negative.</p>
 <p>Like everyone else, I want some numerical context so I put the data in the form of bar charts by year:</p>
 <p><br></p>
-<p><img src="img/staar-2016-2022-disagg-math-all-ratings-annot.png" class="img-fluid"></p>
+<p><a href="img/staar-2016-2022-disagg-math-all-ratings-annot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="img/staar-2016-2022-disagg-math-all-ratings-annot.png" class="img-fluid"></a></p>
 <p>Fig: Data that is not grouped together taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
 <p><br> </p>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -477,16 +479,16 @@ Warning
 <p><br> </p>
 <p>The XmR charts tell us a very different story.</p>
 <p><br></p>
-<p><img src="pbc/xmr-2016-2022-math-masters-only.png" class="img-fluid"></p>
+<p><a href="pbc/xmr-2016-2022-math-masters-only.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="pbc/xmr-2016-2022-math-masters-only.png" class="img-fluid"></a></p>
 <p>Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
 <p><br> </p>
 <p>And, here’s one TEA does not provide us that school boards would likely be keenly interested in – the ‘FAILING’ column: <br> <br></p>
-<p><img src="pbc/xmr-2016-2022-math-failing.png" class="img-fluid"></p>
+<p><a href="pbc/xmr-2016-2022-math-failing.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="pbc/xmr-2016-2022-math-failing.png" class="img-fluid"></a></p>
 <p>Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
 <p><br> </p>
 <p>The following additional reports (XmR charts) use ungrouped data and includes the necessary information to help us. Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole. They provide a baseline (context) for evaluating both past and future performance in these additional categories and levels.</p>
 <p><br> </p>
-<p><img src="pbc/xmr-2016-2022-math-meets-only.png" class="img-fluid"></p>
+<p><a href="pbc/xmr-2016-2022-math-meets-only.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="pbc/xmr-2016-2022-math-meets-only.png" class="img-fluid"></a></p>
 <p>Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
 <section id="interpreting-the-charts" class="level2">
 <h2 class="anchored" data-anchor-id="interpreting-the-charts">INTERPRETING THE CHARTS</h2>
@@ -547,7 +549,7 @@ Warning
 <li><p>It is ridiculously easy to plot dots in time order on a piece of paper and draw lines between the dots. Sally in fourth grade can do it. It takes very little training to learn how to construct and use an XmR chart.</p></li>
 </ul>
 <p><strong><em>Here’s a screenshot of a run chart made by 4th graders in Leander ISD with newsprint and acrylic paint (and they can explain what it means, too).</em></strong></p>
-<p><img src="img/leander-grade-4-run-chart.png" class="img-fluid"></p>
+<p><a href="img/leander-grade-4-run-chart.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="img/leander-grade-4-run-chart.png" class="img-fluid"></a></p>
 <p><br> </p>
 <p>When people in the organization begin ‘plotting the dots’ amazing ideas and insights bubble up from the people closest to the action - where it is most valuable.</p>
 <ul>
@@ -580,10 +582,10 @@ Warning
 <section id="summary" class="level1">
 <h1><strong>SUMMARY</strong></h1>
 <p>To go from monitoring a system to improving a system we must move from a ‘snapshot’ point of view to an ‘analysis’ point of view. <strong><em>They are two different jobs and require different theory, tools and methods.</em></strong> That means the data we use for improvement must include the context of time order, an estimate of future performance, and a range of values we can think of as ‘normal’ variation. <br></p>
-<p><img src="img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png" class="img-fluid"></p>
+<p><a href="img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png" class="img-fluid"></a></p>
 <p>Fig: This “description-only” form of report cannot help us to improve</p>
 <p><br> </p>
-<p><img src="img/crossed-out-staar-src-example-2021-2022-640-380.png" class="img-fluid"></p>
+<p><a href="img/crossed-out-staar-src-example-2021-2022-640-380.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="img/crossed-out-staar-src-example-2021-2022-640-380.png" class="img-fluid"></a></p>
 <p>Fig: This “description-only” form of report cannot help us to improve</p>
 <p><br></p>
 <p>The crucial information for analysis of district output capability (and the prediction of future performance) is contained in the order of occurrence found in the time-period-by-time-period data. <strong><em>The more periods included in the analysis, the stronger the evidence for your inferences from the charts.</em></strong></p>
@@ -990,6 +992,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

@@ -6,31 +6,47 @@ author:
   - SCUC-ISD Board of Trustees
   - Seat 6
 date: today
-format: pdf
-  # html:
-  #   css:
-  #   - "swart-20240104.css"
-  #   - "tachyons.min.css"
-  #   - "r-colors.css"
-  #   theme: swart.scss
-  #   base_font_size: 18pt
-  #   includes:
-  #     in_header: header.html
-  #   self_contained: true
-  # pdf: default
-    # latex_engine: xelatex
-    # fig_caption: true
-    # documentclass: book
-    # classoption: 16pt
-    # template: dsheader.tex
-  # word:
+format:
+  html:
+   css:
+   - "swart-20240104.css"
+   - "tachyons.min.css"
+   - "r-colors.css"
+   lightbox: true
+   theme:
+    - swart.scss
+    - zephyr
+   mainfont: "Trebuchet"
+   fontsize: 18pt
+   includes:
+      in_header: header.html
+   self_contained: true
+   styles:
+    blockquote:
+      border-left: 5px solid #228B22
+      padding: 10px
+   linestretch: 1.1
+  # pdf:
+  #   latex_engine: xelatex
   #   fig_caption: true
-  #   keep_md: trueformat: 
-  # 
+  #   colorlinks: true
+  #   documentclass: scrreprt
+  #   papersize: letter
+  #   fontfamily: palatino
+  #   ## include-in-header: 
+  #   ##   - file: dsheader.tex
+  # docx:
+  #   highlight-style: github
+  #   fig_caption: true
+  # typst:
+  #   output-file: typst
+  #   output-ext: pdf
 css:
   - "swart-20240104.css"
   - "tachyons.min.css"
   - "r-colors.css"
+editor: source
+
 ---
 
 
@@ -82,6 +98,7 @@ library(kableExtra)
 
 \Large
 
+
 ::: {.callout-tip appearance="minimal"}
 
 "My aim here is to contribute something to the improvement of learning in our school district; or any school district.  My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.   
@@ -116,8 +133,6 @@ Everyone at every level in a school district is trying to answer important, prac
 
 <br>
 
-
-
 ***If you are a board member, district employee, or concerned citizen who asks themselves questions like these, this paper can help you.  If you find little value in changing how you use data as a guide for action, this paper is definitely not for you.***
 
 <br>
@@ -140,14 +155,11 @@ Thus, anyone can experiment on a small scale and evaluate the results before att
 All that is required is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done.  That sounds like Texans, to me.
 
 
-
 \vspace{0.3in}
 <br>
 
 
 # **BACKGROUND**
-
-
 
 All school boards and superintendents work very hard to 'keep the lights on' and improve learning in their districts and campuses (or 'campi' if you prefer the Latin form, because it ***is*** funnier).  
 
@@ -172,14 +184,13 @@ example_metrics_table <- data.frame(column1, column2)
 
 # Create a table
 
-knitr::kable(example_metrics_table, "simple", col.names = c("Example Metric", "Example Metric"), booktabs = TRUE, caption = "<span style='font-size: 16pt;'>**Here are just a few examples of data that come our way:**</span>") %>% 
+knitr::kable(example_metrics_table, "simple", col.names = c("Example Metric", "Example Metric")) %>% 
 
 # Use kableExtra to add formatting
 
   kable_styling(bootstrap_options = c("bordered")) %>%
-  add_header_above(c(" " = 1, " " = 1)) %>%
-  column_spec(1, width = "3.75in") %>%
-  column_spec(2, width = "2.5in")
+  column_spec(1, width = "50%") %>%
+  column_spec(2, width = "50%")
 
 
 ```
