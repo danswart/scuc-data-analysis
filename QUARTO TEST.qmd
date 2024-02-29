@@ -6,6 +6,7 @@ author:
   - SCUC-ISD Board of Trustees
   - Seat 6
 date: today
+date-format: long
 format:
   html:
    css:
@@ -25,7 +26,7 @@ format:
     blockquote:
       border-left: 5px solid #228B22
       padding: 10px
-   linestretch: 1.1
+   linestretch: 1.0
   # pdf:
   #   latex_engine: xelatex
   #   fig_caption: true
@@ -173,28 +174,40 @@ Improving learning in a district is a very different challenge and requires a di
 Currently, there are dozens of situations where we need better ways to evaluate our data.  
 
 
-```{r, echo=FALSE,   results='asis'}
 
-# HTML output
+```{r}
 
-column1 = c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
+library(gt)
 
-column2 = c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings" )
+column1 <- c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
+column2 <- c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings")
+
 example_metrics_table <- data.frame(column1, column2)
 
-# Create a table
-
-knitr::kable(example_metrics_table, "simple", col.names = c("Example Metric", "Example Metric")) %>% 
-
-# Use kableExtra to add formatting
-
-  kable_styling(bootstrap_options = c("bordered")) %>%
-  column_spec(1, width = "50%") %>%
-  column_spec(2, width = "50%")
-
+example_metrics_table %>%
+  gt() %>%
+  tab_header(
+    title = "Metrics That Might Be of Interest"
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold"),
+      cell_fill(color = "cornsilk")),
+    locations = cells_title("title")
+    ) %>% 
+  cols_label(
+    column1 = "",
+    column2 = ""
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold"),
+      cell_fill(color = "cornsilk")
+    ),
+    locations = cells_body()
+  )
 
 ```
-
 
 To make better decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.  
 
