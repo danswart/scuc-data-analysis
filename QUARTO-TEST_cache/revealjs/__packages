@@ -1,4 +1,3 @@
-knitr
 readxl
 writexl
 ggplot2
@@ -23,5 +22,5 @@ gghighlight
 monochromeR
 ggforce
 kableExtra
-gt
 ggthemes
+gt

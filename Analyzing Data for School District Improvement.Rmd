@@ -15,6 +15,7 @@ output:
     includes:
       in_header: dsheader.tex
     colorlinks: true
+    fontfamily: palatino
   bookdown::html_document2:
     css:
     - "swart-20240104.css"
@@ -31,7 +32,6 @@ output:
       in_header: header.html
     self_contained: true
     linestretch: 1.0
-    fontfamily: palatino
   bookdown::word_document2:
     fig_caption: true
     keep_md: true
