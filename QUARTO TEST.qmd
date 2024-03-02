@@ -58,22 +58,22 @@ css:
   - "tachyons.min.css"
   - "r-colors.css"
 editor: source
-execute: 
-  echo: true
 knitr:
   opts_chunk:
     echo: false
     error: false
     warning: false
     message: false
-    cache: true
+    cache: false
+quarto:
+  render:
+    cache-refresh: true
 ---
 
 ```{r}
 
 #|  label: load-libraries
 #|  message: false
-#|  include: false
 #|  
 
 
@@ -106,6 +106,81 @@ library(gt)
 
 ```
 
+```{r}
+#| label: ds-gt-theme-function
+
+ds_gt_theme <- function(gt_tbl) {
+  
+   # Grab number of rows of data from gt object
+  n_rows <- nrow(gt_tbl$`_data`)
+  
+  gt_tbl |>
+    tab_style(
+      style = list(
+        cell_text(weight = "bold"),
+        cell_fill(color = "orange")
+      ),
+      locations = cells_title("title")
+    ) |>
+    cols_label(
+      column1 = "",
+      column2 = ""
+    ) |>
+    tab_style(
+      style = list(
+        cell_text(weight = "bold"),
+        cell_fill(color = "lightblue")
+      ),
+      locations = cells_body(rows = seq(1, n_rows, 2))
+    )
+  
+}
+
+```
+
+
+```{r}
+#| label: my-modified-gt-theme
+#| echo: false
+
+my_modified_gt_theme <- function(gt_tbl) {
+  
+  # Grab number of rows of data from gt object
+  n_rows <- nrow(gt_tbl$`_data`)
+  
+  gt_tbl |> 
+    tab_options(
+      data_row.padding = px(6),
+      column_labels.background.color = 'dodgerblue4',
+      heading.title.font.size = px(20),
+      heading.subtitle.font.size = px(14),
+      table_body.hlines.width = px(0)
+    ) |> 
+    cols_label(
+      column1 = "",
+      column2 = ""
+  ) |>
+    tab_style(
+      style = cell_text(
+        color = 'black', 
+        weight = 'bold', 
+        font = google_font('Trebuchet')
+      ),
+      locations = cells_title(groups = 'title')
+    ) |> 
+    tab_style(
+      style = list(
+        cell_text(weight = 'bold'),
+        cell_fill(color = "lightblue")
+    ),
+      # Use number of rows from data set
+      locations = cells_body(rows = seq(1, n_rows, 2))
+    )
+  
+}
+
+
+```
 \Large
 
 ::: {.callout-tip appearance="minimal"}
@@ -183,6 +258,48 @@ Improving learning in a district is a very different challenge and requires a di
 Currently, there are dozens of situations where we need better ways to evaluate our data.
 
 ```{r}
+# 
+# #| label: delete this one
+# #| fig-width: 5
+# #| fig-asp: 0.618
+# #| fig-alt: |
+# #|   "Typical Situations Calling for Data Analysis"
+# #| fig-cap: |
+# #|   "Typical Situations Calling for Data Analysis"
+# #| output-location:
+# 
+# column1 <- c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
+# column2 <- c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings")
+# 
+# example_metrics_table <- data.frame(column1, column2)
+# 
+# example_metrics_table <-   gt(example_metrics_table) %>%
+#   tab_header(
+#     title = "Typical Situations Calling for Data Analysis"
+#   ) %>%
+#   tab_style(
+#     style = list(
+#       cell_text(weight = "bold"),
+#       cell_fill(color = "cornsilk")),
+#     locations = cells_title("title")
+#     ) %>%
+#   cols_label(
+#     column1 = "",
+#     column2 = ""
+#   ) %>%
+#   tab_style(
+#     style = list(
+#       cell_text(weight = "bold"),
+#       cell_fill(color = "cornsilk")
+#     ),
+#     locations = cells_body()
+#   )
+# 
+# example_metrics_table
+
+```
+
+```{r}
 
 #| label: example-metrics-table
 #| fig-width: 5
@@ -191,24 +308,30 @@ Currently, there are dozens of situations where we need better ways to evaluate 
 #|   "Typical Situations Calling for Data Analysis"
 #| fig-cap: |
 #|   "Typical Situations Calling for Data Analysis"
-#| output-location: 
 
 column1 <- c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
 column2 <- c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings")
 
-example_metrics_table <- data.frame(column1, column2)
+example_metrics_tibble <- tibble(column1, column2)
 
-example_metrics_table %>%
-  gt() %>%
+example_metrics_object <- gt(example_metrics_tibble)
+
+ # Grab number of rows of data from gt object
+  n_rows <- nrow(example_metrics_object$`_data`)
+
+example_metrics_object <- example_metrics_object |>
   tab_header(
     title = "Typical Situations Calling for Data Analysis"
-  ) %>%
-  tab_style(
+  ) %>% 
+ tab_style(
     style = list(
-      cell_text(weight = "bold"),
-      cell_fill(color = "cornsilk")),
+      cell_text(
+        weight = "bold", 
+        font = google_font('Trebuchet')),
+      cell_fill(color = "white")
+      ),
     locations = cells_title("title")
-    ) %>% 
+    ) %>%
   cols_label(
     column1 = "",
     column2 = ""
@@ -216,11 +339,59 @@ example_metrics_table %>%
   tab_style(
     style = list(
       cell_text(weight = "bold"),
-      cell_fill(color = "cornsilk")
+      cell_fill(color = "lightblue")
     ),
-    locations = cells_body()
-  )
+    cells_body(rows = seq(1, n_rows, 2))
+  ) %>% 
+  tab_options(
+    column_labels.background.color = 'dodgerblue4',
+    data_row.padding = px(6),
+    heading.title.font.size = px(20),
+    heading.subtitle.font.size = px(14),
+    table_body.hlines.width = px(0)
+    )
 
+
+example_metrics_object 
+
+```
+
+
+
+```{r}
+
+#| label: test the function
+#| fig-width: 5
+#| fig-asp: 0.618
+#| fig-alt: |
+#|   "Typical Situations Calling for Data Analysis"
+#| fig-cap: |
+#|   "Typical Situations Calling for Data Analysis"
+
+column1 <- c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
+column2 <- c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings")
+
+# Create a dataframe
+df <- data.frame(column1 = column1, column2 = column2)
+
+# create a 'gt_tbl' object
+example_metrics_object <- gt(df)
+
+# add Title to the 'gt_tbl' object and rename it
+test_metrics_object <- example_metrics_object |>
+  tab_header(
+    title = "Typical Situations Calling for Data Analysis"
+  ) 
+
+
+```
+
+```{r}
+#| label: Display table styled with function
+
+
+test_metrics_object |>
+  my_modified_gt_theme()
 ```
 
 To make better decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.
@@ -579,11 +750,51 @@ data <- data.frame(
   Failing = c("16%", "12%", "13%", "21%", "22%", "20%")
 )
 
-gt(data) %>%
-  tab_header(
+basic_staar_math_table <- gt(data) 
+
+# Grab number of rows of data from gt object
+  n_rows <- nrow(basic_staar_math_table$`_data`)
+
+basic_staar_math_object <- basic_staar_math_table %>%   tab_header(
     title = "SCUC-ISD STARR Data Divided Into Constituent Parts 2016 - 2022 *",
-    subtitle = "Subject = Math, with Levels Separated Into Constituent Parts"
-  )
+    subtitle = md("**Subject:** &nbsp; Math")
+  ) %>% 
+ tab_style(
+    style = list(
+      cell_text(
+        weight = "bold", 
+        font = google_font('Trebuchet')),
+      cell_fill(color = "white")
+      ),
+    locations = cells_title(groups = "title")
+    ) %>%
+  tab_style(
+    style = list(
+      cell_text(
+        align = "left",
+        weight = "bold",
+        color = "firebrick",
+        font = google_font('Trebuchet')),
+      cell_fill(color = "white")
+      ),
+    locations = cells_title(groups = "subtitle")
+    ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold"),
+      cell_fill(color = "lightblue")
+    ),
+    cells_body(rows = seq(1, n_rows, 2))
+  ) %>% 
+  tab_options(
+    column_labels.background.color = 'dodgerblue4',
+    data_row.padding = px(6),
+    heading.title.font.size = px(20),
+    heading.subtitle.font.size = px(16),
+    table_body.hlines.width = px(0)
+    )
+
+basic_staar_math_object
 
 ```
 
