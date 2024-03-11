@@ -8,36 +8,44 @@ author:
 date: today
 date-format: long
 format:
-  html:
-   css:
-   - "swart-20240104.css"
-   - "tachyons.min.css"
-   - "r-colors.css"
-   lightbox: true
-   theme:
-    - swart.scss
-    - zephyr
-   mainfont: "Trebuchet"
-   fontsize: 18pt
-   includes:
-      in_header: header.html
-   self_contained: true
-   styles:
-    blockquote:
-      border-left: 5px solid #228B22
-      padding: 10px
-   linestretch: 1.0
-   code-link: true
-  # pdf:
-  #   latex_engine: xelatex
-  #   fig_caption: true
-  #   colorlinks: true
-  #   documentclass: scrreprt
-  #   papersize: letter
-  #   fontfamily: palatino
-  #   ## include-in-header: 
-  #   ##   - file: dsheader.tex
-  # revealjs:
+  # html:
+  #  css:
+  #  - "swart-20240104.css"
+  #  - "tachyons.min.css"
+  #  - "r-colors.css"
+  #  lightbox: true
+  #  theme:
+  #   - swart.scss
+  #   - zephyr
+  #  mainfont: "Trebuchet"
+  #  fontsize: 18pt
+  #  includes:
+  #     in_header: header.html
+  #  self_contained: true
+  #  styles:
+  #   blockquote:
+  #     border-left: 5px solid #228B22
+  #     padding: 10px
+  #  linestretch: 1.0
+  #  code-link: true
+  #
+  #
+  pdf:
+    latex_engine: xelatex
+    fig_caption: true
+    colorlinks: true
+    documentclass: scrreprt
+    papersize: letter
+    toc: true
+    mainfont: "Georgia"
+    fontsize: 16pt
+    includes:
+      in_header: latex/preamble.tex
+      before_body: latex/before_body.tex
+      after_body: latex/after_body.tex
+  #
+  #
+# revealjs:
   #   smaller: true
   #   scrollable: true 
   #   chalkboard: true
@@ -47,12 +55,22 @@ format:
   #   logo: img/red-cross-640-435.png
   #   footer: "Footer text"
   #   code-block-height: 650px
+  #
+  #
   # docx:
   #   highlight-style: github
   #   fig_caption: true
+  #
+  #
   # typst:
+  #   toc: true
+  #   mainfont: "Georgia"
+  #   fontsize: "16pt"
   #   output-file: typst
   #   output-ext: pdf
+  #   
+#
+#
 css:
   - "swart-20240104.css"
   - "tachyons.min.css"
@@ -499,7 +517,7 @@ The following report is called an ***Individuals Chart (part of an XmR chart pai
 
 <br>
 
-![](pbc/xmr-2016-2022-math-approaches-combo.png) Fig: Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report
+![](pbc/xmr-2016-2022-math-approaches-combo.png){width=100%} Fig: Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report
 
 <br> \vspace{0.3in}
 
@@ -583,7 +601,7 @@ After earnestly pouring over such ***'description-only'*** reports users still h
 
 Here's a partial example from a ***'description-only'*** TEA report called a 'Snapshot': <br>
 
-![](img/staar-snapshot-example-2021-2022.png) Fig: Small sample from TEAs Snapshot descrption-only report
+![](img/staar-snapshot-example-2021-2022.png){width=100%} Fig: Small sample from TEAs Snapshot descrption-only report
 
 The entire report can be found here:\
 [\textcolor{blue}{\url{PDF Link}}](https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&_program=perfrept.perfmast.sas&_debug=0&ccyy=2022&lev=D&id=094902&prgopt=reports%2Fsnapshot%2Fsnapshot.sas)
@@ -594,7 +612,7 @@ The entire report can be found here:\
 
 <br>
 
-![](img/staar-report-card-example-2021-2022.png)
+![](img/staar-report-card-example-2021-2022.png){width=100%}
 
 Fig: Small sample from TEAs School Report Card description-only report
 
@@ -646,13 +664,14 @@ Although this grouping of categories permits TEA to render abstract judgments ab
 
 Here is an example of several STAAR categories grouped together in a TEA ***'description-only'*** report:
 
-![](img/staar-snapshot-by-subj-2022-2023-annot.png)
+![](img/staar-snapshot-by-subj-2022-2023-annot.png){width=100%}
 
 Fig: The first two rows combine more than one achievement level
 
 <br> Here's the section reporting STAAR scoring by ethnicity:
 
-![](img/staar-snapshot-by-ethnicity-2022-2023-annot.png)
+![](img/staar-snapsh{width=100%}
+
 
 Fig: The first two rows combine more than one achievement level
 
@@ -713,7 +732,7 @@ And, we have created names to categorize these completely artificial 'trends' th
 
 <br>
 
-![](img/10-random-arrangements-of-3-measurements.png)
+![](img/10-random-arrangements-of-3-measurements.png){width=100%}
 
 Fig: Ten random arrangements of 3 measurements
 
@@ -721,7 +740,7 @@ Fig: Ten random arrangements of 3 measurements
 
 How many of those 'trends' do you see in this example of TEA data placed on a bar chart?
 
-![](img/false-signals-on-bar-charts.png)
+![](img/false-signals-on-bar-charts.png){width=100%}
 
 Fig: Do you see any trends or signals in the bars?
 
@@ -929,7 +948,7 @@ Like everyone else, I want some numerical context so I put the data in the form 
 
 <br>
 
-![](img/staar-2016-2022-disagg-math-all-ratings-annot.png)
+![](img/staar-2016-2022-disagg-math-all-ratings-annot.png){width=100%}
 
 Fig: Data that is not grouped together taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report
 
@@ -945,7 +964,7 @@ The XmR charts tell us a very different story.
 
 <br>
 
-![](pbc/xmr-2016-2022-math-masters-only.png)
+![](pbc/xmr-2016-2022-math-masters-only.png){width=100%}
 
 Fig: Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report
 
@@ -953,7 +972,7 @@ Fig: Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR descri
 
 And, here's one TEA does not provide us that school boards would likely be keenly interested in -- the 'FAILING' column: <br> <br>
 
-![](pbc/xmr-2016-2022-math-failing.png)
+![](pbc/xmr-2016-2022-math-failing.png){width=100%}
 
 Fig: Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report
 
@@ -965,7 +984,7 @@ They provide a baseline (context) for evaluating both past and future performanc
 
 <br> \vspace{0.3in}
 
-![](pbc/xmr-2016-2022-math-meets-only.png)
+![](pbc/xmr-2016-2022-math-meets-only.png){width=100%}
 
 Fig: Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPR description-only report
 
@@ -1060,7 +1079,7 @@ Those who simply want 'change', without regard to whether or not the process is 
 
 \vspace{0.3in}
 
-![](img/leander-grade-4-run-chart.png)
+![](img/leander-grade-4-run-chart.png){width=100%}
 
 <br> \vspace{0.3in}
 
@@ -1124,13 +1143,13 @@ To go from monitoring a system to improving a system we must move from a 'snapsh
 ***They are two different jobs and require different theory, tools and methods.*** That means the data we use for improvement must include the context of time order, an estimate of future performance, and a range of values we can think of as 'normal' variation.
 <br>
 
-![](img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png)
+![](img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png){width=100%}
 
 Fig: This "description-only" form of report cannot help us to improve
 
 <br> \vspace{0.3in}
 
-![](img/crossed-out-staar-src-example-2021-2022-640-380.png)
+![](img/crossed-out-staar-src-example-2021-2022-640-380.png){width=100%}
 
 Fig: This "description-only" form of report cannot help us to improve
 
