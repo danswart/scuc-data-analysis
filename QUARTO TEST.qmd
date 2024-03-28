@@ -124,47 +124,17 @@ library(gt)
 
 ```
 
-```{r}
-#| label: ds-gt-theme-function
-
-ds_gt_theme <- function(gt_tbl) {
-  
-   # Grab number of rows of data from gt object
-  n_rows <- nrow(gt_tbl$`_data`)
-  
-  gt_tbl |>
-    tab_style(
-      style = list(
-        cell_text(weight = "bold"),
-        cell_fill(color = "orange")
-      ),
-      locations = cells_title("title")
-    ) |>
-    tab_options(column_labels.hidden = TRUE)
-    cols_label(
-      column1 = "",
-      column2 = ""
-    ) |>
-    tab_style(
-      style = list(
-        cell_text(weight = "bold"),
-        cell_fill(color = "lightblue")
-      ),
-      locations = cells_body(rows = seq(1, n_rows, 2))
-    )
-  
-}
-
-```
 
 
 ```{r}
-#| label: my-modified-gt-theme-no-col-names
+#| label: ds-modified-gt-theme-no-col-lables
 
 
-my_modified_gt_theme_no_col_lbls <- function(gt_tbl) {
+ds_modified_gt_theme_no_col_lbls <- function(gt_tbl) {
   
   # Grab number of rows of data from gt object
+  # The gt() function creates a gt_tbl object that includes a field called "_data" which can be queried like any other column in a tibble or data frame.
+  
   n_rows <- nrow(gt_tbl$`_data`)
   
   gt_tbl |> 
@@ -221,13 +191,17 @@ my_modified_gt_theme_no_col_lbls <- function(gt_tbl) {
 
 ```{r}
 
-#| label: my-modified-gt-theme-with-col-names
+#| label: ds-modified-gt-theme-with-col-labels
 
 
-my_modified_gt_theme_with_col_lbls <- function(gt_tbl) {
+ds_modified_gt_theme_with_col_lbls <- function(gt_tbl) {
   
   # Grab number of rows of data from gt object
+  # The gt() function creates a gt_tbl object that includes a field called "_data" which can be queried like any other column in a tibble or data frame.
+  
   n_rows <- nrow(gt_tbl$`_data`)
+  
+  # Style the table
   
   gt_tbl |> 
     tab_options(
@@ -237,17 +211,6 @@ my_modified_gt_theme_with_col_lbls <- function(gt_tbl) {
       heading.subtitle.font.size = px(16),
       table_body.hlines.width = px(0)
       ) |> 
-    tab_style(
-    style = list(
-      cell_borders(
-        sides = "bottom",
-        color = "#104e8b",
-        weight = px(12),
-        style = "solid"
-      )
-    ),
-    locations = cells_title(groups = "title")
-  ) |>
      tab_style(
     style = list(
       cell_text(
@@ -283,9 +246,9 @@ my_modified_gt_theme_with_col_lbls <- function(gt_tbl) {
 \Large
 
 ::: {.callout-tip appearance="minimal"}
-"My aim here is to contribute something to the improvement of learning in our school district; or any school district. My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.
+"My aim here is to contribute something to the improvement of learning in our school district; or any school district. My goal is to build a collabrative community in the education domain where contributors help each other find better and better ways of using data to guide, improve and govern their systems of learning.
 
-I look forward to the day when everyone at every level is comfortable sketching a simple flow diagram, trying some changes, and plotting the results to see if the changes worked.
+I look forward to the day when everyone at every level is comfortable sketching a simple process flow diagram, trying some changes, and plotting the results to see if the changes worked.
 This straightforward process makes possible and encourages the study of different methods of learning and administration (inputs) and their impact on the results observed (outputs) ***at the local level.*** Those interested in using data to help improve learning in their district please feel free to contact me." \bigskip
 
 ::: {style="text-align: right;"}
@@ -356,51 +319,10 @@ Improving learning in a district is a very different challenge and requires a di
 
 Currently, there are dozens of situations where we need better ways to evaluate our data.
 
-```{r}
-# 
-# #| label: delete this one
-# #| fig-width: 5
-# #| fig-asp: 0.618
-# #| fig-alt: |
-# #|   "Typical Situations Calling for Data Analysis"
-# #| fig-cap: |
-# #|   "Typical Situations Calling for Data Analysis"
-# #| output-location:
-# 
-# column1 <- c("STAAR scores", "District improvement plans", "Dropout rates", "On-time arrivals for buses", "Superintendent evaluations", "Superintendent searches")
-# column2 <- c("Survey results", "TAPR reports", "Pedagogy review", "Attendance rates", "Graduation rates", "Accountability ratings")
-# 
-# example_metrics_table <- data.frame(column1, column2)
-# 
-# example_metrics_table <-   gt(example_metrics_table) %>%
-#   tab_header(
-#     title = "Typical Situations Calling for Data Analysis"
-#   ) %>%
-#   tab_style(
-#     style = list(
-#       cell_text(weight = "bold"),
-#       cell_fill(color = "cornsilk")),
-#     locations = cells_title("title")
-#     ) %>%
-#   cols_label(
-#     column1 = "",
-#     column2 = ""
-#   ) %>%
-#   tab_style(
-#     style = list(
-#       cell_text(weight = "bold"),
-#       cell_fill(color = "cornsilk")
-#     ),
-#     locations = cells_body()
-#   )
-# 
-# example_metrics_table
-
-```
 
 ```{r}
 
-#| label: example-metrics-table
+#| label: create gt_tbl object named 'example-metrics-object' with table formatting in code
 #| fig-width: 5
 #| fig-asp: 0.618
 #| fig-alt: |
@@ -416,6 +338,8 @@ example_metrics_tibble <- tibble(column1, column2)
 example_metrics_object <- gt(example_metrics_tibble)
 
  # Grab number of rows of data from gt object
+ # The gt() function creates a gt_tbl object that includes a field called "_data" which can be queried like any other column in a tibble or data frame.
+
   n_rows <- nrow(example_metrics_object$`_data`)
 
 example_metrics_object <- example_metrics_object |>
@@ -459,7 +383,7 @@ example_metrics_object
 
 ```{r}
 
-#| label: test the function
+#| label: create dt_tbl object named 'test_metrics_object' with no styling
 #| fig-width: 5
 #| fig-asp: 0.618
 #| fig-alt: |
@@ -486,12 +410,25 @@ test_metrics_object <- example_metrics_object |>
 ```
 
 ```{r}
-#| label: Display table styled with function
+#| label: Display 'test-metric-object' styled with the  ds_modified_gt_theme_no_col_lbls function
 
 
 test_metrics_object |>
-  my_modified_gt_theme_no_col_lbls()
+  ds_modified_gt_theme_no_col_lbls()
 ```
+
+
+```{r}
+#| label: Display 'test_metrics_object' styled with the  ds_modified_gt_theme_with_col_lbls function
+
+
+test_metrics_object |>
+  ds_modified_gt_theme_with_col_lbls()
+
+```
+
+
+
 
 To make better decisions, the ***'description-only'*** reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.
 
@@ -828,19 +765,17 @@ It is up to us to take control of our own reporting needs.
 
 # **GETTING BLOOD FROM THE TURNIP**
 
-After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' ***'description-only'*** reports, and 1 Texas Academic Performance Report (TAPR) 'description-only' report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022.
+After an embarrassing amount of time spent 'data wrangling' I was able to construct from the 5 available TEA 'Snapshot' ***'description-only'*** reports, and 1 Texas Academic Performance Report (TAPR) 'description-only' report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level, with all grade levels combined, for the academic years ended 2016-2022.
 (No STAAR scores were available for the 2019 academic year.) <br>
 
 \vspace{1.0in}
 
-The TEA STARR Data Divided Into Constituent Parts for the subject 'Math'
-
-
+The TEA STARR Data Divided Into Constituent Parts for the subject 'Math', all grade levels are combined.
 
 
 ```{r}
 
-#| label: disaggregated-staar-scores-math
+#| label: disaggregated-staar-scores-math-all-grades-combined-formatting-in-code
 
 library(gt)
 
@@ -853,15 +788,22 @@ data <- data.frame(
   Failing = c("16%", "12%", "13%", "21%", "22%", "20%")
 )
 
-basic_staar_math_table <- gt(data) 
+disagg_staar_math_table <- gt(data) 
 
 # Grab number of rows of data from gt object
-  n_rows <- nrow(basic_staar_math_table$`_data`)
+# The gt() function creates a gt_tbl object that includes a field called "_data" which can be queried like any other column in a tibble or data frame.
 
-basic_staar_math_object <- basic_staar_math_table %>%   tab_header(
-    title = "SCUC-ISD STARR Data Divided Into Constituent Parts 2016 - 2022 *",
-    subtitle = md("**Subject:** &nbsp; Math")
+  n_rows <- nrow(disagg_staar_math_table$`_data`)
+
+  # Give table a title and a subtitle, style it with code, and rename to 'disagg_staar_math_object'
+  
+disagg_staar_math_object <- disagg_staar_math_table %>%   tab_header(
+    title = "SCUC-ISD TEA STARR Data Divided Into Constituent Parts 2016 - 2022 *",
+    subtitle = md("**Subject:** &nbsp; Math, &nbsp; All Grade Levels Combined")
   ) %>% 
+  
+  # Style the table
+  
  tab_style(
     style = list(
       cell_text(
@@ -897,12 +839,15 @@ basic_staar_math_object <- basic_staar_math_table %>%   tab_header(
     table_body.hlines.width = px(0)
     )
 
-basic_staar_math_object
+# Display the table
+
+disagg_staar_math_object
 
 ```
 
+
 ```{r}
-#| label: staar-table-using-modified-theme
+#| label: disagg_staar_math_object-styled-using-ds_modified_gt_theme_with_col_lbls function
 
 
 library(gt)
@@ -916,18 +861,24 @@ data <- data.frame(
   Failing = c("16%", "12%", "13%", "21%", "22%", "20%")
 )
 
-basic_staar_math_table <- gt(data) 
+disagg_staar_math_table <- gt(data) 
 
 # Grab number of rows of data from gt object
-  n_rows <- nrow(basic_staar_math_table$`_data`)
+# The gt() function creates a gt_tbl object that includes a field called "_data" which can be queried like any other column in a tibble or data frame.
 
-basic_staar_math_object <- basic_staar_math_table %>%   tab_header(
+  n_rows <- nrow(disagg_staar_math_table$`_data`)
+
+  # # Give table a title and a subtitle and rename to 'disagg_staar_math_object'
+  
+disagg_staar_math_object <- disagg_staar_math_table %>%   tab_header(
     title = "SCUC-ISD STARR Data Divided Into Constituent Parts 2016 - 2022 *",
-    subtitle = md("**Subject:** &nbsp; Math")
+    subtitle = md("**Subject:** &nbsp; Math, &nbsp; All Grade Levels Combined")
   )
 
-basic_staar_math_object |>
-  my_modified_gt_theme_with_col_lbls()
+# Style the table with a function and display it
+
+disagg_staar_math_object |>
+  ds_modified_gt_theme_with_col_lbls()
 
 ```
 
