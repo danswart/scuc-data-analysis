@@ -151,6 +151,47 @@ staar_disagg_wide_to_long <- df %>%
                values_to = "value")
 
 
+########  BEGIN EXPERIMENTAL AREA  ##########
+
+# Add 2 new columns
+
+staar_disagg_long_with_grade_and_race <- staar_disagg_wide_to_long %>%
+  dplyr::mutate(
+    grade_level = factor(rep("all", n())),
+    race = factor(rep("all", n()))
+  )
+
+# Reorder the columns
+
+staar_disagg_long_with_grade_and_race <- staar_disagg_long_with_grade_and_race %>%
+  dplyr::relocate(grade_level, .after = 1) %>% 
+  dplyr::relocate(race, .after = 2)
+
+# Save new df as an Excel file
+
+writexl::write_xlsx(staar_disagg_long_with_grade_and_race, "data/staar_disagg_long_with_grade_and_race.xlsx")
+
+# Slice the first 18 rows and create a new, smaller df
+first_18_rows_df <- staar_disagg_long_with_grade_and_race %>%
+  slice(1:18)
+
+# Create a gt table object from the new df
+gt_table <- gt::gt(first_18_rows_df)
+
+# View the table
+
+gt_table
+
+# Save the first 18 rows of the gt_table as a PNG image
+
+gt::gtsave(gt_table,
+           "img/snippet-of-what-i-need-in-a-dataframe.png",
+           expand = 20
+           )
+
+
+##########  END EXPERIMENTAL AREA  ##########
+
 
 # Convert subject column to a factor for proper ordering on the x axis
 
