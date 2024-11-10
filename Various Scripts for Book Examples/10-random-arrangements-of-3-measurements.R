@@ -48,6 +48,8 @@ false_signals_facet_plot <- false_signals %>%
 # Print the plot
 print(false_signals_facet_plot)
 
+#####  NOTE:  THE VIEWER DISPLAY LOOKS TERRIBLE, BUT THE PNG FILE LOOKS GREAT ####
+
 
 # Save the plot as an image file with larger dimensions
 # ggsave("img/10-random-arrangements-of-3-measurements.png",
@@ -58,7 +60,6 @@ print(false_signals_facet_plot)
 #        dpi = 300,
 #        device = "png",
 #        bg = "transparent")
-
 
 
 

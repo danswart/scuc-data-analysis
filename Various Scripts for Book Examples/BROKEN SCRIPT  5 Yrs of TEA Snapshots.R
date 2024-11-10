@@ -1,5 +1,7 @@
 ##### SCUC EXPLORATORY ANALYSIS ON SEVERAL VARIABLES FOUND IN THE 5 YEARS OF TEA SNAPSHOP REPORT DATA #####
 
+#####  THIS SCRIPT IS BROKEN!!!  #####
+
 
 #####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
 #####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
@@ -177,14 +179,14 @@ df <- readxl::read_xlsx("scuc-tea-5yr-snapshot-df.xlsx",
 
 
 # Clean up the column names
-df <- df %>% clean_names()
+df <- df %>% janitor::clean_names()
 
 
-# List 130 column names
+# List 130 column names with baseR function
 column_names <- colnames(df)
 
 
-# Write column names to a text file
+# Write column names to a text file using baseR
 writeLines(column_names, "column_names.txt")
 
 
@@ -196,7 +198,7 @@ writeLines(column_names, "column_names.txt")
 # Convert those columns to numeric percentages
 
 # df <- df %>%
-#   mutate_at(vars(rate_prop_columns), ~as.numeric(gsub("%", "", .)))
+#   dplyr::mutate_at(vars(rate_prop_columns), ~as.numeric(gsub("%", "", .)))
 
 
 
@@ -213,7 +215,7 @@ selected_columns <- grep(paste0(keywords, collapse = "|"), names(df), value = TR
 # Convert selected columns to numeric
 
 df <- df %>%
-  mutate_at(vars(selected_columns), ~as.numeric(gsub("%", "", .)))
+  dplyr::mutate_at(vars(selected_columns), ~as.numeric(gsub("%", "", .)))
 
 
 
@@ -225,20 +227,19 @@ df <- df %>%
 # Convert the 'approach_amer_indian' column to numeric percentages
 
 df <- df %>%
-  mutate(approach_amer_indian = as.numeric(gsub("%", "", approach_amer_indian)))
+  dplyr::mutate(approach_amer_indian = as.numeric(gsub("%", "", approach_amer_indian)))
 
 
+# Convert all columns to character type
+df[2:130] <- lapply(df[2:130], as.character)
 
 # Pivot the data into long format with values rounded to 2 decimal places
 
-df <- df %>%
-   pivot_longer(cols = c(2:130),
-               names_to = "variable",
-               values_to = "value") %>% 
-  
-# Round the 'value' column to 2 decimal places
-  
-  mutate(value = round(value, 2)) 
+df_long <- df %>%
+  tidyr::pivot_longer(cols = c(2:130),
+                      names_to = "variable",
+                      values_to = "value") %>%
+  dplyr::mutate(value = round(as.numeric(value), 2))  # Convert back to numeric for rounding
 
 
 
@@ -257,29 +258,29 @@ keywords <- c("avg_teacher_sal")
 # "act_avg_score", "sat_avg_score", "avg_teacher_sal"
 
 filtered_df <- df %>%
-  filter(variable %in% keywords)
+  dplyr::filter(variable %in% keywords)
 
 
 
 # create a bar chart
 
-snapshots <- ggplot(filtered_df,
+snapshots <- ggplot2::ggplot(filtered_df,
        aes(x = year,
            y = value
            )
        ) +
-  geom_col(position = position_dodge2(0.9)) +
-  coord_cartesian(ylim = c(40000, 75000))
+  ggplot2::geom_col(position = position_dodge2(0.9)) +
+  ggplot2::coord_cartesian(ylim = c(40000, 75000))
 
 
 snapshots
 
 # build a line plot
 
-snapshots <- ggplot(filtered_df,
+snapshots <- ggplot2::ggplot(filtered_df,
                     aes(x = year,
                         y = value)) +
-  geom_line()
+  ggplot2::geom_line()
 
 snapshots
 

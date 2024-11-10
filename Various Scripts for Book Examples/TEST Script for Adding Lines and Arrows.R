@@ -2,6 +2,8 @@
 ############   WITH HORIZONTAL BAR LABELS FOR YEAR-ENDS   ############
 ######################################################################
 
+#####  STORY:  BAR CHARTS IN TIME SEREIES CANNOT DISTINGUISH 'SPECIAL #####
+####          CAUSE' VARIATION FROM 'COMMON CAUSE' VARIATION          #####
 
 #####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
 #####  For Alignment Cheat Sheet for v/h adjust and v/h align  #####
@@ -118,7 +120,7 @@ ds_staar_theme <- function(base_size = 16,
 
 df <-
   read_excel(
-    "data/staar-wide-disagg-2016-2022.xlsx",
+    "../data/staar-wide-disagg-2016-2022.xlsx",
     col_types = c(
       "numeric",
       "text",
@@ -255,22 +257,22 @@ staar_2016_2022_disagg_math_all_ratings <-
   
   # Choose RATING levels and subjects in plot
   
-filter(rating %in% c('approaches_only',
-                     'meets_only',
-                     'masters_only',
-                     'failing') &
-       subject %in% c('math')) %>%
+  filter(rating %in% c('approaches_only',
+                       'meets_only',
+                       'masters_only',
+                       'failing') &
+           subject %in% c('math')) %>%
   
- 
- #####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
- #####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
- #####   YOU WANT A DIFFERENT ORDER YOU MUST    #####
- #####          SPECIFY IT IN YOUR CODE         #####
- #####  ALWAYS VERIFY AND MATCH DATA TO LABELS! #####
   
-   # Set order of the rating column for desired presentation order in plot
-  
-  mutate(rating = factor(rating, levels = c('approaches_only', 'meets_only', 'masters_only', 'failing'))) %>% 
+#####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
+#####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
+#####   YOU WANT A DIFFERENT ORDER YOU MUST    #####
+#####          SPECIFY IT IN YOUR CODE         #####
+#####  ALWAYS VERIFY AND MATCH DATA TO LABELS! #####
+
+# Set order of the rating column for desired presentation order in plot
+
+mutate(rating = factor(rating, levels = c('approaches_only', 'meets_only', 'masters_only', 'failing'))) %>% 
   
   
   # add year_end to aes call to create bar for each year
@@ -341,8 +343,8 @@ filter(rating %in% c('approaches_only',
   
   ggtitle(
     "STAAR Achievement Levels by Year for Subject = 'Math'"
-    ) +
-    
+  ) +
+  
   labs(subtitle = "<span style = 'color: firebrick'>Bar Charts in Time Series Cannot Distinguish 'Special Cause' Variation from 'Common Cause' Variation</span>") +
   
   labs(caption = "Missing Year = No STAAR Score Available") +
@@ -377,45 +379,45 @@ filter(rating %in% c('approaches_only',
   
   # use this to allow for specific color coding below
   
-scale_color_identity() +
+  scale_color_identity() +
   
-#####    IT IS ABSOLUTELY CRITICAL TO SET THESE CONDITIONAL   #####
+  #####    IT IS ABSOLUTELY CRITICAL TO SET THESE CONDITIONAL   #####
 #####   FORMATTING PARAMETERS TO THE PROPER LENGTHS FOR THE   #####
 #####  BARS TO GET THE SCORE VALUES AND YEAR LABELS IN THEIR  #####
 #####   PROPER PLACES INSIDE/OUTSIDE AND ON TOP OF THE BARS   #####
 
-   # Place STAAR score at the top/end of each bar
-  
-  geom_text(
-    aes(
-      # Format values as percentages
-      label = scales::percent(value, scale = 100),
-      
-      # If bars are vertical, set score value inside bar unless bar value < 10%, then place on outside
-      vjust = case_when(value < .10 ~ 0,
-                        TRUE ~ 2),
-      
-      # valign = case_when(value < .30 ~ 0,
-      #                   TRUE ~ .5),
-      
-      # If bars are horizontal, set score value inside bar unless bar value < 10%, then place on outside
-      hjust = case_when(value < .10 ~ 0,
-                        TRUE ~ .5),
-      
-      
-      # halign = case_when(value < .30 ~ 0,
-      #                   TRUE ~ .5),
-      
-      # If label is set outside bar set text color to black, else white
-      color = case_when(value > .10 ~ "black",
-                        TRUE ~ "white")
-    ), # end of aes call
-    position = position_dodge2(0.9),
-    fontface = "bold",
-    family = "Trebuchet MS",
-    # color = dark_text, # this argument will override conditional coloring above
-    size = 4  # Adjust the font size as needed
-  ) +
+# Place STAAR score at the top/end of each bar
+
+geom_text(
+  aes(
+    # Format values as percentages
+    label = scales::percent(value, scale = 100),
+    
+    # If bars are vertical, set score value inside bar unless bar value < 10%, then place on outside
+    vjust = case_when(value < .10 ~ 0,
+                      TRUE ~ 2),
+    
+    # valign = case_when(value < .30 ~ 0,
+    #                   TRUE ~ .5),
+    
+    # If bars are horizontal, set score value inside bar unless bar value < 10%, then place on outside
+    hjust = case_when(value < .10 ~ 0,
+                      TRUE ~ .5),
+    
+    
+    # halign = case_when(value < .30 ~ 0,
+    #                   TRUE ~ .5),
+    
+    # If label is set outside bar set text color to black, else white
+    color = case_when(value > .10 ~ "black",
+                      TRUE ~ "white")
+  ), # end of aes call
+  position = position_dodge2(0.9),
+  fontface = "bold",
+  family = "Trebuchet MS",
+  # color = dark_text, # this argument will override conditional coloring above
+  size = 4  # Adjust the font size as needed
+) +
   
   
   # Place year labels (2016-2022) over the bars with adjusted size
@@ -473,8 +475,7 @@ scale_color_identity() +
     color = "blue",
     fill = "lightblue",
     alpha = 0.0
-  )
-
+  ) 
 
 # view the plot
 
@@ -501,3 +502,79 @@ paletteer::paletteer_d("ggthemes::excel_Median")
 #        device = "png",
 #        bg = "transparent")
 
+
+
+
+
+
+
+
+
+#####  THE FOLLOWING CODE IS FROM A PRESENTATION BY CARA THOMPSON #####
+#####  AND HAS NOTHING TO DO WITH SCUC DATA ANALYSIS.  IT IS A TEMPLATE   #####
+
+
+# add a labelled smooth line for each suppliment
+
+# geomtextpath::geom_textline(
+#   stat = "smooth",
+#   aes(label = supplement),
+#   hjust = 0.1,
+#   vjust = 0.3,
+#   fontface = "bold",
+#   family = "Cabin"
+# ) +
+#   
+#   # color the lines by specified palette
+#   
+  # scale_colour_manual(values = vit_c_palette) +
+  # 
+  # gghighlight::gghighlight(supp == "OJ") +
+#   
+  # add text boxes with name and data inside for max and min color-coded for each suppliment
+
+  # ggtext::geom_textbox(
+  #   data = filter(min_max_gps,
+  #                 dose == 2),
+  #   aes(
+  #     x = case_when(dose < 1.5 ~ dose + 0.05,
+  #                   TRUE ~ dose - 0.05),
+  #     y = case_when(min_or_max  == "max" ~ len * 1.1,
+  #                   TRUE ~ len * 0.9),
+  #     label = paste0(
+  #       "**<span style='font-family:Enriqueta'>",
+  #       guinea_pig_name,
+  #       "</span>** - ",
+  #       len,
+  #       " mm"
+  #     ),
+  #     hjust = case_when(dose < 1.5 ~ 0,
+  #                       TRUE ~ 1),
+  #     halign = case_when(dose < 1.5 ~ 0,
+  #                        TRUE ~ 1)
+  #   ),
+  #   family = "Cabin",
+  #   size = 4,
+  #   fill = NA,
+  #   box.colour = NA
+  # ) +
+  # 
+  # # add the arrows from text boxes to data point
+  # 
+  # ggplot2::geom_curve(
+  #   data = filter(min_max_gps,
+  #                 dose == 2),
+  #   aes(
+  #     x = case_when(dose < 1.5 ~ dose + 0.05,
+  #                   TRUE ~ dose - 0.05),
+  #     y = case_when(min_or_max  == "max" ~ len * 1.1,
+  #                   TRUE ~ len * 0.9),
+  #     xend = case_when(dose < 1.5 ~ dose + 0.02,
+  #                      TRUE ~ dose - 0.02),
+  #     yend = case_when(min_or_max  == "max" ~ len + 0.5,
+  #                      TRUE ~ len - 0.5)
+  #   ),
+  #   curvature = 0,
+  #   arrow = arrow(length = unit(0.1, "cm")),
+  #   alpha = 0.5
+  # )

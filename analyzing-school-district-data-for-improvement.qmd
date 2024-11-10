@@ -1,6 +1,6 @@
 ---
 title: "Analyzing School District Data for Improvement"
-subtitle: "***Why Analytic Reports Give Me What Need, and Descriptive Reports Don't***"
+subtitle: "***Why Analytic Reports Give Me What I Need, and Descriptive Reports Don't***"
 author:
   - Dan Swart
   - SCUC-ISD Board of Trustees
@@ -8,46 +8,46 @@ author:
 date: today
 date-format: long
 format:
-  # html:
-  #  css:
-  #  - "swart-20240104.css"
-  #  - "tachyons.min.css"
-  #  - "r-colors.css"
-  #  lightbox: true
-  #  theme:
-  #   - swart.scss
-  #   - zephyr
-  #  mainfont: "Trebuchet"
-  #  fontsize: 18pt
-  #  includes:
-  #     in_header: header.html
-  #  self_contained: true
-  #  styles:
-  #   blockquote:
-  #     border-left: 5px solid #228B22
-  #     padding: 10px
-  #  linestretch: 1.0
-  #  code-link: true
+  html:
+   css:
+   - "swart-20240104.css"
+   - "tachyons.min.css"
+   - "r-colors.css"
+   lightbox: true
+   theme:
+    - swart.scss
+    - zephyr
+   mainfont: "Trebuchet"
+   fontsize: 18pt
+   includes:
+      in_header: header.html
+   self_contained: true
+   styles:
+    blockquote:
+      border-left: 5px solid #228B22
+      padding: 10px
+   linestretch: 1.0
+   code-link: true
+
   #
-  #
-  pdf:
-    latex_engine: xelatex
-    fig_caption: true
-    colorlinks: true
-    documentclass: scrreprt
-    papersize: letter
-    toc: true
-    mainfont: "Georgia"
-    fontsize: 16pt
-    includes:
-      in_header: latex/preamble.tex
-      before_body: latex/before_body.tex
-      after_body: latex/after_body.tex
-    geometry: 
-      - top = 1in
-      - bottom = 1in
-      - left = .75in
-      - right = .75in
+  # pdf:
+  #   latex_engine: xelatex
+  #   fig_caption: true
+  #   colorlinks: true
+  #   documentclass: scrreprt
+  #   papersize: letter
+  #   toc: true
+  #   mainfont: "Georgia"
+  #   fontsize: 16pt
+  #   includes:
+  #     in_header: latex/preamble.tex
+  #     before_body: latex/before_body.tex
+  #     after_body: latex/after_body.tex
+  #   geometry: 
+  #     - top = 1in
+  #     - bottom = 1in
+  #     - left = .75in
+  #     - right = .75in
   #
   #
 # revealjs:

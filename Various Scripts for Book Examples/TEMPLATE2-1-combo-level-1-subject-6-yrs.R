@@ -1,6 +1,10 @@
-#######  1 COMBO STAAR LEVEL, 6 SUBJECTS-6 YEARS PLOT  #######
-##############################################################
+#######  1-STAAR-LEVEL, 1 SUBJECT, 6-YEAR PLOT  #######
+#########################################################
 
+
+#####  STORY:  EVEN A SINGLE BAR FOR EACH YEAR IS USELESS FOR  #####
+#####  IMPROVEMENT EFFORTS.  WHY?  CANNOT DISTINQUISH COMMON   #####
+#####       CAUSE VARIATION FROM SPECIAL CAUSE VARIATION       #####
 
 
 #####  See https://www.cararthompson.com/posts/2021-09-02-alignment-cheat-sheet/alignment-cheat-sheet#so-what-does-what #####
@@ -9,7 +13,7 @@
 
 
 #####  USE gghighlight TO HIGHLIGHT ONE, OR MORE, ITEMS OF INTEREST  #####
-#####   See below in plot code:  gghighlight(subject == "all_subj")  #####
+#####  See below in code:  gghighlight(year_end == c("2018", "2020)  #####
 #####                   Use 'calculate_per_facet' and                #####
 #####                 'label_key = category for labels'              #####
 ##########################################################################
@@ -20,6 +24,7 @@
 #####    permits labels and text that can be treated as richtext.    #####
 #####        see https://allancameron.github.io/geomtextpath/        #####
 ##########################################################################
+
 
 #####  WATCH OUT FOR THIS.  R WILL ALWAYS PUT  #####
 #####  COLUMNS (VARIABLES) IN ALPHA ORDER.  IF #####
@@ -52,6 +57,7 @@ library(dutchmasters)
 library(gghighlight)
 library(monochromeR)
 library(ggforce)
+
 
 
 ###########  DS STAAR THEMING FUNCTION  ##########
@@ -122,9 +128,8 @@ ds_staar_theme <- function(base_size = 16,
 
 # read in Excel file pre-set for pivoting longer
 df <-
-  readxl::read_excel(
-    "data/staar-wide-disagg-2016-2022.xlsx",
-    sheet = 1,
+  read_excel(
+    "../data/staar-wide-disagg-2016-2022.xlsx",
     col_types = c(
       "numeric",
       "text",
@@ -140,8 +145,7 @@ df <-
 
 
 # Pivot the data into long format
-staar_disagg_wide_to_long <-
-  df %>%
+staar_disagg_wide_to_long <- df %>%
   pivot_longer(cols = c(3:9),
                names_to = "rating",
                values_to = "value")
@@ -149,17 +153,28 @@ staar_disagg_wide_to_long <-
 
 
 # Convert subject column to a factor for proper ordering on the x axis
-
 staar_disagg_wide_to_long$subject <-
   factor(staar_disagg_wide_to_long$subject,
          levels = unique(staar_disagg_wide_to_long$subject))
+
+# # Define the desired order of factors
+# desired_order <- c(
+#   "All Subjects",
+#   "ELA/Reading",
+#   "Writing",
+#   "Math",
+#   "Science",
+#   "Social Science"
+# )
+
+# # Convert the subject column to a factor with desired order
+# staar_disagg_wide_to_long$subject <- factor(staar_disagg_wide_to_long$subject, levels = desired_order)
 
 
 # Filter out rows with NA values in the 'value' column
 
 staar_disagg_wide_to_long <- staar_disagg_wide_to_long %>%
   filter(!is.na(value))
-
 
 # Establish range of text colors
 
@@ -192,32 +207,28 @@ label_colors <- c(
 )
 
 
-# Setup data frame for placing the chosen SUBJECT levels above their respective bar grouping
+# Establish Subject labels to appear over year bars
 
 labels_data <- data.frame(
   x = 1:6,
   # Adjust the x positions of labels as needed
-  y = rep(71, 6),
+  y = rep(88, 6),
   # Adjust the y positions as needed
-  label = custom_labels[1:6],
-  # Select all six  labels
-  label_color = label_colors[c('All Subjects',
-                               'ELA/Reading',
-                               'Writing',
-                               'Math',
-                               'Science',
-                               'Social Science')]  # Map colors to labels in case you want to use that color mapping
+  label = custom_labels[1:1],
+  # Select the first  labels
+  label_color = label_colors[c('All Subjects')]  # Map colors to labels
 )
 
 
-# Setup data frame for placing 6 ellipses around 6 subject names above their respective bar grouping
+
+# Setup data frame for placing 3 ellipses around 3 subject names above their respective bar grouping
 
 e <- data.frame(
-  x = c(1, 2, 3, 4, 5, 6),  # define x axis values
-  y = c(71, 71, 71, 71, 71, 71),  # define y axis values
-  a = c(0.4, 0.4, 0.4, 0.4, 0.4, 0.4),  # define ellipses width
-  b = c(3, 3, 3, 3, 3, 3),  # define ellipses height
-  angle = c(0, 0, 0, 0, 0, 0)  # always set to zero
+  x = c(1, 2, 3),
+  y = c(88, 88, 88),
+  a = c(0.3, 0.3, 0.3),
+  b = c(3, 3, 3),
+  angle = c(0, 0, 0)
 )
 
 
@@ -251,48 +262,42 @@ ds_palette_scuc_light <- c("#C858D6FF",
                            "#E5454CFF")
 
 
+
 # These three functions make it so all geoms that use text, label, and label_repel will use Trebuchet MS as the font. Those layers are *not* influenced by whatever you include in the base_family argument in something like theme_minimal(), so ordinarily you'd need to specify the font in each individual annotate(geom = "text") layer or geom_label() layer, and that's tedious! This removes that tediousness.
+
+# update_geom_defaults("label_repel", list(family = "Trebuchet MS"))
 
 update_geom_defaults("text", list(family = "Trebuchet MS"))
 update_geom_defaults("label", list(family = "Trebuchet MS"))
 
-# update_geom_defaults("label_repel", list(family = "Trebuchet MS"))
 
 
-# build the plot pipeline
+  # Build the plot pipeline
 
-staar_2016_2022_by_subject_meets_or_above <-
-  staar_disagg_wide_to_long %>%
+staar_2016_2022_by_subject_approaches <-
+  staar_disagg_wide_to_long  %>%
   
-  # Choose rating level and subjects in plot
-  filter(
-    rating == 'meets' &
-      subject %in% c(
-        'all_subj',
-        'ela_reading',
-        'writing',
-        'math',
-        'science',
-        'soc_science'
-      )
-  ) %>%
+  # Choose rating level and subject
   
-  mutate(subject = as.factor(subject)) %>%
+  filter(rating == 'approaches', subject == "all_subj") %>%
+  mutate(year_end = as.factor(year_end)) %>%
   
   # add year_end to aes call to create bar for each year
   
   ggplot(aes(
-    x = subject,
+    x = factor(year_end),
     y = value * 100,
     fill = subject,
     group = year_end
-  )) + 
- 
+  )) +
+  
   geom_col(position = position_dodge2(0.9)) +
+  
   
   # USE gghighlight TO HIGHLIGHT ONE, OR MORE, SUBJECTS
   
-  gghighlight(subject == "math") +
+  # gghighlight(year_end == c("2018", "2020")) +
+  
   
   # Set gridlines for debugging chart; will remove later
   
@@ -301,61 +306,76 @@ staar_2016_2022_by_subject_meets_or_above <-
     linetype = 3,
     linewidth = 0.5
   )) +
+ 
   
-    # Add y axis title, remove x axis title and legend title
+  # Add y axis title, remove x axis title and legend title
   
   labs(x = "", y = "Proportion Reaching This Level", fill = "") +
   
-  # Use user-defined colors
+  # use bespoke label colors
   
   scale_color_manual(values = label_colors) +
   
-  # Format y axis as percentage
+  # set y axis range
+  
+  coord_cartesian(ylim = c(0, 100)) +
+  
+  # Place score at top of each bar and add'l text below it
+  
+  ggtext::geom_textbox(
+    aes(
+      label = paste0(
+        "<span style='font-size:24px'>",
+        value * 100,
+        "%</span><br><br><br><br><br><br>",
+        "<span style='font-size:18px'>",
+        "Proportion<br>Reaching<br>This<br>Combo<br>Level",
+        "</span>"
+      ),
+      vjust = case_when(value < .30 ~ 0,
+                        TRUE ~ 1),
+      valign = case_when(value < .30 ~ 0,
+                         TRUE ~ .5),
+      hjust = case_when(value < .30 ~ 0,
+                        TRUE ~ .5),
+      halign = case_when(value < .30 ~ 0,
+                         TRUE ~ .5),
+      color = case_when(value > .30 ~ dark_text,
+                        TRUE ~ dark_text),
+      fill = NA,
+      fontface = "bold",
+      box.colour = NA,
+      family = "Trebuchet MS"
+    )
+  ) +
+  
+  # Use scale_x_discrete to treat the x-axis as discrete
+  
+  scale_x_discrete() +
+  
+  # use user-defined colors
+  
+  scale_colour_identity() +
+  
+  # format y axis scale
   
   scale_y_continuous(
     labels = scales::percent_format(scale = 1),
     breaks = seq(0, 100, by = 5),
-    minor_breaks = NULL
+    # Specify major tick marks at increments of 5
+    # expand = expansion(c(0, 0.2)),
+    minor_breaks = NULL  # Remove minor tick marks
   ) +
   
-  # Theme-out text, titles, and ticks on both axis
-  
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_text(hjust = 1, face = "bold"),
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    axis.ticks.x = element_blank(),
-    axis.ticks.y = element_blank()
-  ) +
-  
-  # remove ledgend
-  
-  theme(legend.position = "none") +
-  
-  # set y axis range
-  
-  coord_cartesian(ylim = c(0, 80)) +
-  
-  # add plot titles
+  # add titles
   
   ggtitle(
-    "When TEA Combines 2 Categories Into 1<br> <span style='font-size:26px; color: red;'>Even a String of Years and a String of Subjects Cannot Help Districts Improve</span>"
+    "When TEA Combines 3 Categories Into 1<br> <span style='font-size:26px; color: red;'>Even a String of Years Cannot Help Districts Improve</span>"
   ) +
-  labs(subtitle = "TEA Combo Level = 'Meets Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
+  labs(subtitle = "TEA Combo Level = 'Approaches Grade Level Standard <span style = 'color: firebrick;'>**OR ABOVE'**</span>") +
   labs(caption = "Missing Year = No STAAR Score Available") +
   
-  # Set colored horizontal line for bars to sit on
-  
-  geom_hline(yintercept = 0,
-             color = "orange",
-             linewidth = 0.5) +
-  
-  # Specify color palette
-  
-  paletteer::scale_fill_paletteer_d("ggthemes::excel_Median") +
-  
-  # Place the Subjects labels over the groupings of bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
+  # Put the Subject labels over the bars.  Use the labels_data data frame and geom_richtext().  Text color can be matched to fill color, but is not in this template
   
   geom_richtext(
     aes(
@@ -364,78 +384,43 @@ staar_2016_2022_by_subject_meets_or_above <-
       label = label,
       label.size = 16,
       size = 22,
-      label.color = "white",
+      fill = NA,
+      label.color = NA,
       fontface = "bold"
     ),
-    data = labels_data, # Use the labels_data data frame to provide 'label' variable
+    data = labels_data,
     inherit.aes = FALSE,
     hjust = 0.5
   ) +
   
+  # set color base line for bars to sit on
   
- #####    IT IS ABSOLUTELY CRITICAL TO SET THESE CONDITIONAL   #####
- #####    FORMATTING PARAMETERS TO THE PROPER LENGTHS OF THE   #####
- #####  BARS TO GET THE SCORE VALUES AND YEAR LABELS IN THEIR  #####
- #####   PROPER PLACES INSIDE/OUTSIDE AND ON TOP OF THE BARS   #####
-
-
-  # Place STAAR score at the top of each bar
+  geom_hline(yintercept = 0,
+             color = "orange",
+             linewidth = 0.5) + # Add horizontal line at y = 0
   
-  geom_text(
-    aes(
-      label = scales::percent(value, scale = 100),
-      # Format value as percentage
-      vjust = case_when(value < .30 ~ 0,
-                        TRUE ~ 2),
-      # valign = case_when(value < .30 ~ 0,
-      #                   TRUE ~ .5),
-      hjust = case_when(value < .30 ~ 0,
-                        TRUE ~ .5),
-      # halign = case_when(value < .30 ~ 0,
-      #                   TRUE ~ .5),
-      color = case_when(value > .30 ~ "white",
-                        TRUE ~ "white")
-    ),
-    position = position_dodge2(0.9),
-    fontface = "bold",
-    family = "Trebuchet MS",
-    color = dark_text,
-    size = 3  # Adjust the font size as needed
-  ) +
-  
-  
-  # Place year labels (2016-2022) over the bars with adjusted size
-  
-  geom_text(
-    aes(label = year_end),
-    position = position_dodge2(0.9),
-    vjust = -0.5,
-    fontface = "bold",
-    family = "Trebuchet MS",
-    color = dark_text,
-    size = 3  # Adjust the font size as needed
-  ) +
   
   # Place explanatory text on plot
   
   annotate(
     "text",
     # Specify the value/category on the x-axis
-    x = "ela_reading",
+    x = "2018",
     
     # Specify the value on the y-axis
-    y = 78,
+    y = 95,
     
-    label = "(Even These Period-by-Period Figures are Useless for Improvement Efforts)",
+    label = "(All These Figures are Useless for Improvement Efforts)",
     size = 5,
     fontface = "bold",
-    hjust = 0.0,
+    hjust = 0.5,
     color = "firebrick"
   ) +
   
   
   # Add an ellipse with a specific color, size, and angle over x axis categories
-
+  
+  
   geom_ellipse(
     aes(
       x0 = x,
@@ -443,10 +428,14 @@ staar_2016_2022_by_subject_meets_or_above <-
       a = a,
       b = b,
       angle = angle,
-      label = NULL,  # Remove the label mapping for this layer
-      fill = NULL,   # Remove the fill mapping for this layer
-      y = NULL,      # Remove the y mapping for this layer
-      x = NULL,      # Remove the x mapping for this layer
+      label = NULL,
+      # Remove the label mapping for this layer
+      fill = NULL,
+      # Remove the fill mapping for this layer
+      y = NULL,
+      # Remove the y mapping for this layer
+      x = NULL,
+      # Remove the x mapping for this layer
       year_end = NULL  # Remove the 'year_end' mapping
     ),
     inherit.aes = FALSE,
@@ -454,20 +443,23 @@ staar_2016_2022_by_subject_meets_or_above <-
     color = "blue",
     fill = "lightblue",
     alpha = 0.0
-  )
+  ) +
+  
+  paletteer::scale_fill_paletteer_d("ggthemes::excel_Median")
+
+
+paletteer::paletteer_d("ggthemes::excel_Median")
+
 
 
 # view the plot
 
-staar_2016_2022_by_subject_meets_or_above  +
-  ds_staar_theme() +
-  theme(axis.text.x = element_blank())
+staar_2016_2022_by_subject_approaches +
+  ds_staar_theme()
 
 
-# view the palette
 
-paletteer::paletteer_d("ggthemes::excel_Median")
-
+# Use the EXPORT tab in RStudio to save the plot as a PNG or PDF file.  It is far more flexible with formatting than ggsave()
 
 # Generally best to save plot as image from the Plots tab in RStudio.
 # However, if needed, you can save the plot as an image file to get
