@@ -11,6 +11,8 @@
 # Load the necessary library
 library(ggplot2)
 library(patchwork)
+library(scales)
+
 
 # Step 1: Generate a sample of data from a normal distribution
 set.seed(123)  # Set a seed for reproducibility
@@ -25,16 +27,17 @@ normal_data <- rnorm(n, mean = mu, sd = sigma)
 df <- data.frame(value = normal_data)
 
 # Step 3: Plot a histogram using ggplot2
-p1 <- ggplot(df, aes(x = value)) +
-  geom_histogram(bins = 30, fill = "blue", color = "white", alpha = 0.7) +
-  geom_vline(aes(xintercept = mean(value)), color = "red", size = 1, linetype = "dashed") +
+p1 <- ggplot(df, aes(x = value)) + # creates blank canvas for plot
+  geom_histogram(bins = 30, fill = "blue", color = "white", alpha = 0.7) + # specifies the type of plot along with formatting
+  geom_vline(aes(xintercept = mean(value)), color = "red", size = 1, linetype = "dashed") + # adds a verticle line along with formatting
   labs(title = "Histogram of a Normal Distribution with Mean",
        x = "Value",
-       y = "Frequency") +
+       y = "Frequency") + # specifies labels
   theme_minimal()
 
 # Compute the counts and positions for the text labels
-p1 + geom_text(stat = "bin", aes(label = after_stat(count)), vjust = -0.5, size = 3)
+p1 + geom_text(stat = "bin", aes(label = after_stat(count)), vjust = -0.5, size = 3) # displays plot and adds text to plot
+
 
 
 #######################
@@ -48,30 +51,62 @@ library(ggplot2)
 library(patchwork)
 library(scales)
 
-p2 <- ggplot2::ggplot(iris, aes(x = Sepal.Length)) +
-  ggplot2::geom_histogram(aes(
-    y = ggplot2::after_stat(
-      count/sum(count))), 
-    binwidth = 1, 
-    fill = "blue", 
-    color = "white", 
-    alpha = 0.7) +
-  ggplot2::geom_density() +
-  ggplot2::stat_bin(aes(
-    y = after_stat(count / sum(count)),
-    label = percent(after_stat(count / sum(count)))),
-    position = position_stack(vjust = 0.5),
-    binwidth = 1,
-    geom = "text",
-    color = "white") +
-  ggplot2::scale_y_continuous(labels = percent) +
-  geom_vline(aes(xintercept = mean(Sepal.Length)), color = "red", size = 1, linetype = "dashed") +
-  labs(title = "Histogram and Density Curve of a Normal Distribution with Mean Indicated",
-       x = "Value",
-       y = "Frequency") +
-  theme_minimal()
 
+# Create the plot
+p2 <- ggplot2::ggplot(iris, aes(x = Sepal.Length)) +  # Initialize blank convas for ggplot, using Sepal.Length from the iris dataset
+
+  # Add histogram layer
+  ggplot2::geom_histogram(
+    aes(
+      y = ggplot2::after_stat(count/sum(count))  # Scale y-axis to show relative frequency (count/sum(count))
+    ),
+    binwidth = 1,  # Set the width of each bin in the histogram
+    fill = "blue",  # Set the fill color of the bars
+    color = "white",  # Set the color of the bar borders
+    alpha = 0.7  # Set the transparency of the bars
+  ) +
+
+  # Add density curve layer
+  ggplot2::geom_density() +  # Add a density curve (smooth estimate) of the distribution
+
+  # Add text labels inside each bar of the histogram
+  ggplot2::stat_bin(
+    aes(
+      y = after_stat(count / sum(count)),  # Ensure y-axis is scaled as relative frequency
+      label = percent(after_stat(count / sum(count)))  # Format the count as a percentage label
+    ),
+    position = position_stack(vjust = 0.5),  # Position the text vertically in the center of each bar
+    binwidth = 1,  # Set the bin width (same as for the histogram)
+    geom = "text",  # Specify that we want to add text labels
+    color = "white"  # Set the color of the text labels to white for contrast
+  ) +
+
+  # Format the y-axis to show percentages instead of raw counts
+  ggplot2::scale_y_continuous(labels = percent) +  # Use scales::percent to display y-axis as percentages
+
+  # Add a vertical dashed line at the mean of Sepal.Length
+  geom_vline(
+    aes(xintercept = mean(Sepal.Length)),  # Calculate the mean of Sepal.Length and plot a vertical line at this value
+    color = "red",  # Set the line color to red
+    size = 1,  # Set the line width to 1
+    linetype = "dashed"  # Make the line dashed
+  ) +
+
+  # Add labels and title to the plot
+  labs(
+    title = "Histogram and Density Curve of a Normal Distribution with Mean Indicated",  # Title of the plot
+    x = "Value",  # Label for the x-axis
+    y = "Frequency"  # Label for the y-axis
+  ) +
+
+  # Use a minimal theme for cleaner visual appearance
+  theme_minimal()  # Apply minimalistic theme to the plot
+
+# Display the plot
 p2
+
+
+
 
 
 # Check the normality of the distribution
@@ -155,6 +190,7 @@ library(ggplot2)
 library(patchwork)
 library(scales)
 
+
 # Parameters
 total_values <- 500      # Total number of data points
 bins <- 20               # Number of bins
@@ -174,7 +210,7 @@ bin_centers <- bin_edges[-length(bin_edges)] + bin_width / 2
 # Initialize it with zeros (you can modify the frequencies later)
 df <- data.frame(
   bin = factor(1:bins),
-  bin_center = bin_centers,
+  bin_center = bin_centers, # As derived above
   frequency = rep(0, bins)  # Initialize with 0, you can modify these values
 )
 
@@ -186,12 +222,12 @@ max_frequency <- max(df$frequency)  # Maximum frequency in the histogram
 normal_density_scaled <- dnorm(bin_centers, mean = median, sd = sd) * total_values * bin_width  # Scale the normal density
 
 # Plot the histogram with the manually specified frequencies and overlay the normal distribution curve
-p4 <- ggplot(df, aes(x = bin_center, y = frequency)) +
-  geom_bar(stat = "identity", fill = "blue", color = "black", width = bin_width * 0.9) +  # Plot the histogram
-  geom_line(aes(x = bin_centers, y = normal_density_scaled), color = "red", size = 1) +  # Overlay the scaled normal curve
-  geom_text(aes(label = frequency), vjust = -0.5, size = 3, color = "black") +  # Display frequencies on the bars
+p4 <- ggplot(df, aes(x = bin_center, y = frequency)) + # Initialize plot with blank canvas
+  geom_bar(stat = "identity", fill = "blue", color = "black", width = bin_width * 0.9) +  # Add the histogram layer
+  geom_line(aes(x = bin_centers, y = normal_density_scaled), color = "red", size = 1) +  # Add the line layer to overlay the scaled normal curve
+  geom_text(aes(label = frequency), vjust = -0.5, size = 3, color = "black") +  # Display frequencies in the bars
   labs(title = "Symmetrical Histogram of Normal Distribution with Overlayed Normal Curve",
-       x = "Value", y = "Frequency") +
+       x = "Value", y = "Frequency") + # Add layer of labels
   theme_minimal()
 
 p4
@@ -200,9 +236,9 @@ p4
 
 
 #############################
-#####  Right-Skewed Log-Normal Distribution  #####
-#####   with Frequency on Y-Axis and Mean    #####
-#####         Area under curve filled        #####
+#####  Right-Skewed Log-Normal Distribution        #####
+#####  with Frequency on Y-Axis and Vertical       #####
+#####  Line at Mean, with Area under curve filled  #####
 #############################
 
 
@@ -210,6 +246,7 @@ p4
 library(ggplot2)
 library(patchwork)
 library(scales)
+
 
 # Parameters
 total_values <- 500      # Total number of data points (n)
@@ -237,7 +274,7 @@ mean_value <- exp(meanlog + (sdlog^2) / 2)
 
 # Plot the scaled log-normal density curve with color fill under the curve
 p5 <- ggplot(df, aes(x = x, y = y)) +
-  geom_area(fill = "lightgreen", color = "blue", alpha = 0.5) +  # Fill the area under the curve
+  geom_area(fill = "lightgreen", alpha = 0.5) +  # Fill the area under the curve
   geom_line(color = "blue", size = 1) +                      # Line for the density curve
   geom_vline(xintercept = mean_value, color = "red", linetype = "dashed", size = 1) +  # Red dashed vertical line at mean
   labs(title = "Right-Skewed Log-Normal Distribution with Frequency on Y-Axis",
