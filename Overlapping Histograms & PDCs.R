@@ -196,7 +196,7 @@ total_values <- 500      # Total number of data points
 bins <- 20               # Number of bins
 range_min <- 0           # Minimum value
 range_max <- 100         # Maximum value
-median <- 50             # Median of the normal distribution
+mean <- 50               # Mean of the normal distribution
 sd <- 15                 # Standard deviation
 bin_width <- (range_max - range_min) / bins  # Width of each bin
 
@@ -219,13 +219,14 @@ df$frequency <- c(0, 1, 3, 6, 13, 22, 34, 47, 58, 65, 65, 58, 47, 34, 22, 13, 6,
 
 # Calculate the scaling factor to match the normal curve to the histogram
 max_frequency <- max(df$frequency)  # Maximum frequency in the histogram
-normal_density_scaled <- dnorm(bin_centers, mean = median, sd = sd) * total_values * bin_width  # Scale the normal density
+normal_density_scaled <- dnorm(bin_centers, mean = mean, sd = sd) * total_values * bin_width  # Scale the normal density
 
 # Plot the histogram with the manually specified frequencies and overlay the normal distribution curve
 p4 <- ggplot(df, aes(x = bin_center, y = frequency)) + # Initialize plot with blank canvas
-  geom_bar(stat = "identity", fill = "blue", color = "black", width = bin_width * 0.9) +  # Add the histogram layer
+  geom_bar(stat = "identity", fill = "lightgreen", alpha = 0.50, color = "black", width = bin_width * 0.9) +  # Add the histogram layer
   geom_line(aes(x = bin_centers, y = normal_density_scaled), color = "red", size = 1) +  # Add the line layer to overlay the scaled normal curve
   geom_text(aes(label = frequency), vjust = -0.5, size = 3, color = "black") +  # Display frequencies in the bars
+  geom_vline(xintercept = mean, color = "blue", linetype = "dashed", size = 2) +  # Red dashed vertical line at mean for normal curve
   labs(title = "Symmetrical Histogram of Normal Distribution with Overlayed Normal Curve",
        x = "Value", y = "Frequency") + # Add layer of labels
   theme_minimal()
@@ -275,8 +276,8 @@ mean_value <- exp(meanlog + (sdlog^2) / 2)
 # Plot the scaled log-normal density curve with color fill under the curve
 p5 <- ggplot(df, aes(x = x, y = y)) +
   geom_area(fill = "lightgreen", alpha = 0.5) +  # Fill the area under the curve
-  geom_line(color = "blue", size = 1) +                      # Line for the density curve
-  geom_vline(xintercept = mean_value, color = "red", linetype = "dashed", size = 1) +  # Red dashed vertical line at mean
+  geom_line(color = "blue", size = 1) +    # Border line for the density curve
+  geom_vline(xintercept = mean_value, color = "red", linetype = "dashed", size = 1) +  # Red dashed vertical line at mean for log-normal curve
   labs(title = "Right-Skewed Log-Normal Distribution with Frequency on Y-Axis",
        x = "Value", y = "Frequency") +
   theme_minimal()
@@ -325,15 +326,17 @@ log_normal_density <- dlnorm(x_values, meanlog = meanlog, sdlog = sdlog)
 df <- data.frame(x = x_values, normal = normal_density, log_normal = log_normal_density)
 
 # Plot the normal and log-normal curves with color fills
-p6 <- ggplot(df) +
+p6 <- ggplot(df) + # Initialize plot as blank layer 
   # Fill area under the normal curve (Symmetrical Normal Curve)
   geom_area(aes(x = x, y = normal), fill = "lightgreen", color = "darkgreen", alpha = 0.5) +
+  geom_vline(aes(xintercept = mean_normal), color = "blue", size = 1, linetype = "dashed") + # adds a vertical line along with formatting at mean
   # Fill area under the log-normal curve (Right-Skewed Curve)
   geom_area(aes(x = x, y = log_normal), fill = "lightcoral", color = "red", alpha = 0.5) +
   # Line for the normal curve
   geom_line(aes(x = x, y = normal), color = "darkgreen", linewidth = 1) +
   # Line for the right-skewed curve
   geom_line(aes(x = x, y = log_normal), color = "red", linewidth = 1) +
+  geom_vline(xintercept = mean_value, color = "blue", linetype = "dashed", size = 1) +  # Red dashed vertical line at mean
   labs(title = "Normal and Right-Skewed (Log-Normal) Curves",
        x = "Value", y = "Density") +
   theme_minimal()
