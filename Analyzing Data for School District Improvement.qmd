@@ -156,7 +156,7 @@ cat('
 
 Everyone at every level in a school district is trying to answer important, practical questions and seek data to help them.   Those questions include:
 
-*  The numbers vary from time period to time period.  **Does that variation signal anything important?**
+*  I see the numbers vary from time period to time period.  **Does that variation signal anything important?**
 
 *  Is the variation I see due to normal **random fluctuations** that are present in all measurements, or to some strong influence(s) now present in the system?
 
